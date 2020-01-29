@@ -1,6 +1,6 @@
 <?php
 
-$servidor = "localhost";
+$servidor = "192.168.1.248";
 $bd = "segebuco";
 $usu = "root_lsp";
 $pass = "root/*123";

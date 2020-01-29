@@ -11,10 +11,28 @@ class cl_movimiento_banco {
     private $concepto;
     private $ingreso;
     private $egreso;
+    private $id_clasificacion;
 
     function __construct() {
         
     }
+
+    /**
+     * @return mixed
+     */
+    public function getIdClasificacion()
+    {
+        return $this->id_clasificacion;
+    }
+
+    /**
+     * @param mixed $id_clasificacion
+     */
+    public function setIdClasificacion($id_clasificacion)
+    {
+        $this->id_clasificacion = $id_clasificacion;
+    }
+
 
     function getBanco() {
         return $this->banco;
