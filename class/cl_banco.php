@@ -118,5 +118,20 @@ class cl_banco {
         }
         return $existe;
     }
+    public function actualizar()
+    {
+        global $conn;
+        $query = "UPDATE caja_bancos
+                    SET 
+                    nombre = '$this->nombre',
+                    monto_disponible = '$this->monto',
+                    nro_cuenta = '$this->cuenta',
+                    moneda = '$this->moneda'
+                    where 
+                    codigo = '$this->codigo';";
+        $result = $conn->query($query);
+        return $result;
+
+    }
 
 }

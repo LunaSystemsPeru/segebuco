@@ -105,7 +105,7 @@ $cl_banco = new cl_banco();
                                                 <td class="text-right"><?php echo number_format($value['monto_disponible'],2) ?></td>
                                                 <td class="text-center"><?php echo $value['estado'] ?></td>
                                                 <td class="text-center">
-                                                    <a href="#modal-modificar-entidad" class="btn btn-info btn-sm" data-toggle="modal" onclick="cargar_datos_entidad('<?php echo $value['ruc']?>')" title="Modificar"><i class="fa fa-edit"></i></a>
+                                                    <a href="#modal-modificar-entidad" class="btn btn-info btn-sm" data-toggle="modal"  onclick="setdata(<?php echo $value['codigo'].",'".$value['nombre']."','".$value['nro_cuenta']."','".$value['nmoneda']."','".$value['monto_disponible']."'"?>)" title="Modificar"><i class="fa fa-edit"></i></a>
                                                     <a href="ver_movimiento_bancos.php?banco=<?php echo $value['codigo'] ?>" class="btn btn-danger btn-sm" title="Ver Movimientos Banco"><i class="fa fa-desktop"></i></a>
                                                 </td>
                                             </tr>
@@ -127,24 +127,25 @@ $cl_banco = new cl_banco();
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                 <h4 class="modal-title">Modificar Entidad - Proveedor</h4>
                             </div>
-                            <form class="form-horizontal" id="frm_mod_entidad" method="POST" action="procesos/mod_entidad.php">
+                            <form class="form-horizontal" id="frm_mod_entidad" method="POST" action="procesos/udt_banco.php">
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <label class="col-md-2 control-label" for="input_nombre">Nombre</label>
+                                        <input type="hidden" name="input_codigo" id="input_codigo" value="">
                                         <div class="col-md-10">
-                                            <input type="text" class="form-control" id="input_nombre" name="input_nombre" required/>
+                                            <input type="text" class="form-control" id="input_nombr" name="input_nombr" required/>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-2 control-label" for="input_cuenta">Nro de Cuenta</label>
                                         <div class="col-md-6">
-                                            <input type="text" class="form-control" id="input_cuenta" name="input_cuenta" required />
+                                            <input type="text" class="form-control" id="input_cuent" name="input_cuent" required />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-2 control-label" for="select_moneda">Moneda</label>
                                         <div class="col-md-6">
-                                            <select class="form-control" name="select_moneda" id="select_moneda">
+                                            <select class="form-control" name="select_moned" id="select_moned">
                                                 <?php
                                                 $cl_detalle->setTabla(5);
                                                 $a_moneda = $cl_detalle->v_detalle();
@@ -160,7 +161,7 @@ $cl_banco = new cl_banco();
                                     <div class="form-group">
                                         <label class="col-md-2 control-label" for="input_inicial" >Monto Inicial</label>
                                         <div class="col-md-4">
-                                            <input type="text" class="form-control" id="input_inicial" name="input_inicial" required value="0" />
+                                            <input type="text" class="form-control" id="input_inicia" name="input_inicia" required value="0" />
                                         </div>
                                     </div>
                                 </div>
@@ -289,6 +290,17 @@ $cl_banco = new cl_banco();
                         $("#input_comercial").focus();
                     }
                 });
+            }
+
+            function setdata(codigo, nombre, cuenta, moneda, monto)
+            {
+                console.log(codigo+"-"+nombre+"-"+cuenta+"-"+moneda+"-"+monto)
+                $('#input_nombr').val(nombre);
+                $('#input_inicia').val(monto);
+                $('#input_cuent').val(cuenta);
+                $('#select_moned option[value='+moneda+']').attr("selected", true);
+                $('#input_codig').val(codigo);
+
             }
         </script>
     </body>
