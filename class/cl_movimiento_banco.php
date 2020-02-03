@@ -93,7 +93,7 @@ class cl_movimiento_banco {
     function obtener_id() {
         $id = 1;
         global $conn;
-        $query = "select ifnull(max(movimiento) + 1, 1) as codigo from movimiento_bancos where banco = '" . $this->banco . "' and periodo = '" . $this->periodo . "'";
+        $query = "select ifnull(max(movimiento) + 1, 1) as codigo from movimiento_bancos ";
         $resultado = $conn->query($query);
         if ($resultado->num_rows > 0) {
             while ($fila = $resultado->fetch_assoc()) {
@@ -106,10 +106,18 @@ class cl_movimiento_banco {
     function insertar() {
         $grabado = false;
         global $conn;
-        $query = "insert into movimiento_bancos values ('" . $this->banco . "', '" . $this->periodo . "', '" . $this->movimiento . "', '" . $this->fecha . "',  '" . $this->concepto . "',  '" . $this->ingreso . "', "
-                . "'" . $this->egreso . "', NOW())";
+        $query = "INSERT INTO movimiento_bancos 
+                    VALUES ('$this->movimiento',
+                            '$this->banco',
+                            '$this->periodo',
+                            '$this->fecha',
+                            '$this->concepto',
+                            '$this->ingreso',
+                            '$this->egreso',
+                            NOW(),
+                            '$this->id_clasificacion');";
         $resultado = $conn->query($query);
-        echo $query;
+       // echo $query;
         if (!$resultado) {
             die('Could not enter data in movimiento_bancos: ' . mysqli_error($conn));
         } else {
