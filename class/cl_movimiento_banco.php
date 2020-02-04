@@ -125,6 +125,21 @@ class cl_movimiento_banco {
             $grabado = true;
         }
         return $grabado;
+    }function eliminar() {
+        $grabado = false;
+        global $conn;
+        $query = "DELETE
+                    FROM movimiento_bancos
+                    WHERE movimiento = '$this->movimiento';";
+        $resultado = $conn->query($query);
+       // echo $query;
+        if (!$resultado) {
+            die('Could not enter data in movimiento_bancos: ' . mysqli_error($conn));
+        } else {
+            //echo "Entered data successfully";
+            $grabado = true;
+        }
+        return $grabado;
     }
 
     function ver_movimientos() {

@@ -113,8 +113,8 @@ $listaGastos=$c_gastos->ver();
                                     <td class="text-right"><?php echo  $cl_detalle->getDescripcion() ?></td>
                                     <td><?php echo $value['egreso']  ?></td>
                                     <td class="text-center">
-                                        <a href="#modal-modificar-entidad" class="btn btn-info btn-sm" data-toggle="modal" onclick="cargar_datos_entidad('<?php echo $value['ruc']?>')" title="Modificar"><i class="fa fa-edit"></i></a>
-                                        <a href="ver_movimiento_bancos.php?banco=<?php echo $value['codigo'] ?>" class="btn btn-danger btn-sm" title="Ver Movimientos Banco"><i class="fa fa-desktop"></i></a>
+                                        <
+                                        <a href="procesos/del_gastos.php?idM=<?php echo $value['movimiento'] ?>" class="btn btn-danger btn-sm" title=Eliminar"><i class="fa fa-close"></i></a>
                                     </td>
                                 </tr>
                                 <?php
