@@ -109,5 +109,4 @@ class cl_detalle_tabla_general {
         }
         return $id;
     }
-
-}
+    }

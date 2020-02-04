@@ -105,7 +105,8 @@ $cl_banco = new cl_banco();
                                                 <td class="text-right"><?php echo number_format($value['monto_disponible'],2) ?></td>
                                                 <td class="text-center"><?php echo $value['estado'] ?></td>
                                                 <td class="text-center">
-                                                    <a href="#modal-modificar-entidad" class="btn btn-info btn-sm" data-toggle="modal"  onclick="setdata(<?php echo $value['codigo'].",'".$value['nombre']."','".$value['nro_cuenta']."','".$value['nmoneda']."','".$value['monto_disponible']."'"?>)" title="Modificar"><i class="fa fa-edit"></i></a>
+                                                    <a href="#modal-modificar-entidad" class="btn btn-info btn-sm" data-toggle="modal"  onclick="setdata(<?php echo $value['codigo'].",
+                                                    '".$value['nombre']."','".$value['nro_cuenta']."','".$value['id_moneda']."','".$value['monto_disponible']."'"?>)" title="Modificar"><i class="fa fa-edit"></i></a>
                                                     <a href="ver_movimiento_bancos.php?banco=<?php echo $value['codigo'] ?>" class="btn btn-danger btn-sm" title="Ver Movimientos Banco"><i class="fa fa-desktop"></i></a>
                                                 </td>
                                             </tr>
@@ -292,14 +293,14 @@ $cl_banco = new cl_banco();
                 });
             }
 
-            function setdata(codigo, nombre, cuenta, moneda, monto)
+            function setdata(codigo, nombre, cuenta, idmoneda, monto)
             {
-                console.log(codigo+"-"+nombre+"-"+cuenta+"-"+moneda+"-"+monto)
+                console.log(codigo+"-"+nombre+"-"+cuenta+"-"+idmoneda+"-"+monto)
                 $('#input_nombr').val(nombre);
                 $('#input_inicia').val(monto);
                 $('#input_cuent').val(cuenta);
-                $('#select_moned option[value='+moneda+']').attr("selected", true);
-                $('#input_codig').val(codigo);
+                $('#select_moned option[value='+idmoneda+']').attr("selected", true);
+                $('#input_codigo').val(codigo);
 
             }
         </script>
