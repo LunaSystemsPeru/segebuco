@@ -76,6 +76,7 @@
                     <li><a href="ver_bancos.php"><span>Bancos</span></a></li>
                     <li><a href="ver_caja_chica.php"><span>Caja Chica</span></a></li>
                     <li><a href="ver_centro_costo.php"><span>Centro de Costo</span></a></li>
+                    <li><a href="ver_gastos.php"><span>Gastos</span></a></li>
                 </ul>
             </li>
             <li class="has-sub">
