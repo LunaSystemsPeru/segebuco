@@ -113,7 +113,7 @@ $listaGastos=$c_gastos->ver();
                                     <td class="text-right"><?php echo  $cl_detalle->getDescripcion() ?></td>
                                     <td><?php echo $value['egreso']  ?></td>
                                     <td class="text-center">
-                                        <
+
                                         <a href="procesos/del_gastos.php?idM=<?php echo $value['movimiento'] ?>" class="btn btn-danger btn-sm" title=Eliminar"><i class="fa fa-close"></i></a>
                                     </td>
                                 </tr>
