@@ -176,7 +176,7 @@ if (filter_input(INPUT_GET, 'codigo') != '') {
                                                 <td><?php echo $value['glosa'] ?></td>
                                                 <td class="text-right"><?php echo number_format($value['monto'], 2, '.', ',') ?></td>
                                                 <td class="text-center">
-                                                    <a href="procesos/del_gasto_planilla.php" class="btn btn-danger btn-sm"><i class="fa fa-close"></i></a>
+                                                    <a href="procesos/del_gasto_planilla.php?" class="btn btn-danger btn-sm"><i class="fa fa-close"></i></a>
                                                 </td>
                                             </tr>
                                             <?php
