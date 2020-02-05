@@ -174,8 +174,7 @@ class cl_compra {
         $id = 1;
         global $conn;
         $query = "select ifnull(max(codigo) + 1, 1) as codigo "
-                . "from compras "
-                . "where periodo = '" . $this->periodo . "'";
+                . "from compras ";
         $resultado = $conn->query($query);
         if ($resultado->num_rows > 0) {
             while ($fila = $resultado->fetch_assoc()) {

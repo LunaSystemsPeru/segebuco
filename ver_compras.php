@@ -155,7 +155,7 @@ if (filter_input(INPUT_GET, 'periodo') != '') {
                                                         <td class="text-right"><?php echo number_format($total_soles, 2, '.', ','); ?></td>
                                                         <td class="text-center"><?php echo $cl_compra->getEstado() ?></td>
                                                         <td class="text-center">
-                                                            <a href="ver_detalle_compra.php?codigo=10469932091" class="btn btn-primary btn-sm"><i class="fa fa-navicon"></i></a>
+                                                            <a href="ver_detalle_compra.php?codigo=<?php echo $value['codigo']?>" class="btn btn-primary btn-sm"><i class="fa fa-navicon"></i></a>
                                                             <button type=button onclick="eliminar('<?php echo $value['periodo'] ?>', '<?php echo $value['codigo'] ?>')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                                                         </td>
                                                     </tr>
