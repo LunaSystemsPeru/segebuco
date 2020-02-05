@@ -61,7 +61,10 @@ class cl_planilla_gastos {
     function eliminar_gasto()
     {
         global $conn;
-        $query = "DELETE FROM `planilla_gastos` WHERE codigo = '$this->codigo'";
+        $query = "DELETE
+                    FROM planilla_gastos
+                    WHERE planilla = '$this->planilla'
+                        AND codigo = '$this->codigo';";
         $resul = $conn->query($query);
         return $resul;
     }
