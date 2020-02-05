@@ -5,6 +5,7 @@ require 'class/cl_entidad.php';
 require 'class/cl_pago_compra.php';
 require 'class/cl_banco.php';
 
+
 if (!isset($_SESSION["usuario"])) {
     header("location:login.php");
 }
@@ -26,7 +27,7 @@ $cl_compra->setCodigo(filter_input(INPUT_GET,'codigo'));
 $cl_compra->obtener_datos();
 $cl_entidad->setRuc($cl_compra->getProveedor());
 $cl_entidad->obtener_datos();
-
+$cl_pago_compra->setIdCompra($cl_compra->getCodigo());
 global $conn;
 
 
@@ -155,25 +156,23 @@ global $conn;
                                 <table id="tabla_gastos" class="table table-striped table-bordered"  width="100%">
                                     <thead>
                                         <tr>
-                                            <th>Id.</th>
-                                            <th>Glosa</th>
+                                            <th>Banco</th>
+                                            <th>fecha</th>
                                             <th>Monto</th>
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $a_gastos = $cl_gastos->ver_gastos_planilla();
-                                        $suma_gastos = 0;
-                                        foreach ($a_gastos as $value) {
-                                            $suma_gastos = $suma_gastos + $value['monto'];
+
+                                        foreach ($cl_pago_compra->ver_pagos() as $value) {
                                             ?>
                                             <tr class="odd gradeX">
-                                                <td class="text-center"><?php echo $value['codigo'] ?></td>
-                                                <td><?php echo $value['glosa'] ?></td>
-                                                <td class="text-right"><?php echo number_format($value['monto'], 2, '.', ',') ?></td>
+                                                <td><?php echo $value['nombre'] ?></td>
+                                                <td class="text-center"><?php echo $value['fecha'] ?></td>
+                                                <td class="text-right"><?php echo $value['egreso'] ?></td>
                                                 <td class="text-center">
-                                                    <a href="procesos/del_gasto_planilla.php" class="btn btn-danger btn-sm"><i class="fa fa-close"></i></a>
+                                                    <a href="procesos/del_pago_compra.php?input_compra=<?php echo $cl_compra->getCodigo(). "&input_movimiento=" .  $value ['movimiento'] ?>" class="btn btn-danger btn-sm"><i class="fa fa-close"></i></a>
                                                 </td>
                                             </tr>
                                             <?php
@@ -192,7 +191,7 @@ global $conn;
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                 <h4 class="modal-title">Agregar Gasto</h4>
                             </div>
-                            <form class="form-horizontal" id="frm_registrar" method="post" action="">
+                            <form class="form-horizontal" id="frm_registrar" method="post" action="procesos/reg_pago_compra.php">
                                 <div class="modal-body">
 
                                     <div class="form-group">
@@ -229,7 +228,7 @@ global $conn;
                                             <span disabled=»disabled»  class="form-control" ><?php echo $cl_compra->getTotal() ?></span>
                                         </div>
                                     </div>
-                                    <input type="hidden" name="input_pago" value="<?php echo $cl_compra->getCodigo() ?>"/>
+                                    <input type="hidden" name="input_compra" value="<?php echo $cl_compra->getCodigo() ?>"/>
                                 </div>
                                 <div class="modal-footer">
                                     <a href="javascript:;" class="btn btn-sm btn-white" data-dismiss="modal">Cerrar</a>

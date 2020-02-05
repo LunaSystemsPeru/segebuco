@@ -76,8 +76,8 @@ class cl_pago_compra
         global $conn;
         $query = "DELETE
                 FROM pago_compras
-                WHERE id_movimiento = 'id_movimiento'
-                    AND id_compra = 'id_compra';";
+                WHERE id_movimiento = '$this->id_movimiento'
+                    AND id_compra = '$this->id_compra';";
         $resultado = $conn->query($query);
         echo $query;
         if (!$resultado) {
