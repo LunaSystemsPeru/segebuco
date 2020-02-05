@@ -92,9 +92,9 @@ $listaGastos=$c_gastos->ver();
                         <table id="data-table" class="table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th>Codigo</th>
-                                <th>Banco</th>
                                 <th>Fecha</th>
+                                <th>concepto</th>
+                                <th>Banco</th>
                                 <th>Tipo</th>
                                 <th>Monto</th>
                                 <th>Acciones</th>
@@ -107,13 +107,13 @@ $listaGastos=$c_gastos->ver();
                                 $cl_detalle->datos_detalle();
                                 ?>
                                 <tr class="odd gradeX">
-                                    <td class="text-center"><?php echo $value['movimiento'] ?></td>
-                                    <td><?php echo $value['nombre'] ?></td>
-                                    <td><?php echo $value['fecha']  ?></td>
-                                    <td class="text-right"><?php echo  $cl_detalle->getDescripcion() ?></td>
-                                    <td><?php echo $value['egreso']  ?></td>
+                                    <td class="text-center" ><?php echo $value['fecha']  ?></td>
+                                    <td class="text-left"><?php echo $value['concepto'] ?></td>
+                                    <td><?php echo $value['nombre']?></td>
+                                    <td class="text-left"><?php echo  $cl_detalle->getDescripcion() ?></td>
+                                    <td class="text-right"><?php echo $value['egreso']  ?></td>
                                     <td class="text-center">
-                                        <
+
                                         <a href="procesos/del_gastos.php?idM=<?php echo $value['movimiento'] ?>" class="btn btn-danger btn-sm" title=Eliminar"><i class="fa fa-close"></i></a>
                                     </td>
                                 </tr>

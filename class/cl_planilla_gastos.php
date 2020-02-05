@@ -58,6 +58,13 @@ class cl_planilla_gastos {
         }
         return $grabado;
     }
+    function eliminar_gasto()
+    {
+        global $conn;
+        $query = "DELETE FROM `planilla_gastos` WHERE codigo = '$this->codigo'";
+        $resul = $conn->query($query);
+        return $resul;
+    }
 
     function obtener_id() {
         $id = 1;

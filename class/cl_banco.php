@@ -65,7 +65,7 @@ class cl_banco {
 
     function ver_bancos() {
         global $conn;
-        $query = "select cb.codigo, cb.nombre, dtgm.descripcion as nmoneda, dtgm.atributo as moneda, cb.monto_disponible, cb.nro_cuenta, cb.estado "
+        $query = "select cb.codigo, cb.nombre, dtgm.descripcion as nmoneda, dtgm.atributo as moneda, cb.monto_disponible, cb.nro_cuenta, cb.estado, dtgm.id as id_moneda "
                 . "from caja_bancos as cb "
                 . "inner join detalle_tabla_general as dtgm on dtgm.general = 5 and dtgm.id = cb.moneda "
                 . "order by cb.nombre asc";
@@ -130,6 +130,7 @@ class cl_banco {
                     where 
                     codigo = '$this->codigo';";
         $result = $conn->query($query);
+        echo $query;
         return $result;
 
     }
