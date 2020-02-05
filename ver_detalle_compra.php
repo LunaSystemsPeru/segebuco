@@ -1,6 +1,10 @@
 <?php
 session_start();
 require 'class/cl_compra.php';
+require 'class/cl_entidad.php';
+require 'class/cl_pago_compra.php';
+require 'class/cl_banco.php';
+
 if (!isset($_SESSION["usuario"])) {
     header("location:login.php");
 }
@@ -14,29 +18,18 @@ $cl_varios = new cl_varios();
 $cl_detalle = new cl_detalle_planilla();
 $cl_gastos = new cl_planilla_gastos();
 $cl_compra = new cl_compra();
+$cl_entidad = new cl_entidad();
+$cl_pago_compra = new cl_pago_compra();
+$cl_banco = new cl_banco();
 
 $cl_compra->setCodigo(filter_input(INPUT_GET,'codigo'));
+$cl_compra->obtener_datos();
+$cl_entidad->setRuc($cl_compra->getProveedor());
+$cl_entidad->obtener_datos();
 
 global $conn;
-mysqli_set_charset($conn, "utf8");
 
-if (filter_input(INPUT_GET, 'codigo') != '') {
-    $cl_planilla->setCodigo(filter_input(INPUT_GET, 'codigo'));
-    $cl_gastos->setPlanilla(filter_input(INPUT_GET, 'codigo'));
-    $a_datos = $cl_planilla->ver_datos_planilla();
-    foreach ($a_datos as $value) {
-        $cl_planilla->setSemana($value['semana']);
-        $cl_planilla->setAnio($value['anio']);
-        $cl_planilla->setCliente($value['nombre_comercial']);
-        $cl_planilla->setSucursal($value['sucursal']);
-        $cl_planilla->setInicio($value['fecha_inicio']);
-        $cl_planilla->setFinal($value['fecha_fin']);
-        $cl_planilla->setUsuario($value['nombres']);
-        $cl_planilla->setAlimentacion($value['alimentacion']);
-    }
-} else {
-    header('Location: ver_planillas.php');
-}
+
 ?>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="es" class="ie8"> <![endif]-->
@@ -112,38 +105,38 @@ if (filter_input(INPUT_GET, 'codigo') != '') {
                                     <div class="form-group">
                                         <label class="col-md-2 control-label">CODIGO</label>
                                         <div class="col-md-8">
-                                            <span class="form-control"><?php echo $cl_planilla->getCodigo() ?></span>
+                                            <span class="form-control"><?php echo $cl_compra->getCodigo() ?></span>
 
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label">CLIENTE</label>
+                                        <label class="col-md-2 control-label">PROVEEDOR</label>
                                         <div class="col-md-8">
-                                            <span class="form-control" ><?php echo $cl_planilla->getCliente() ?></span>
+                                            <span class="form-control" ><?php echo $cl_entidad->getRazon_social() ?></span>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label">SUCURSAL</label>
+                                        <label class="col-md-2 control-label">FECHA COMPRA</label>
                                         <div class="col-md-8">
-                                            <span class="form-control" ><?php echo $cl_planilla->getSucursal() ?></span>
+                                            <span class="form-control" ><?php echo $cl_compra->getFecha_compra() ?></span>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label">FECHA INICIO</label>
+                                        <label class="col-md-2 control-label">SERIE</label>
                                         <div class="col-md-8">
-                                            <span class="form-control" ><?php echo $cl_varios->fecha_mysql_web($cl_planilla->getInicio()) ?></span>
+                                            <span class="form-control" ><?php echo $cl_compra->getSerie() ?></span>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label">FECHA FIN</label>
+                                        <label class="col-md-2 control-label">NUMERO</label>
                                         <div class="col-md-8">
-                                            <span class="form-control" ><?php echo $cl_varios->fecha_mysql_web($cl_planilla->getFinal()) ?></span>
+                                            <span class="form-control" ><?php echo $cl_compra->getNumero() ?></span>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label">USUARIO</label>
+                                        <label class="col-md-2 control-label">TOTAL</label>
                                         <div class="col-md-8">
-                                            <span class="form-control" ><?php echo $cl_planilla->getUsuario() ?></span>
+                                            <span class="form-control" ><?php echo $cl_compra->getTotal() ?></span>
                                         </div>
                                     </div>
                                 </form>
@@ -192,7 +185,6 @@ if (filter_input(INPUT_GET, 'codigo') != '') {
                         </div>
                     </div>
                 </div>
-
                 <div class="modal fade" id="modal_gastos">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -200,22 +192,44 @@ if (filter_input(INPUT_GET, 'codigo') != '') {
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                 <h4 class="modal-title">Agregar Gasto</h4>
                             </div>
-                            <form class="form-horizontal" id="frm_registrar" method="post" action="procesos/reg_gasto_planilla.php">
+                            <form class="form-horizontal" id="frm_registrar" method="post" action="">
                                 <div class="modal-body">
 
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label">Descripcion</label>
+                                        <label class="col-md-2 control-label">BANCO</label>
                                         <div class="col-md-8">
-                                            <input type="text" name="input_glosa" class="form-control" required="true" />
+                                            <select class="form-control" required="true" name="input_banco" id="input_banco">
+                                                <?php
+                                                $a_banco = $cl_banco->ver_bancos();
+                                                foreach ($a_banco as $value) {
+                                                    ?>
+                                                    <option value="<?php echo $value['codigo'] ?>"><?php echo $value['nombre'] . " - " . "S/.". $value['monto_disponible'] ?></option>
+                                                    <?php
+
+                                                }
+                                                ?>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label">Monto</label>
-                                        <div class="col-md-3">
-                                            <input type="text" class="form-control" name="input_monto" id="input_monto" required/>
+                                        <label class="col-md-2 control-label">FECHA</label>
+                                        <div class="col-md-4">
+                                            <input type="date" class="form-control" name="input_fecha" id="input_fecha" required/>
                                         </div>
                                     </div>
-                                    <input type="hidden" name="input_planilla" value="<?php echo $cl_planilla->getCodigo() ?>"/>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">MONTO</label>
+                                        <div class="col-md-8">
+                                            <input type="text" name="input_monto" class="form-control" required="true" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">DEUDA</label>
+                                        <div class="col-md-8">
+                                            <span disabled=»disabled»  class="form-control" ><?php echo $cl_compra->getTotal() ?></span>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="input_pago" value="<?php echo $cl_compra->getCodigo() ?>"/>
                                 </div>
                                 <div class="modal-footer">
                                     <a href="javascript:;" class="btn btn-sm btn-white" data-dismiss="modal">Cerrar</a>
@@ -226,186 +240,9 @@ if (filter_input(INPUT_GET, 'codigo') != '') {
                     </div>
                 </div>
 
-
-                <div class="modal fade" id="modal_horas">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h4 class="modal-title">Ver y Modificar Horas trabajadas</h4>
-                            </div>
-                            <form class="form-horizontal" id="frm_registrar" method="post" action="procesos/reg_gasto_planilla.php">
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <label class="col-md-2 control-label">Colaborador</label>
-                                        <div class="col-md-8">
-                                            <input type="text" name="input_colaborador_horas" id="input_colaborador_horas" class="form-control" readonly="true" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-2 control-label">Jueves</label>
-                                        <div class="col-md-4">
-                                            <input type="number" name="input_ingreso_miercoles" class="form-control" value="08" required="true" />
-                                        </div>
-                                        <div class="col-md-4">
-                                            <input type="number" name="input_salida_miercoles" class="form-control" value="17" required="true" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-2 control-label">Viernes</label>
-                                        <div class="col-md-4">
-                                            <input type="number" name="input_ingreso_miercoles" class="form-control" value="08" required="true" />
-                                        </div>
-                                        <div class="col-md-4">
-                                            <input type="number" name="input_salida_miercoles" class="form-control" value="17" required="true" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-2 control-label">Sabado</label>
-                                        <div class="col-md-4">
-                                            <input type="number" name="input_ingreso_miercoles" class="form-control" value="08" required="true" />
-                                        </div>
-                                        <div class="col-md-4">
-                                            <input type="number" name="input_salida_miercoles" class="form-control" value="17" required="true" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-2 control-label">Domingo</label>
-                                        <div class="col-md-4">
-                                            <input type="number" name="input_ingreso_miercoles" class="form-control" value="0" required="true" />
-                                        </div>
-                                        <div class="col-md-4">
-                                            <input type="number" name="input_salida_miercoles" class="form-control" value="0" required="true" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-2 control-label">Lunes</label>
-                                        <div class="col-md-4">
-                                            <input type="number" name="input_ingreso_miercoles" class="form-control" value="08" required="true" />
-                                        </div>
-                                        <div class="col-md-4">
-                                            <input type="number" name="input_salida_miercoles" class="form-control" value="17" required="true" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-2 control-label">Martes</label>
-                                        <div class="col-md-4">
-                                            <input type="number" name="input_ingreso_miercoles" class="form-control" value="08" required="true" />
-                                        </div>
-                                        <div class="col-md-4">
-                                            <input type="number" name="input_salida_miercoles" class="form-control" value="17" required="true" />
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-2 control-label">Miercoles</label>
-                                        <div class="col-md-4">
-                                            <input type="number" name="input_ingreso_miercoles" class="form-control" value="08" required="true" />
-                                        </div>
-                                        <div class="col-md-4">
-                                            <input type="number" name="input_salida_miercoles" class="form-control" value="17" required="true" />
-                                        </div>
-                                    </div>
-                                    <input type="hidden" name="input_planilla_horas" value="<?php echo $cl_planilla->getCodigo() ?>"/>
-                                    <input type="hidden" name="input_id_colaborador_horas" />
-
-                                    <div class="modal-footer">
-                                        <a href="javascript:;" class="btn btn-sm btn-white" data-dismiss="modal">Cerrar</a>
-                                        <button type="submit" class="btn btn-sm btn-success">Guardar</button>
-                                    </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
             </div>
 
-            <div class="modal fade" id="modal_detalle">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 class="modal-title">Detalle Planilla</h4>
-                        </div>
-                        <form class="form-horizontal" id="frm_registrar" method="post" action="procesos/mod_pago_planilla.php">
-                            <div class="modal-body">
-                                <div id="resultado"></div>
-                                <legend>Datos Generales</legend>
-                                <div class="form-group">
-                                    <label class="col-md-2 control-label">Colaborador</label>
-                                    <div class="col-md-10">
-                                        <input type="text" name="input_colaborador_pago" id="input_colaborador_pago" class="form-control" readonly />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-2 control-label">Dias T.</label>
-                                    <div class="col-md-2">
-                                        <input type="text" class="form-control text-center" name="input_diast" id="input_diast" readonly/>
-                                    </div>
-                                    <label class="col-md-2 control-label">Hor 25%.</label>
-                                    <div class="col-md-2">
-                                        <input type="text" class="form-control text-center" name="input_ext25" id="input_ext25" readonly/>
-                                    </div>
-                                    <label class="col-md-2 control-label">Hor. 100%.</label>
-                                    <div class="col-md-2">
-                                        <input type="text" class="form-control text-center" name="input_ext100" id="input_ext100" readonly/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-2 control-label">Jornal D.</label>
-                                    <div class="col-md-2">
-                                        <input type="text" name="input_jornal" id="input_jornal" class="form-control text-right" readonly="true" />
-                                    </div>
-                                    <label class="col-md-2 control-label">S/ 25%</label>
-                                    <div class="col-md-2">
-                                        <input type="text" name="input_sext25" id="input_sext25" class="form-control text-right" readonly="true" />
-                                    </div>
-                                    <label class="col-md-2 control-label">S/ 100%</label>
-                                    <div class="col-md-2">
-                                        <input type="text" name="input_sext100" id="input_sext100" class="form-control text-right" value="300.00" readonly="true" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-2 control-label">Dominical</label>
-                                    <div class="col-md-2">
-                                        <input type="text" name="input_dominical" id="input_dominical" class="form-control text-right" readonly="true" />
-                                    </div>
-                                    <label class="col-md-2 control-label">Semana</label>
-                                    <div class="col-md-2">
-                                        <input type="text" name="input_semana" id="input_semana" class="form-control text-right" value="300.00" readonly="true" />
-                                    </div>
-                                </div>
-                                <legend>Ingresos:</legend>
-                                <div class="form-group">
-                                    <label class="col-md-2 control-label">Alm.</label>
-                                    <div class="col-md-2">
-                                        <input type="text" name="input_alimentacion" id="input_alimentacion" class="form-control text-right" required="true" />
-                                    </div>
-                                    <label class="col-md-2 control-label">Mov.</label>
-                                    <div class="col-md-2">
-                                        <input type="text" name="input_movilidad" id="input_movilidad" class="form-control text-right" required="true" />
-                                    </div>
-                                </div>
-                                <legend>Egresos:</legend>
-                                <div class="form-group">
-                                    <label class="col-md-2 control-label">Adelanto</label>
-                                    <div class="col-md-2">
-                                        <input type="text" name="input_adelantos" id="input_adelantos" class="form-control text-right" value="0.00" required="true" />
-                                    </div>
-                                    <label class="col-md-2 control-label">Otros</label>
-                                    <div class="col-md-2">
-                                        <input type="text" name="input_otros" id="input_otros" class="form-control text-right" value="0.00" required="true" />
-                                    </div>
-                                </div>
-                                <input type="hidden" name="input_planilla_pago" value="<?php echo $cl_planilla->getCodigo() ?>"/>
-                                <input type="hidden" name="input_id_colaborador_pago" id="input_id_colaborador_pago" />
-                            </div>
-                            <div class="modal-footer">
-                                <a href="javascript:;" class="btn btn-sm btn-white" data-dismiss="modal">Cerrar</a>
-                                <button type="submit" id="submit_guardar_empleado" class="btn btn-sm btn-success" disabled="true">Guardar</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+
         </div>
         <!-- end #content -->
 
