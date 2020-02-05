@@ -252,6 +252,33 @@ class cl_compra {
         }
         return $existe;
     }
+    function obtener_datos() {
+        $existe = false;
+        global $conn;
+        $query = "SELECT * FROM compras WHERE codigo=".$this->getCodigo();
+        $resultado = $conn->query($query);
+        if ($resultado->num_rows > 0) {
+            while ($fila = $resultado->fetch_assoc()) {
+                $this->periodo=$fila["periodo"];
+                $this->fecha_compra=$fila["fecha_compra"];
+                $this->proveedor=$fila["ruc_proveedor"];
+                $this->moneda=$fila["moneda"];
+                $this->tc=$fila["tipo_cambio"];
+                $this->total=$fila["total"];
+                $this->tido=$fila["tipo_documento"];
+                $this->serie=$fila["serie"];
+                $this->numero=$fila["numero"];
+                $this->glosa=$fila["glosa"];
+                $this->id_orden=$fila["id_orden"];
+                $this->porcentaje=$fila["porcentaje"];
+                $this->id_centro_costo=$fila["id_centro_costo"];
+                $this->id_clasificacion=$fila["id_clasificacion"];
+                $this->estado=$fila["estado"];
+                $existe = true;
+            }
+        }
+        return $existe;
+    }
     
     function eliminar() {
         $eliminado = false;
