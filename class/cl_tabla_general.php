@@ -27,6 +27,14 @@ class cl_tabla_general {
         $this->nombre = $nombre;
     }
 
+    function obtener_id()
+    {
+        global $conn;
+        $query = "SELECT MAX(id) + 1 FROM `tabla_general`";
+        $result = $conn->query($query);
+        return $result;
+    }
+
     function i_tabla() {
         $grabado = false;
         global $conn;

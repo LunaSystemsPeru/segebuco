@@ -124,7 +124,7 @@ $cl_varios = new cl_varios();
                                                 <td class="text-center"><?php echo $label_estado ?></td>
                                                 <td class="text-center">
                                                     <a target="_blank" href="mod_materiales.php?codigo=<?php echo $value['codigo'] ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
-                                                    <a href="del_materiales.php?codigo=<?php echo $value['codigo'] ?>" class="btn btn-warning btn-sm"><i class="fa fa-trash"></i></a>
+                                                    <a href="../del_cilindros.php?codigo=<?php echo $value['codigo'] ?>" class="btn btn-warning btn-sm"><i class="fa fa-trash"></i></a>
                                                 </td>
                                             </tr>
                                             <?php

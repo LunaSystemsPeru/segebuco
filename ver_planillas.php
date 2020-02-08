@@ -217,6 +217,7 @@ if (filter_input(INPUT_GET, 'semana') != '') {
                 var semana = $("#select_semana").val();
                 window.location = "ver_planillas.php?semana=" + semana;
             });
+
         </script>
     </body>
 

@@ -72,11 +72,24 @@ class cl_usuario {
 
     function ver_usuarios() {
         global $conn;
-        $query = "select u.usuario, u.estado, a.nombre as almacen, concat (c.ape_pat, ' ',c.ape_mat,' ', c.nombres) as nombres "
-                . "from usuarios as u "
-                . "inner join colaborador as c on c.id = u.colaborador "
-                . "inner join almacen as a on a.codigo = u.almacen "
-                . "order by nombres asc";
+        $query = "SELECT
+                      u.usuario,
+                      CONCAT(
+                        c.ape_pat,
+                        ' ',
+                        c.ape_mat,
+                        ' ',
+                        c.nombres
+                      ) as nombres,
+                      a.nombre AS almacen,
+                      u.estado
+                    FROM
+                      usuarios AS u
+                    INNER JOIN
+                      colaborador AS c ON c.id = u.colaborador
+                    INNER JOIN
+                      almacen AS a ON a.codigo = u.almacen
+                      order by nombres asc";
         $resultado = $conn->query($query);
         $fila = $resultado->fetch_all(MYSQLI_ASSOC);
         return $fila;

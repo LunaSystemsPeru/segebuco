@@ -37,6 +37,7 @@ if (isset($_FILES["file"])) {
             
             if (move_uploaded_file($file_temporal, $directorio . $cl_herramientas->getImagen())) {
                 print "El archivo fue subido con éxito.";
+                header("Location: ../ver_herramientas.php");
             } else {
                 print "error al subir le archivo";
             }

@@ -227,15 +227,37 @@ class cl_venta {
     
     function resumen_cobranza() {
         global $conn;
-        $query = "select count(v.codigo) as nro_docs, v.codigo, v.periodo, sum(v.total) as suma_total, datediff(curdate(), min(v.fecha_factura)) as dias, v.moneda as id_moneda, dtgm.atributo as moneda, e.razon_social as cliente, sc.nombre as sucursal "
-                . "from ventas as v "
-                . "inner join tipo_documento as td on td.id = v.tipo_documento "
-                . "inner join detalle_tabla_general as dtgm on dtgm.general = 5 and dtgm.id = v.moneda "
-                . "inner join clientes as c on c.id = v.cliente inner join entidad as e on e.ruc = c.ruc "
-                . "inner join sucursal_cliente as sc on sc.cliente = v.cliente and sc.id = v.sucursal " 
-                . "where v.estado = '0' "
-                . "group by v.cliente, v.sucursal, v.moneda "
-                . "order by v.numero asc";
+        $query = "SELECT
+                  COUNT(*) AS nro_docs,
+                  SUM(v.total) AS suma_total,
+                  DATEDIFF(
+                    CURDATE(),
+                    MIN(v.fecha_factura)) AS dias,
+                    v.moneda AS id_moneda,
+                    dtgm.atributo AS moneda,
+                    e.razon_social AS cliente,
+                    sc.nombre AS sucursal
+                  FROM
+                    ventas AS v
+                  INNER JOIN
+                    tipo_documento AS td ON td.id = v.tipo_documento
+                  INNER JOIN
+                    detalle_tabla_general AS dtgm ON dtgm.general = 5 AND dtgm.id = v.moneda
+                  INNER JOIN
+                    clientes AS c ON c.id = v.cliente
+                  INNER JOIN
+                    entidad AS e ON e.ruc = c.ruc
+                  INNER JOIN
+                    sucursal_cliente AS sc ON sc.cliente = v.cliente AND sc.id = v.sucursal
+                  WHERE
+                    v.estado = '0'
+                  GROUP BY
+                    v.cliente,
+                    v.sucursal,
+                    v.moneda
+                  ORDER BY
+                    v.cliente ASC";
+        echo $query;
         $resultado = $conn->query($query);
         $fila = $resultado->fetch_all(MYSQLI_ASSOC);
         return $fila;
