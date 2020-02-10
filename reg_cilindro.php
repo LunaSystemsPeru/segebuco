@@ -83,9 +83,6 @@ if (!isset($_SESSION["usuario"])) {
                                         <div class="col-md-2">
                                             <input type="text" class="form-control" id="input_codigo" name="input_codigo"/>
                                         </div>
-                                        <div class="col-md-2">
-                                            <button type="button" onclick="validar_cilindro()"  class="btn btn-info">Validar RUC</button>
-                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-2 control-label" for="select_gas">Tipo Gas</label>

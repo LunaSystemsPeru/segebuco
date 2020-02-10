@@ -61,7 +61,7 @@ class cl_cilindro {
 
     function v_cilindros() {
         global $conn;
-        $query = "select c.codigo, c.gas, c.capacidad, c.ingresa, c.devuelto, c.estado, a.nombre "
+        $query = "select c.codigo, c.gas, c.capacidad, a.nombre, c.ingresa, c.devuelto, c.estado "
                 . "from cilindros as c "
                 . "inner join almacen as a on a.codigo = c.ubicacion "
                 //. "where c.estado = '" . $this->estado . "'"

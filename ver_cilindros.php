@@ -117,7 +117,7 @@ $cl_varios = new cl_varios();
                                             ?>
                                             <tr class="odd gradeX">
                                                 <td class="text-center"><?php echo $value['codigo'] ?></td>
-                                                <td><?php echo $value['gas'] . ' - ' . number_format($value['capacidad'], 0) . ' m3' ?></td>
+                                                <td><?php echo $value['gas'] . ' - ' . $value['capacidad'], 0 . ' m3' ?></td>
                                                 <td class="text-center"><?php echo $value['nombre'] ?></td>
                                                 <td class="text-center"><?php echo $ingresa ?></td>
                                                 <td class="text-center"><?php echo $devuelto ?></td>
