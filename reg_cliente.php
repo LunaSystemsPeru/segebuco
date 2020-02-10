@@ -53,27 +53,38 @@ if (!isset($_SESSION["usuario"])) {
                         var json = response;
                         console.log($("#input_ruc").val().length);
                         var json_ruc = JSON.parse(json);
+                        var direccion = "";
+                        var comercial = "";
+                        var razon = "";
+                        var estado = "ACTIVO";
+                        var condicion = "HABIDO";
                         if ($("#input_ruc").val().length === 8) {
                             var fuente = json_ruc.source;
+                            if (fuente === "essalud") {
+                                razon = json_ruc.result.ApellidoPaterno + " " + json_ruc.result.ApellidoMaterno + " " + json_ruc.result.Nombres;
+                                direccion = "-";
+                                comercial = razon;
+                            }
                             if (fuente === "padron_jne") {
-                                $("#input_razon").val(json_ruc.result.apellidos + " " + json_ruc.result.Nombres);
-                                $("#input_estado").val("ACTIVO");
-                                $("#input_condicion").val("HABIDO");
-                                $("#input_direccion").val("-");
-                                $("#input_comercial").val(json_ruc.result.apellidos + " " + json_ruc.result.Nombres);
-                                $("#input_comercial").prop('readonly', false);
-                                 $("#input_direccion").prop('readonly', false);
-                                $("#input_comercial").focus();
-                            } 
+                                razon = json_ruc.result.apellidos + " " + json_ruc.result.Nombres;
+                                direccion = "-";
+                                comercial = razon;
+                            }
+
                         } else {
-                            $("#input_razon").val(json_ruc.result.RazonSocial);
-                            $("#input_estado").val(json_ruc.result.Estado);
-                            $("#input_condicion").val(json_ruc.result.Condicion);
-                            $("#input_direccion").val(json_ruc.result.Direccion);
-                            $("#input_comercial").val(json_ruc.result.NombreComercial);
-                            $("#input_comercial").prop('readonly', false);
-                            $("#input_comercial").focus();
+                            razon = json_ruc.result.RazonSocial;
+                            estado = json_ruc.result.Estado;
+                            condicion = json_ruc.result.Condicion;
+                            direccion = json_ruc.result.Direccion;
+                            comercial = json_ruc.result.NombreComercial;
                         }
+                        $("#input_razon").val(razon);
+                        $("#input_estado").val(estado);
+                        $("#input_condicion").val(condicion);
+                        $("#input_direccion").val(direccion);
+                        $("#input_comercial").val(comercial);
+                        $("#input_comercial").prop('readonly', false);
+                        $("#input_comercial").focus();
                     }
                 });
             }
