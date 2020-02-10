@@ -132,31 +132,31 @@ if (!isset($_SESSION["usuario"])) {
                                     <div class="form-group">
                                         <label class="col-md-2 control-label" for="input_razon">Razon Social</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control" id="input_razon" name="input_razon" readonly="true" required/>
+                                            <input type="text" class="form-control" id="input_razon" name="input_razon" required/>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-2 control-label" for="input_comercial">Nombre Comercial</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control" id="input_comercial" name="input_comercial" readonly="true" />
+                                            <input type="text" class="form-control" id="input_comercial" name="input_comercial"  />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-2 control-label" for="input_direcion" >Direccion fiscal</label>
                                         <div class="col-md-8">
-                                            <input type="text" class="form-control" id="input_direccion" name="input_direccion" readonly="true" required/>
+                                            <input type="text" class="form-control" id="input_direccion" name="input_direccion"  required/>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-2 control-label" for="input_condicion">Condicion</label>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control" id="input_condicion" name="input_condicion" readonly="true" />
+                                            <input type="text" class="form-control" id="input_condicion" name="input_condicion" readonly="true" placeholder="Habido" />
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-2 control-label" for="input_estado">Estado</label>
                                         <div class="col-md-3">
-                                            <input type="text" class="form-control" id="input_estado" name="input_estado" readonly="true" />
+                                            <input type="text" class="form-control" id="input_estado" name="input_estado" readonly="true" placeholder="Activo" />
                                         </div>
                                     </div>
 
