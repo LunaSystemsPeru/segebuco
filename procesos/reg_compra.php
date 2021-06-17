@@ -18,6 +18,12 @@ $cl_compra->setProveedor(filter_input(INPUT_POST, 'input_ruc_proveedor'));
 $cl_compra->setTido(filter_input(INPUT_POST, 'select_documento'));
 $cl_compra->setSerie(strtoupper(filter_input(INPUT_POST, 'input_serie')));
 $cl_compra->setNumero(filter_input(INPUT_POST, 'input_numero'));
+if ($cl_compra->getTido() == 14) {
+    $cl_compra->setTotal(filter_input(INPUT_POST, 'hidden_total'));
+    $cl_compra->setTotal($cl_compra->getTotal() *-1);
+} else {
+    $cl_compra->setTotal(filter_input(INPUT_POST, 'hidden_total'));
+}  
 $cl_compra->setTotal(filter_input(INPUT_POST, 'hidden_total'));
 $cl_compra->setId_orden(filter_input(INPUT_POST, 'select_ocompra'));
 $cl_compra->setPorcentaje(filter_input(INPUT_POST, 'input_porcentaje'));
@@ -34,6 +40,8 @@ if ($cl_compra->getTido() == 14) {
     $cl_amarre->setFecha(filter_input(INPUT_POST, 'input_fecha_amarre'));
     $cl_amarre->setSerie(filter_input(INPUT_POST, 'input_serie_amarre'));
     $cl_amarre->setNumero(filter_input(INPUT_POST, 'input_numero_amarre'));
+    
+   
 
     $cl_amarre->insertar();
 }
