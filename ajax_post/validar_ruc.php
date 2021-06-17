@@ -9,7 +9,8 @@ $c_entidad->setRuc($ruc);
 if (strlen($ruc) == 8) {
     $direcion = 'http://lunasystemsperu.com/consultas_json/composer/consultas_dni_JMP.php?dni=' . $ruc;
 } else {
-    $direcion = 'http://lunasystemsperu.com/consultas_json/composer/consulta_sunat_JMP.php?ruc=' . $ruc;
+    //$direcion = 'http://lunasystemsperu.com/consultas_json/composer/consulta_sunat_JMP.php?ruc=' . $ruc;
+    $direcion = "http://lunasystemsperu.com/apis/apiruc.php?ruc=" . $ruc;
 }
 
 $encontrado_entidad = false;
@@ -19,11 +20,11 @@ if ($encontrado_entidad) {
     $array_ruc = array();
     $a_ruc = $c_entidad->datos_ruc();
     if ($a_ruc) {
-        $fila_ruc['RazonSocial'] = $c_entidad->getRazon_social();
-        $fila_ruc['NombreComercial'] = $c_entidad->getNombre_comercial();
-        $fila_ruc['Direccion'] = $c_entidad->getDireccion();
-        $fila_ruc['Condicion'] = 'HABIDO';
-        $fila_ruc['Estado'] = 'ACTIVO';
+        $fila_ruc['razonSocial'] = $c_entidad->getRazon_social();
+        $fila_ruc['nombreComercial'] = $c_entidad->getNombre_comercial();
+        $fila_ruc['direccion'] = $c_entidad->getDireccion();
+        $fila_ruc['condicion'] = 'HABIDO';
+        $fila_ruc['estado'] = 'ACTIVO';
     }
     array_push($array_ruc, $fila_ruc);
     $rpt = (object) array(
@@ -39,6 +40,12 @@ if ($encontrado_entidad) {
         die('Error');
     }
 
-    echo $json_ruc;
+    $rpt = (object) array(
+        "success" => "nuevo",
+        "result" => json_decode($json_ruc, true)
+    );
+    echo json_encode($rpt);
+
+    //echo $json_ruc;
 }
 

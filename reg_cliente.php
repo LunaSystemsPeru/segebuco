@@ -72,11 +72,11 @@ if (!isset($_SESSION["usuario"])) {
                             }
 
                         } else {
-                            razon = json_ruc.result.RazonSocial;
-                            estado = json_ruc.result.Estado;
-                            condicion = json_ruc.result.Condicion;
-                            direccion = json_ruc.result.Direccion;
-                            comercial = json_ruc.result.NombreComercial;
+                            razon = json_ruc.result.razonSocial;
+                            estado = json_ruc.result.estado;
+                            condicion = json_ruc.result.condicion;
+                            direccion = json_ruc.result.direccion;
+                            comercial = json_ruc.result.nombreComercial;
                         }
                         $("#input_razon").val(razon);
                         $("#input_estado").val(estado);

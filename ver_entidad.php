@@ -128,6 +128,9 @@ $cl_entidad = new cl_entidad();
                                         <div class="col-md-4">
                                             <input type="text" class="form-control text-center" id="input_ruc" name="input_ruc" readonly="true"/>
                                         </div>
+                                        <div class="col-md-2">
+                                            <button type="button" onclick="enviar_ruc()"  class="btn btn-info">Validar RUC</button>
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-2 control-label" for="input_razon">Razon Social</label>
@@ -199,6 +202,39 @@ $cl_entidad = new cl_entidad();
         <script src="assets/js/table-manage-default.demo.min.js"></script>
         <script src="assets/js/apps.min.js"></script>
         <!-- ================== END PAGE LEVEL JS ================== -->
+
+        <script>
+            function enviar_ruc() {
+                var parametros = {
+                    "ruc": $("#input_ruc").val()
+                };
+                $.ajax({
+                    data: parametros,
+                    url: 'ajax_post/validar_ruc.php',
+                    type: 'post',
+                    beforeSend: function () {
+                        $("#resultado").html("Procesando, espere por favor...");
+                    },
+                    success: function (response) {
+                        $("#resultado").html("");
+                        var json = response;
+                        //console.log(json);
+
+                        var json_ruc = JSON.parse(json);
+                        //console.log(json_ruc.estado_del_contribuyente);
+                        $("#input_razon").val(json_ruc.result.razonSocial);
+                        $("#input_estado").val(json_ruc.result.estado);
+                        $("#input_condicion").val(json_ruc.result.condicion);
+                        $("#input_direccion").val(json_ruc.result.direccion);
+                        $("#input_comercial").val(json_ruc.result.nombreComercial);
+                        $("#input_comercial").prop('readonly', false);
+                        $("#input_comercial").focus();
+                    }
+                });
+            }
+
+        </script>
+
         <script>
             $(document).ready(function () {
                 App.init();

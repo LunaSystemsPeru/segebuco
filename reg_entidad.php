@@ -55,11 +55,11 @@ if (!isset($_SESSION["usuario"])) {
 
                         var json_ruc = JSON.parse(json);
                         //console.log(json_ruc.estado_del_contribuyente);
-                        $("#input_razon").val(json_ruc.result.RazonSocial);
-                        $("#input_estado").val(json_ruc.result.Estado);
-                        $("#input_condicion").val(json_ruc.result.Condicion);
-                        $("#input_direccion").val(json_ruc.result.Direccion);
-                        $("#input_comercial").val(json_ruc.result.NombreComercial);
+                        $("#input_razon").val(json_ruc.result.razonSocial);
+                        $("#input_estado").val(json_ruc.result.estado);
+                        $("#input_condicion").val(json_ruc.result.condicion);
+                        $("#input_direccion").val(json_ruc.result.direccion);
+                        $("#input_comercial").val(json_ruc.result.nombreComercial);
                         $("#input_comercial").prop('readonly', false);
                         $("#input_comercial").focus();
                     }
