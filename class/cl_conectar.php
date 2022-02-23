@@ -1,9 +1,9 @@
 <?php
 
 $servidor = "lunasystemsperu.com";
-$bd = "segebuco";
-$usu = "root_lsp";
-$pass = "root/*123";
+$bd = "goempres_segebuco";
+$usu = "goempres_root";
+$pass = "k;6?6,m{7ePs";
 $puerto = "3306";
 $conn = new mysqli($servidor, $usu, $pass, $bd, $puerto);
 mysqli_set_charset($conn, "utf8");

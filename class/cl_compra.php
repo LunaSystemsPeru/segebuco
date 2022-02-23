@@ -202,7 +202,7 @@ class cl_compra {
     function ver_compras_periodo() {
         global $conn;
         $query = "SELECT periodo, SUM( tipo_cambio * total ) AS total "
-                . "FROM compras "
+                . "FROM compras where year(fecha_compra) = year(now()) "
                 . "GROUP BY periodo";
         $resultado = $conn->query($query);
         $fila = $resultado->fetch_all(MYSQLI_ASSOC);

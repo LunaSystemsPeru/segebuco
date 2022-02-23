@@ -122,7 +122,7 @@ class cl_cliente {
         $c_codigo = "select c.id, c.ruc, e.razon_social, e.nombre_comercial, c.total_facturado, c.total_cobranza "
                 . "from clientes as c "
                 . "inner join entidad as e on e.ruc = c.ruc "
-                . "where c.total_facturado > 0 "
+                . "where c.total_facturado > 10000 "
                 . "order by e.razon_social asc ";
         $r_codigo = $conn->query($c_codigo);
         $fila = $r_codigo->fetch_all(MYSQLI_ASSOC);

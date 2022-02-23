@@ -1,3 +1,7 @@
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+
 <?php
 
 require '../class/cl_compra.php';
@@ -152,5 +156,5 @@ fclose($archivo_no);
 ?>
 
 <h2>Archivos Generados</h2>
-<p>Libro de Compras - clic aqui <a href="<?php echo $file_txt ?>">Descargar</a></p>
-<p>Libro de Compras no Domiciliado - clic aqui <a href="<?php echo $file_compra_txt ?>">Descargar</a></p>
+<p>Libro de Compras - clic aqui <a download href="<?php echo $file_txt ?>">Descargar</a></p>
+<p>Libro de Compras no Domiciliado - clic aqui <a download href="<?php echo $file_compra_txt ?>">Descargar</a></p>

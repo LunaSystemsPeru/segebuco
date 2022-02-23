@@ -1,3 +1,7 @@
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+
 <?php
 
 require '../class/cl_venta.php';
@@ -126,4 +130,4 @@ foreach ($a_ventas as $value) {
 
 fclose($archivo);
 
-echo "archivo generado correctamente, haga clic aqui para <a href='" . $file_txt . "' >descargar</a>";
+echo "archivo generado correctamente, haga clic aqui para <a download href='" . $file_txt . "' >descargar</a>";

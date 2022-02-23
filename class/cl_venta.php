@@ -308,7 +308,7 @@ class cl_venta {
 
     function ver_ventas_periodo() {
         global $conn;
-        $query = "SELECT periodo, SUM( tipo_cambio * total ) AS total FROM  `ventas` GROUP BY periodo";
+        $query = "SELECT periodo, SUM( tipo_cambio * total ) AS total FROM  `ventas` WHERE year(fecha_factura) = year(now())  GROUP BY periodo ";
         $resultado = $conn->query($query);
         $fila = $resultado->fetch_all(MYSQLI_ASSOC);
         return $fila;
