@@ -19,6 +19,7 @@ $cl_compra->setTido(filter_input(INPUT_POST, 'select_documento'));
 $cl_compra->setSerie(strtoupper(filter_input(INPUT_POST, 'input_serie')));
 $cl_compra->setNumero(filter_input(INPUT_POST, 'input_numero'));
 $cl_compra->setTotal(filter_input(INPUT_POST, 'hidden_total'));
+$cl_compra->setIgv(filter_input(INPUT_POST, 'input_igv'));
 if ($cl_compra->getTido() == 14) {
     $cl_compra->setTotal(filter_input(INPUT_POST, 'hidden_total'));
     $cl_compra->setTotal($cl_compra->getTotal() *-1);

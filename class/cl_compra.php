@@ -11,6 +11,7 @@ class cl_compra {
     private $moneda;
     private $tc;
     private $total;
+    private $igv;
     private $tido;
     private $serie;
     private $numero;
@@ -153,14 +154,30 @@ class cl_compra {
         $this->porcentaje = $porcentaje;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getIgv()
+    {
+        return $this->igv;
+    }
+
+    /**
+     * @param mixed $igv
+     */
+    public function setIgv($igv)
+    {
+        $this->igv = $igv;
+    }
+
     function i_compra() {
         $grabado = false;
         global $conn;
         $query = "insert into compras values ('" . $this->codigo . "', '" . $this->periodo . "',  '" . $this->fecha_compra . "', '" . $this->proveedor . "',  '" . $this->moneda . "', "
-                . "'" . $this->tc . "', '" . $this->total . "', '" . $this->tido . "', '" . $this->serie . "', '" . $this->numero . "', '" . $this->glosa . "', '" . $this->id_orden . "', "
+                . "'" . $this->tc . "', '" . $this->total . "', '" . $this->igv . "', '" . $this->tido . "', '" . $this->serie . "', '" . $this->numero . "', '" . $this->glosa . "', '" . $this->id_orden . "', "
                 . "'" . $this->porcentaje . "', '" . $this->id_centro_costo . "', '" . $this->id_clasificacion . "', '0', NOW())";
         $resultado = $conn->query($query);
-        echo $query;
+        //echo $query;
         if (!$resultado) {
             die('Could not enter data in compras: ' . mysqli_error($conn));
         } else {
@@ -187,7 +204,7 @@ class cl_compra {
 
     function ver_compras() {
         global $conn;
-        $query = "select c.codigo, c.periodo, c.fecha_compra,  c.serie, c.numero, c.total, c.tipo_documento, td.abreviado as tido, td.sunat, dtgm.atributo as moneda, c.moneda as id_moneda, c.tipo_cambio, c.estado, c.ruc_proveedor, e.razon_social as proveedor "
+        $query = "select c.codigo, c.periodo, c.fecha_compra,  c.serie, c.numero, c.total, c.igv, c.tipo_documento, td.abreviado as tido, td.sunat, dtgm.atributo as moneda, c.moneda as id_moneda, c.tipo_cambio, c.estado, c.ruc_proveedor, e.razon_social as proveedor "
                 . "from compras as c "
                 . "inner join tipo_documento as td on td.id = c.tipo_documento "
                 . "inner join detalle_tabla_general as dtgm on dtgm.general = 5 and dtgm.id = c.moneda "

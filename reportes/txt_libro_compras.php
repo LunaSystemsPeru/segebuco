@@ -100,8 +100,8 @@ foreach ($a_compras as $value) {
     }
 
     $monto_total_soles = $value['total'] * $value['tipo_cambio'];
-    $base = $monto_total_soles / 1.18;
-    $igv = $base * 0.18;
+    $igv = $value['igv'] * $value['tipo_cambio'];
+    $base = $monto_total_soles - $igv;
     $contenido = $cl_compra->getPeriodo() . "00|" .
         $cl_varios->zerofill($value['codigo'], 4) . "|" .
         "M3|" .

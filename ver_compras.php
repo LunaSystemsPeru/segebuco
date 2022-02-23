@@ -114,8 +114,9 @@ if (filter_input(INPUT_GET, 'periodo') != '') {
                                                     <th>Documento</th>
                                                     <th>Razon Social</th>
                                                     <th>Moneda</th>
-                                                    <th>Total</th>
-                                                    <th>Total S/</th>
+                                                    <th>Base Imp</th>
+                                                    <th>IGV</th>
+                                                    <th>Total </th>
                                                     <th>Estado</th>
                                                     <th>Acciones</th>
                                                 </tr>
@@ -125,6 +126,8 @@ if (filter_input(INPUT_GET, 'periodo') != '') {
                                                 $cl_compra->setPeriodo($periodo);
                                                 //$cl_venta->setPeriodo(201703);
                                                 $a_compras = $cl_compra->ver_compras();
+                                                $suma_base = 0;
+                                                $suma_igv = 0;
                                                 $suma_total = 0;
                                                 foreach ($a_compras as $value) {
 
@@ -135,8 +138,13 @@ if (filter_input(INPUT_GET, 'periodo') != '') {
                                                     $cl_compra->setTc($value['tipo_cambio']);
                                                     $cl_compra->setProveedor($value['ruc_proveedor'] . ' - ' . $value['proveedor']);
                                                     $cl_compra->setEstado($value['estado']);
-                                                    $total_soles = $cl_compra->getTotal() * $cl_compra->getTc();
-                                                    $suma_total = $suma_total + $total_soles;
+                                                    $igv = $value['igv'];
+                                                    $base = $cl_compra->getTotal();
+                                                    if ($igv > 0) {
+                                                        $base = $base - $igv;
+                                                    }
+                                                    /*$total_soles = $cl_compra->getTotal() * $cl_compra->getTc();
+                                                    $suma_total = $suma_total + $total_soles;*/
                                                     //$cl_varios->fecha_mysql_web($value['fecha_compra'])
                                                     if ($cl_compra->getEstado() == 0) {
                                                         $cl_compra->setEstado('<span class="btn btn-warning btn-sm">Pendiente</span>');
@@ -151,8 +159,9 @@ if (filter_input(INPUT_GET, 'periodo') != '') {
                                                         <td class="text-center"><?php echo $value['tido'] . '/ ' . strtoupper($cl_compra->getSerie()) . '-' . $cl_compra->getNumero() ?></td>
                                                         <td><?php echo $cl_compra->getProveedor() ?></td>
                                                         <td class="text-right"><?php echo $value['moneda'] ?></td>
+                                                        <td class="text-right"><?php echo number_format($base, 2, '.', ','); ?></td>
+                                                        <td class="text-right"><?php echo number_format($igv, 2, '.', ','); ?></td>
                                                         <td class="text-right"><?php echo number_format($cl_compra->getTotal(), 2, '.', ','); ?></td>
-                                                        <td class="text-right"><?php echo number_format($total_soles, 2, '.', ','); ?></td>
                                                         <td class="text-center"><?php echo $cl_compra->getEstado() ?></td>
                                                         <td class="text-center">
                                                             <a href="ver_detalle_compra.php?codigo=<?php echo $value['codigo']?>" class="btn btn-primary btn-sm"><i class="fa fa-navicon"></i></a>
@@ -162,11 +171,11 @@ if (filter_input(INPUT_GET, 'periodo') != '') {
                                                     <?php
                                                 }
                                                 ?>
-                                            <tfoot>
+                                            <!--<tfoot>
                                             <td class="text-right" colspan="6">TOTAL</td>
                                             <td class="text-right"><?php echo number_format($suma_total, 2, '.', ',') ?></td>
                                             <td class="text-center"></td>
-                                            </tfoot>
+                                            </tfoot>-->
                                             </tbody>
                                         </table>
                                     </div>
@@ -215,6 +224,7 @@ if (filter_input(INPUT_GET, 'periodo') != '') {
                 $('#data-table').DataTable({
                     responsive: true,
                     "order": [[ 1, "asc" ]],
+                    lengthMenu: [200, 400, 500],
                     "bProcessing": true,
                     // "bServerSide": true
                 });
