@@ -110,14 +110,14 @@ if (filter_input(INPUT_GET, 'periodo') != '') {
                                             <thead>
                                                 <tr>
                                                     <th>Codigo.</th>
-                                                    <th>Fecha</th>
+                                                    <th width="7%">Fecha</th>
                                                     <th>Documento</th>
                                                     <th>Razon Social</th>
                                                     <th>Moneda</th>
                                                     <th>Base Imp</th>
                                                     <th>IGV</th>
                                                     <th>Total </th>
-                                                    <th>Estado</th>
+                                                    <th>Total S/</th>
                                                     <th>Acciones</th>
                                                 </tr>
                                             </thead>
@@ -143,8 +143,10 @@ if (filter_input(INPUT_GET, 'periodo') != '') {
                                                     if ($igv > 0) {
                                                         $base = $base - $igv;
                                                     }
-                                                    /*$total_soles = $cl_compra->getTotal() * $cl_compra->getTc();
-                                                    $suma_total = $suma_total + $total_soles;*/
+                                                    $suma_base += $base * $cl_compra->getTc();
+                                                    $suma_igv += $igv * $cl_compra->getTc();
+                                                    $total_soles = $cl_compra->getTotal() * $cl_compra->getTc();
+                                                    $suma_total = $suma_total + $total_soles;
                                                     //$cl_varios->fecha_mysql_web($value['fecha_compra'])
                                                     if ($cl_compra->getEstado() == 0) {
                                                         $cl_compra->setEstado('<span class="btn btn-warning btn-sm">Pendiente</span>');
@@ -162,20 +164,23 @@ if (filter_input(INPUT_GET, 'periodo') != '') {
                                                         <td class="text-right"><?php echo number_format($base, 2, '.', ','); ?></td>
                                                         <td class="text-right"><?php echo number_format($igv, 2, '.', ','); ?></td>
                                                         <td class="text-right"><?php echo number_format($cl_compra->getTotal(), 2, '.', ','); ?></td>
-                                                        <td class="text-center"><?php echo $cl_compra->getEstado() ?></td>
+                                                        <td class="text-right"><?php echo number_format($total_soles , 2, '.', ','); ?></td>
                                                         <td class="text-center">
-                                                            <a href="ver_detalle_compra.php?codigo=<?php echo $value['codigo']?>" class="btn btn-primary btn-sm"><i class="fa fa-navicon"></i></a>
-                                                            <button type=button onclick="eliminar('<?php echo $value['periodo'] ?>', '<?php echo $value['codigo'] ?>')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                                            <a href="ver_detalle_compra.php?codigo=<?php echo $value['codigo']?>" class="btn btn-primary btn-xs"><i class="fa fa-navicon"></i></a>
+                                                            <button type=button onclick="eliminar('<?php echo $value['periodo'] ?>', '<?php echo $value['codigo'] ?>')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
                                                         </td>
                                                     </tr>
                                                     <?php
                                                 }
                                                 ?>
-                                            <!--<tfoot>
-                                            <td class="text-right" colspan="6">TOTAL</td>
+                                            <tfoot>
+                                            <td class="text-right" colspan="5">TOTAL S/</td>
+                                            <td class="text-right"><?php echo number_format($suma_base, 2, '.', ',') ?></td>
+                                            <td class="text-right"><?php echo number_format($suma_igv, 2, '.', ',') ?></td>
+                                            <td></td>
                                             <td class="text-right"><?php echo number_format($suma_total, 2, '.', ',') ?></td>
                                             <td class="text-center"></td>
-                                            </tfoot>-->
+                                            </tfoot>
                                             </tbody>
                                         </table>
                                     </div>
