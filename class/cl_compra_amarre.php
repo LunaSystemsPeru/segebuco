@@ -4,12 +4,12 @@ include_once 'cl_conectar.php';
 
 class cl_compra_amarre
 {
-private $id_compra;
-private $periodo;
-private $id_tido;
-private $fecha;
-private $serie;
-private $numero;
+    private $id_compra;
+    private $periodo;
+    private $id_tido;
+    private $fecha;
+    private $serie;
+    private $numero;
 
     /**
      * cl_compra_amarre constructor.
@@ -116,7 +116,8 @@ private $numero;
     }
 
 
-    function obtener_datos() {
+    function obtener_datos()
+    {
         $b_validar = false;
         global $conn;
         $query = "select * "
@@ -137,7 +138,8 @@ private $numero;
         return $b_validar;
     }
 
-    function insertar() {
+    function insertar()
+    {
         $grabado = false;
         global $conn;
         $query = "insert into compras_amarre values ('$this->id_compra', '$this->periodo', ' $this->id_tido', '$this->serie', '$this->numero', '$this->fecha')";

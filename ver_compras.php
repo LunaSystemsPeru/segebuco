@@ -166,7 +166,7 @@ if (filter_input(INPUT_GET, 'periodo') != '') {
                                                         <td class="text-right"><?php echo number_format($cl_compra->getTotal(), 2, '.', ','); ?></td>
                                                         <td class="text-right"><?php echo number_format($total_soles , 2, '.', ','); ?></td>
                                                         <td class="text-center">
-                                                            <a href="ver_detalle_compra.php?codigo=<?php echo $value['codigo']?>" class="btn btn-primary btn-xs"><i class="fa fa-navicon"></i></a>
+                                                            <a href="ver_detalle_compra.php?codigo=<?php echo $value['codigo']?>&periodo=<?php echo $value['periodo']?>" class="btn btn-primary btn-xs"><i class="fa fa-navicon"></i></a>
                                                             <button type=button onclick="eliminar('<?php echo $value['periodo'] ?>', '<?php echo $value['codigo'] ?>')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
                                                         </td>
                                                     </tr>

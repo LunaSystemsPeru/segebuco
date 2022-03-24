@@ -1,19 +1,18 @@
 <?php
 session_start();
+if (!isset($_SESSION["usuario"])) {
+    header("location:login.php");
+}
 require 'class/cl_compra.php';
 require 'class/cl_entidad.php';
 require 'class/cl_pago_compra.php';
 require 'class/cl_banco.php';
-
-
-if (!isset($_SESSION["usuario"])) {
-    header("location:login.php");
-}
-
 require 'class/cl_planilla.php';
 require 'class/cl_detalle_planilla.php';
 require 'class/cl_planilla_gastos.php';
 require 'class/cl_varios.php';
+require 'class/cl_compra_amarre.php';
+
 $cl_planilla = new cl_planilla();
 $cl_varios = new cl_varios();
 $cl_detalle = new cl_detalle_planilla();
@@ -22,9 +21,16 @@ $cl_compra = new cl_compra();
 $cl_entidad = new cl_entidad();
 $cl_pago_compra = new cl_pago_compra();
 $cl_banco = new cl_banco();
+$cl_compra_amarre = new cl_compra_amarre();
 
 $cl_compra->setCodigo(filter_input(INPUT_GET,'codigo'));
+$cl_compra->setPeriodo(filter_input(INPUT_GET,'periodo'));
 $cl_compra->obtener_datos();
+
+$cl_compra_amarre->setPeriodo($cl_compra->getPeriodo());
+$cl_compra_amarre->setIdCompra($cl_compra->getCodigo());
+$cl_compra_amarre->obtener_datos();
+
 $cl_entidad->setRuc($cl_compra->getProveedor());
 $cl_entidad->obtener_datos();
 $cl_pago_compra->setIdCompra($cl_compra->getCodigo());
@@ -141,6 +147,33 @@ global $conn;
                                         </div>
                                     </div>
                                 </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="panel panel-inverse">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">Factura Relacionada a la Nota</h4>
+                            </div>
+                            <div class="panel-body">
+                                <table id="tabla_factura" class="table table-striped table-bordered"  width="100%">
+                                    <thead>
+                                    <tr>
+                                        <th>Fecha</th>
+                                        <th>Tipo Doc</th>
+                                        <th>Serie</th>
+                                        <th>numero</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="odd gradeX">
+                                            <td><?php echo $cl_compra_amarre->getFecha() ?></td>
+                                            <td class="text-center"><?php echo "FT"?></td>
+                                            <td class="text-right"><?php echo $cl_compra_amarre->getSerie() ?></td>
+                                            <td class="text-right"><?php echo $cl_compra_amarre->getNumero() ?></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -353,4 +386,5 @@ global $conn;
 
 <!-- Mirrored from seantheme.com/color-admin-v1.9/admin/html/page_blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 21 Mar 2016 14:23:54 GMT -->
 </html>
+
 

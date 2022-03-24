@@ -102,7 +102,7 @@ $cl_tido = new cl_tipo_documento();
                             <div class="form-group">
                                 <label class="col-md-2 control-label">Tipo Documento</label>
                                 <div class="col-md-3">
-                                    <select class="form-control" name="select_documento" id="select_documento">
+                                    <select class="form-control" name="select_documento" id="select_documento" onchange="habilitarAmarre()">
                                         <?php
                                         $a_tidos = $cl_tido->ver_documentos();
                                         foreach ($a_tidos as $value) {
@@ -600,6 +600,16 @@ $cl_tido = new cl_tipo_documento();
         $("#input_igv").val(number_format(igv, 2));
         $("#input_total").val(number_format(total, 2));
         $("#hidden_total").val(total);
+    }
+
+    function habilitarAmarre () {
+        var idtipodocumento = $("#select_documento").val();
+        if (idtipodocumento == "14" || idtipodocumento == "15") {
+            alert("Tiene que ingresar la fecha, serie y numero del comprobante relacionado");
+            $("#input_serie_amarre").prop("required", true);
+        }else {
+            $("#input_serie_amarre").prop("required", false);
+        }
     }
 
     $(function () {

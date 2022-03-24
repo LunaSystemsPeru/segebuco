@@ -15,6 +15,11 @@ $cl_amarre = new cl_compra_amarre();
 $periodo = filter_input(INPUT_GET, 'input_periodo');
 
 $file_txt = "LE20531757590" . $periodo . "00080100001111.txt";
+if (unlink($file_txt)) {
+    // file was successfully deleted
+}
+
+
 $archivo = fopen($file_txt, "w");
 
 $cl_compra->setPeriodo($periodo);
@@ -52,7 +57,7 @@ foreach ($a_compras as $value) {
     $serie_amarre = "";
     $numero_amarre = "";
 
-    if ($value['tipo_documento'] == 14) {
+    if ($value['tipo_documento'] == 14 or $value['tipo_documento'] == 15) {
         $cl_amarre->setIdCompra($value['codigo']);
         $cl_amarre->setPeriodo($value['periodo']);
         $cl_amarre->obtener_datos();

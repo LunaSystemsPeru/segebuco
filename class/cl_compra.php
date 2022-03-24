@@ -272,7 +272,7 @@ class cl_compra {
     function obtener_datos() {
         $existe = false;
         global $conn;
-        $query = "SELECT * FROM compras WHERE codigo='$this->getCodigo()' and periodo = '$this->periodo'";
+        $query = "SELECT * FROM compras WHERE codigo='$this->codigo' and periodo = '$this->periodo'";
         $resultado = $conn->query($query);
         if ($resultado->num_rows > 0) {
             while ($fila = $resultado->fetch_assoc()) {
