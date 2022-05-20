@@ -161,5 +161,5 @@ fclose($archivo_no);
 ?>
 
 <h2>Archivos Generados</h2>
-<p>Libro de Compras - clic aqui <a download href="<?php echo $file_txt ?>">Descargar</a></p>
-<p>Libro de Compras no Domiciliado - clic aqui <a download href="<?php echo $file_compra_txt ?>">Descargar</a></p>
+<p>Libro de Compras - clic aqui <a download href="<?php echo $file_txt . "?v=" . rand()  ?>">Descargar</a></p>
+<p>Libro de Compras no Domiciliado - clic aqui <a download href="<?php echo $file_compra_txt . "?v=" . rand()  ?>">Descargar</a></p>

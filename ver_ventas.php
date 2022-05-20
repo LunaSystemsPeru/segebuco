@@ -100,7 +100,7 @@ if (filter_input(INPUT_GET, 'periodo') != '') {
                                 </div>
                                 <a href="reg_venta.php" class="btn btn-info btn-sm" >Agregar Documento</a>
                                 <a href="#modal-agregar-anulado" class="btn btn-info btn-sm" data-toggle="modal">Agregar Documento Anulado</a>
-                                <a href="reportes/txt_libro_ventas.php?input_periodo=<?php echo $periodo ?>" class="btn btn-info btn-sm" >Generar Libro de Ventas</a>                                
+                                <a href="reportes/txt_libro_ventas.php?input_periodo=<?php echo $periodo ?>" class="btn btn-info btn-sm" >Generar Libro de Ventas</a>
 
                             </div>
                             <div class="panel-body">

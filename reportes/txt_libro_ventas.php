@@ -130,4 +130,4 @@ foreach ($a_ventas as $value) {
 
 fclose($archivo);
 
-echo "archivo generado correctamente, haga clic aqui para <a download href='" . $file_txt . "' >descargar</a>";
+echo "archivo generado correctamente, haga clic aqui para <a download href='" . $file_txt . "?v=" . rand() ."' >descargar</a>";
