@@ -1,6 +1,6 @@
 <?php
 
-$servidor = "lunasystemsperu.com";
+$servidor = "localhost";
 $bd = "goempres_segebuco";
 $usu = "goempres_root";
 $pass = "k;6?6,m{7ePs";
