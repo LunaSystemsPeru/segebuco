@@ -84,8 +84,8 @@ $cl_cliente = new cl_cliente();
                     <div class="panel-body">
                     <form class="form-horizontal" id="frm_reg_venta">
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Tipo Documento</label>
-                            <div class="col-md-3">
+                            <label class="col-md-3 control-label">Comprobante</label>
+                            <div class="col-md-9">
                                 <select class="form-control" name="select_documento" id="select_documento">
                                     <option value="4">FACTURA</option>
                                     <option value="3">BOLETA</option>
@@ -93,25 +93,67 @@ $cl_cliente = new cl_cliente();
                                     <option value="15">NOTA DE DEBITO</option>
                                 </select>
                             </div>
-
                         </div>
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Serie</label>
-                            <div class="col-md-3">
+                            <label class="col-md-3 control-label">Serie</label>
+                            <div class="col-md-4">
                                 <input type="text" class="form-control text-center" name="input_serie"
                                        id="input_serie" maxlength="4" value="E001" required/>
-                            </div>
-                            <label class="col-md-2 control-label">Numero</label>
-                            <div class="col-md-3">
+                                       </div>
+                            <div class="col-md-4">
                                 <input type="text" class="form-control  text-center" name="input_numero"
                                        id="input_numero" maxlength="7" required/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Fecha</label>
+                            <label class="col-md-3 control-label">Fecha</label>
+                            <div class="col-md-9">
+                                <input type="date" class="form-control" name="input_fecha" id="input_fecha"
+                                       value="<?php echo date('Y-m-d') ?>" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Moneda</label>
+                            <div class="col-md-6">
+                                <select class="form-control" name="select_documento" id="select_documento">
+                                    <option value="4">SOLES</option>
+                                    <option value="3">DOLAR AMERICANO</option>
+                                </select>
+                                
+                            </div>
                             <div class="col-md-3">
-                                <input type="text" class="form-control" name="input_fecha" id="input_fecha"
-                                       value="<?php echo date('d/m/Y') ?>" required/>
+                                <input type="text" class="form-control  text-right" name="input_tc"
+                                       id="input_tc" maxlength="5" required/>
+                            </div>
+
+                        </div>
+                        
+                         <div class="form-group">
+                            <label class="col-md-3 control-label">Detraccion</label>
+                            <div class="col-md-6">
+                                <select class="form-control" name="select_documento" id="select_documento">
+                                    <option value="4">020 MANTENIMIENTO</option>
+                                    <option value="3">022 OTROS SERVICIOS</option>
+                                </select>
+                                
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control  text-center" name="input_tc"
+                                       id="input_tc" maxlength="5" value="12" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Retencion</label>
+                            <div class="col-md-6">
+                                <select class="form-control" name="select_documento" id="select_documento">
+                                        <option value="4">SI</option>
+                                    <option value="3">NO</option>
+                                </select>
+                                
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control  text-center" name="input_tc"
+                                       id="input_tc" maxlength="5" value="0" required/>
                             </div>
                         </div>
                     </form>
@@ -123,191 +165,231 @@ $cl_cliente = new cl_cliente();
                     <div class="panel-heading">
                         <h4 class="panel-title">Datos de la Venta</h4>
                     </div>
-                    <form class="form-horizontal" id="frm_reg_venta" method="post" action="procesos/reg_venta.php">
-                    </form>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="panel panel-inverse">
-
-                    <div class="panel-heading">
-                        <h4 class="panel-title">Datos Generales</h4>
-                    </div>
-                    <form class="form-horizontal" id="frm_reg_venta" method="post" action="procesos/reg_venta.php">
-                        <div class="panel-body">
+                    <div class=panel-body>
+                        <form class="form-horizontal" id="frm_reg_venta" >
                             <div class="form-group">
-                                <label class="col-md-2 control-label">Periodo</label>
-                                <div class="col-md-3">
-                                    <input type="text" class="form-control text-center" maxlength="6"
-                                           name="input_periodo" id="input_periodo"
-                                           value="<?php echo date('Y') . date('m') ?>" required="true"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">Tipo Documento</label>
-                                <div class="col-md-3">
-                                    <select class="form-control" name="select_documento" id="select_documento">
-                                        <option value="4">FACTURA</option>
-                                        <option value="3">BOLETA</option>
-                                        <option value="14">NOTA DE CREDITO</option>
-                                        <option value="15">NOTA DE DEBITO</option>
-                                    </select>
-                                </div>
-                                <label class="col-md-2 control-label">Fecha</label>
-                                <div class="col-md-3">
-                                    <input type="text" class="form-control" name="input_fecha" id="input_fecha"
-                                           value="<?php echo date('d/m/Y') ?>" required/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">Serie</label>
-                                <div class="col-md-3">
-                                    <input type="text" class="form-control text-center" name="input_serie"
-                                           id="input_serie" maxlength="4" value="E001" required/>
-                                </div>
-                                <label class="col-md-2 control-label">Numero</label>
-                                <div class="col-md-3">
-                                    <input type="text" class="form-control  text-center" name="input_numero"
-                                           id="input_numero" maxlength="7" required/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">Cliente:</label>
-                                <div class="col-md-8">
-                                    <select class="form-control" name="select_cliente" id="select_cliente">
-                                        <?php
-                                        $a_clientes = $cl_cliente->ver_clientes();
-                                        foreach ($a_clientes as $value) {
-                                            ?>
-                                            <option value="<?php echo $value['id'] ?>"><?php echo $value['razon_social'] ?></option>
-                                            <?php
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                                <button class="btn btn-default" name="btn_actualizar" id="btn_actualizar"
-                                        onclick="location.reload()">Actualizar
-                                </button>
-                                <a href="reg_cliente.php" class="btn btn-success" name="btn_crear_cliente"
-                                   id="btn_crear_cliente" target="_blank">Nuevo</a>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">Sucursal</label>
-                                <div class="col-md-10">
-                                    <select class="form-control" name="select_sucursal" id="select_sucursal">
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">Documento Amarre</label>
-                                <div class="col-md-3">
-                                    <select class="form-control" name="select_documento_amarre"
-                                            id="select_documento_amarre">
-                                        <option value="4">FACTURA</option>
-                                        <option value="3">BOLETA</option>
-                                    </select>
-                                </div>
-                                <label class="col-md-2 control-label">Fecha Doc. Amarre</label>
-                                <div class="col-md-3">
-                                    <input type="date" class="form-control text-center"
-                                           name="input_fecha_amarre" id="input_fecha_amarre"
-                                    />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">Serie - Numero Amarre</label>
-                                <div class="col-md-3">
-                                    <input type="text" class="form-control text-center" maxlength="6"
-                                           placeholder="Serie"
-                                           name="input_serie_amarre" id="input_serie_amarre"
-                                    />
-                                </div>
-                                <div class="col-md-3">
-                                    <input type="text" class="form-control text-center" maxlength="6"
-                                           placeholder="Numero"
-                                           name="input_numero_amarre" id="input_numero_amarre"
-                                    />
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">Orden de Servicio</label>
+                                <label class="col-md-3 control-label">RUC Cliente</label>
                                 <div class="col-md-4">
-                                    <select class="form-control" name="select_orden" id="select_orden"
-                                            onchange="ver_datos_orden()">
-                                        <option value="-">SIN ORDEN</option>
+                                    <input class="form-control text-center" value="" id="input_ruc_cliente" name="input_ruc_cliente" maxlength="11" required>
+                                    <input type="hidden" id="hidden_id_cliente" name="hidden_id_cliente">
+                                    <input type="hidden" id="hidden_ubigeo_cliente" name="hidden_ubigeo_cliente" value="">
+                                </div>
+                                <div class="col-md-2">
+                                    <a class="btn btn-info btn-sm" href="reg_cliente.php" target="_blank"><i class="fa fa-plus"></i> Reg. Cliente</a>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="button" id="btn_editar_cliente" class="btn btn-success btn-sm" onclick="cargar_web()" disabled=true><i class="fa fa-edit"></i> Edit. Cliente</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Razon Cliente</label>
+                                <div class="col-md-9">
+                                    <input class="form-control" id="input_razon_social" name="input_razon_social" readonly="true" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Direccion Cliente</label>
+                                <div class="col-md-7">
+                                    <select class="form-control">
+                                        <option id="">DIRECCION 1</option>
                                     </select>
                                 </div>
-                                <label class="col-md-2 control-label">Nro Aceptacion</label>
-                                <div class="col-md-3">
-                                    <input type="text" class="form-control text-center" name="input_aceptacion"
-                                           id="input_aceptacion"/>
+                                <div class="col-md-2">
+                                    <button type="button" class="btn btn-success btn-sm" ><i class="fa fa-plus"></i></button>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-2 control-label">Moneda</label>
-                                <div class="col-md-3">
-                                    <select class="form-control" name="select_moneda" id="select_moneda"
-                                            onchange="validar_moneda()">
-                                        <?php
-                                        $cl_detalle->setTabla(5);
-                                        $a_moneda = $cl_detalle->v_detalle();
-                                        foreach ($a_moneda as $value) {
-                                            ?>
-                                            <option value="<?php echo $value['id'] ?>"><?php echo $value['descripcion'] ?></option>
-                                            <?php
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                                <label class="col-md-2 control-label">TC sunat</label>
-                                <div class="col-md-2">
-                                    <input type="text" class="form-control text-right" name="input_tc" id="input_tc"
-                                           maxlength="5" value="1.000" required/>
-                                </div>
-                                <label class="col-md-1 control-label">Porcentaje</label>
-                                <div class="col-md-2">
-                                    <input type="text" class="form-control text-center" name="input_porcentaje"
-                                           id="input_porcentaje" onkeyup="facturado()" maxlength="8" value="100"
-                                           required/>
+                                <label class="col-md-3 control-label">Hoja de Entrada</label>
+                                <div class="col-md-5">
+                                    <input type="text" class="form-control text-center" name="input_serie"
+                                       id="input_serie" maxlength="4" value="" required/>
+                               </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Orden de Compra</label>
+                                <div class="col-md-5">
+                                    <input type="text" class="form-control text-center" name="input_serie"
+                                           id="input_serie" maxlength="4" value="" required/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-2 control-label">Sub Total</label>
-                                <div class="col-md-3">
-                                    <input type="text" class="form-control text-right" placeholder="0.00"
-                                           onkeyup="calcular_total()" name="input_subtotal" id="input_subtotal"
-                                           required/>
+                                <label class="col-md-3 control-label">Guias de Remision</label>
+                                <div class="col-md-5">
+                                    <input type="text" class="form-control text-center" name="input_serie"
+                                           id="input_serie" maxlength="4" value="-" required/>
                                 </div>
-                                <label class="col-md-1 control-label">IGV</label>
-                                <div class="col-md-2">
-                                    <input type="text" class="form-control text-right" placeholder="0.00"
-                                           name="input_igv" id="input_igv" required/>
+                                <div class="col-md-4">
+                                            <button type="button" class="btn btn-success btn-sm" ><i class="fa fa-plus"></i> Agregar Guias</button>
                                 </div>
-                                <label class="col-md-1 control-label">Total</label>
-                                <div class="col-md-3">
-                                    <input type="text" class="form-control text-right" placeholder="0.00"
-                                           name="input_total" id="input_total" required readonly="true"/>
-                                </div>
+                                
                             </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">Glosa:</label>
-                                <div class="col-md-10">
-                                    <textarea class="form-control" name="input_glosa" id="input_glosa" required="true"
-                                              rows="8"></textarea>
-                                </div>
-                            </div>
-                            <input type="hidden" name="hidden_total" id="hidden_total"/>
-                            <input type="hidden" name="hidden_estado" id="hidden_estado" value="0"/>
-                            <input type="hidden" name="hidden_monto_total" id="hidden_monto_total"/>
-
-                        </div>
-                        <div class="panel-footer text-right">
-                            <button type="submit" class="btn btn-success">Guardar</button>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
+           
+           <div class="col-md-12">
+                <!-- begin panel -->
+                <div class="panel panel-inverse" data-sortable-id="form-stuff-1">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Agregar Items</h4>
+                    </div>
+                    <div class="panel-body">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-md-1 control-label">Descripcion</label>
+                                <div class="col-md-11">
+                                    <textarea class="form-control" rows="3" id="input_descripcion_producto"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-1 control-label">Cantidad</label>
+                                <div class="col-md-2">
+                                    <input class="form-control text-right" value="1" id="input_cantidad_producto" name="input_cantidad_producto">
+                                </div>
+                                <label class="col-md-1 col-md-offset-1 control-label">Precio c/ IGV</label>
+                                <div class="col-md-2">
+                                    <input class="form-control text-right" value="0.00" id="input_precio_producto" name="input_precio_producto" onkeyup="calcular_item_sigv()">
+                                </div>
+                                <label class="col-md-1 control-label">Precio sin IGV</label>
+                                <div class="col-md-2">
+                                    <input class="form-control text-right" value="0.00" id="input_sigv_precio_producto" name="input_sigv_precio_producto">
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="button" class="btn btn-warning btn-sm" onclick="add_item()"><i class="fa fa-plus"></i> Agregar Item</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- end panel -->
+            </div>
+            
+            <!-- inicio panel detalle venta-->
+            <div class="col-md-12">
+                <!-- begin panel -->
+                <div class="panel panel-inverse" data-sortable-id="form-stuff-1">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Detalle Venta</h4>
+                    </div>
+                    <div class="panel-body">
+                        <table id="tabla_detalle" class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Id.</th>
+                                <th>Descripcion</th>
+                                <th>Cantidad</th>
+                                <th>Und. Med.</th>
+                                <th>Precio</th>
+                                <th>Parcial</th>
+                                <th>Acciones</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- end panel -->
+            </div>
+            <!-- end col-12 -->
+            
+            <!-- inicio panel add item-->
+            <div class="col-md-12">
+                <!-- begin panel -->
+                <div class="panel panel-inverse" data-sortable-id="form-stuff-1">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Finalizar Venta</h4>
+                    </div>
+                    <div class="panel-body">
+                        <form class="form-horizontal">
+                            <div class="panel-body col-md-8">
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Forma de Pago</label>
+                                    <div class="col-md-3">
+                                        <select class="form-control" id="select_forma_pago" name="select_forma_pago" onchange="validarFormaPago()">
+                                                                                            <option value="1">CONTADO</option>
+                                                                                                <option value="2">CREDITO</option>
+                                                                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Fecha Vcto</label>
+                                    <div class="col-md-3">
+                                        <input type="date" class="form-control text-center" name="input_fecha_vcto_cuota" id="input_fecha_vcto_cuota" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Monto Cuota</label>
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control text-right" name="input_monto_cuota" id="input_monto_cuota" value="0.00" readonly>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button type="button" id="btn_add_cuota" class="btn btn-success btn-sm" onclick="add_item_cuota()" disabled><i class="fa fa-plus"></i> Añadir Cuota</button>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-8">
+                                    <table id="tabla_cuotas" class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>Nro Cuota</th>
+                                            <th>Fec. Vcto</th>
+                                            <th>Monto</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="panel-body col-md-4">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Sub Total</label>
+                                    <div class="col-md-6">
+                                        <input class="form-control text-right" value="0.00" id="input_subtotal" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">IGV</label>
+                                    <div class="col-md-6">
+                                        <input class="form-control text-right" value="0.00" id="input_igv" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Total</label>
+                                    <div class="col-md-6">
+                                        <input class="form-control text-right" value="0.00" id="input_total" readonly required="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Detraccion</label>
+                                    <div class="col-md-6">
+                                        <input class="form-control text-right" value="0.00" id="input_monto_detraccion" readonly required="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Total Neto</label>
+                                    <div class="col-md-6">
+                                        <input class="form-control text-right" value="0.00" id="input_neto" readonly required="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12 col-md-offset-1">
+                                        <button type="button" class="btn btn-info btn" onclick="enviar_formulario()"><i class="fa fa-save"></i> Finalizar Venta</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </form>
+                    </div>
+                </div>
+                <!-- end panel -->
+            </div>
+            <!-- end col-12 -->
         </div>
     </div>
     <!-- end #content -->
@@ -343,8 +425,7 @@ $cl_cliente = new cl_cliente();
     $(document).ready(function () {
         App.init();
         TableManageDefault.init();
-        $('#input_fecha').mask('99/99/9999');
-        $('#input_periodo').mask('999999');
+        
 //                                                    $('#input_serie').mask('999');
 //                                                    $('#input_numero').mask('9999999');
         $("#select_cliente").trigger('change');
@@ -357,103 +438,7 @@ $cl_cliente = new cl_cliente();
         };
 
 
-        // FORM VALIDATION ON TABS
-        // =================================================================
-        $('#frm_reg_venta').bootstrapValidator({
-            message: 'This value is not valid',
-            excluded: ':disabled',
-            feedbackIcons: faIcon,
-            fields: {
-                input_periodo: {
-                    validators: {
-                        notEmpty: {
-                            message: 'The phone number is required and cannot be empty'
-                        },
-                        digits: {
-                            message: 'The value can contain only digits'
-                        }
-                    }
-                },
-                input_serie: {
-                    validators: {
-                        notEmpty: {
-                            message: 'The phone number is required and cannot be empty'
-                        }
-                    }
-                },
-                input_numero: {
-                    validators: {
-                        notEmpty: {
-                            message: 'The phone number is required and cannot be empty'
-                        },
-                        digits: {
-                            message: 'The value can contain only digits'
-                        }
-                    }
-                },
-                input_porcentaje: {
-                    validators: {
-                        notEmpty: {
-                            message: 'The phone number is required and cannot be empty'
-                        },
-                        numeric: {
-                            message: 'The value can contain only digits'
-                        }
-                    }
-                },
-                input_semana: {
-                    validators: {
-                        notEmpty: {
-                            message: 'The phone number is required and cannot be empty'
-                        },
-                        digits: {
-                            message: 'The value can contain only digits'
-                        }
-                    }
-                },
-                input_tc: {
-                    validators: {
-                        notEmpty: {
-                            message: 'The phone number is required and cannot be empty'
-                        },
-                        numeric: {
-                            message: 'The value can contain only number and point'
-                        }
-                    }
-                },
-                input_subtotal: {
-                    validators: {
-                        notEmpty: {
-                            message: 'The phone number is required and cannot be empty'
-                        }
-                    }
-                },
-                input_igv: {
-                    validators: {
-                        notEmpty: {
-                            message: 'The phone number is required and cannot be empty'
-                        }
-                    }
-                }
-            }
-        }).on('status.field.bv', function (e, data) {
-            var $form = $(e.target),
-                validator = data.bv,
-                $tabPane = data.element.parents('.tab-pane'),
-                tabId = $tabPane.attr('id');
-
-            if (tabId) {
-                var $icon = $('a[href="#' + tabId + '"][data-toggle="tab"]').parent().find('i');
-
-                // Add custom class to tab containing the field
-                if (data.status == validator.STATUS_INVALID) {
-                    $icon.removeClass(faIcon.valid).addClass(faIcon.invalid);
-                } else if (data.status == validator.STATUS_VALID) {
-                    var isValidTab = validator.isValidContainer($tabPane);
-                    $icon.removeClass(faIcon.valid).addClass(isValidTab ? faIcon.valid : faIcon.invalid);
-                }
-            }
-        });
+       
     });
 </script>
 
@@ -672,4 +657,3 @@ $cl_cliente = new cl_cliente();
 
 <!-- Mirrored from seantheme.com/color-admin-v1.9/admin/html/page_blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 21 Mar 2016 14:23:54 GMT -->
 </html>
-
