@@ -1,6 +1,6 @@
 /.idea/
-#/greenter/*
-#!/greenter/generates/
-#!/greenter/src/
-#!/greenter/resources/
-/nbproject/private/
+/composer/vendor/
+/tools/QRGenerator/temp/*
+/public-files/CDR/*
+/public-files/QR/*
+/public-files/XML/*
