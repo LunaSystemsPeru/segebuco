@@ -50,16 +50,16 @@
 <div class="header-top-area">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-9 col-lg-9">
+			<div class="col-md-11 col-lg-11">
 				<div class="dreamit-header-menu-address">
 					<ul>
-						<li><a href="#"><i class="far fa-envelope"></i> segebuco@gmail.com</a></li>
-						<li><span><i class="fas fa-map-marker-alt"></i> Jr. Chancay Nro 728 - Chimbote - Santa - Ancash</span></li>
-						<li><a href="#"><i class="fas fa-phone"></i> +51 949 490 436</a></li>
+						<li><a href="mailto:segebuco@gmail.com"><i class="far fa-envelope"></i> segebuco@gmail.com</a></li>
+						<li><a target="_blank" href="https://goo.gl/maps/r1xPYDiDcA4wPXsbA"><i class="fas fa-map-marker-alt"></i> Jr. Chancay Mz J Lt 16 PJ Florida Alta - Chimbote - Santa - Ancash</a></li>
+						<li><a href="tel:+51949490436"><i class="fas fa-phone"></i> +51 949 490 436</a></li>
 					</ul>
 				</div>
 			</div>
-			<div class="col-md-3 col-lg-3">
+			<div class="col-md-1 col-lg-1">
 				<div class="dreamit-header-top-socail">
 					<a href="#"><i class="fab fa-facebook-f"></i></a>
 					<a href="#"><i class="fab fa-linkedin-in"></i></a>
@@ -1193,7 +1193,7 @@
 				<div class="widget widgets-company-info">
 					<div class="dreamit-logo">
 						<a class="logo_img" href="index-2.html" title="dreamit">
-							<img src="assets/images/logo.png" alt="" />
+							<img src="assets/images/logosegebuco_white.png" alt="" />
 						</a>
 					</div>
 					<div class="company-info-desc pr-2">
