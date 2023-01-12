@@ -1,6 +1,5 @@
-
 <!DOCTYPE HTML>
-<html lang="en-US">
+<html lang="es-ES">
 
 <!-- Mirrored from html.dreamitsolution.net/dreamit/handyman/landing-page-01.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 15 Jun 2022 15:23:57 GMT -->
 <head>
