@@ -23,6 +23,7 @@ $cl_compra->setIgv(filter_input(INPUT_POST, 'input_igv'));
 if ($cl_compra->getTido() == 14) {
     $cl_compra->setTotal(filter_input(INPUT_POST, 'hidden_total'));
     $cl_compra->setTotal($cl_compra->getTotal() *-1);
+    $cl_compra->setIgv($cl_compra->getIgv()*-1);
 } else {
     $cl_compra->setTotal(filter_input(INPUT_POST, 'hidden_total'));
 }  

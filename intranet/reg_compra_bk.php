@@ -84,187 +84,224 @@ $cl_tido = new cl_tipo_documento();
         <div class="row">
 
             <div class="col-md-12">
-                <form id="frm_reg_compra" method="post" action="procesos/reg_compra.php">
-                    <div class="panel panel-inverse">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">Datos Generales</h4>
-                        </div>
+                <div class="panel panel-inverse">
+
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Datos Generales</h4>
+                    </div>
+                    <form class="form-horizontal" id="frm_reg_compra" method="post" action="procesos/reg_compra.php">
                         <div class="panel-body">
-                            <div class="col-md-9">
-                                <div class="row m-b-10">
-                                    <div class="col-md-2">
-                                        <label class="form-label" for="input-periodo">Periodo</label>
-                                        <input class="form-control" type="text" id="input-periodo" value="<?php echo date('Y') . date('m') ?>" required/>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label class="form-label" for="input-fecha">Fecha Doc</label>
-                                        <input class="form-control" type="date" id="input-fecha" required/>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label class="form-label" for="exampleInputEmail1">Tipo Documento</label>
-                                        <select class="form-control" name="select_documento" id="select_documento" onchange="habilitarAmarre()">
-                                            <?php
-                                            $a_tidos = $cl_tido->ver_documentos();
-                                            foreach ($a_tidos as $value) {
-                                                ?>
-                                                <option value="<?php echo $value['id'] ?>"><?php echo $value['nombre'] ?></option>
-                                                <?php
-                                                echo PHP_EOL;
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-1">
-                                        <label class="form-label" for="exampleInputEmail1">Serie</label>
-                                        <input class="form-control" type="text" id="input-serie" placeholder="Ingrese Serie" required/>
-                                    </div>
-                                    <div class="col-md-1">
-                                        <label class="form-label" for="exampleInputEmail1">Numero</label>
-                                        <input class="form-control" type="text" id="input-serie" placeholder="Ingrese Numero de Comprobante" required/>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label class="form-label" for="exampleInputEmail1">Comprobante Afecto</label>
-                                        <button type="button" class="form-control ">Agregar Factura</button>
-                                    </div>
-                                </div>
-
-                                <div class="row m-b-10">
-                                    <div class="col-md-3">
-                                        <label class="form-label" for="input-ruc-proveedor">RUC Proveedor</label>
-                                        <input class="form-control" type="text" id="input-ruc-proveedor" placeholder="Buscar por RUC o Razon Social"/>
-                                    </div>
-                                    <div class="col-md-7">
-                                        <label class="form-label" for="input-razon-proveedor">Razon Social</label>
-                                        <input class="form-control" type="text" id="input-razon-proveedor" readonly required/>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label class="form-label" >Acciones</label>
-                                        <button type="button" class="form-control ">Agregar Proveedor</button>
-                                    </div>
-                                </div>
-
-                                <div class="row m-b-10">
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="select_ocompra">Orden Compra</label>
-                                        <select class="form-control" name="select_ocompra" id="select_ocompra" onchange="ver_datos_orden()">
-                                            <option value="-">SELECCIONE PROVEEDOR</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label class="form-label" for="input-porcentaje-orden">% Pago de Orden</label>
-                                        <input class="form-control" type="number" id="input-porcentaje-orden" placeholder="Enter email"/>
-                                    </div>
-                                </div>
-
-                                <div class="row m-b-10">
-                                    <div class="col-md-8">
-                                        <label class="form-label" for="select_clasificacion">Tipo de Compra (Asiento Contable)</label>
-                                        <select class="form-control" name="select_clasificacion" id="select_clasificacion">
-                                            <?php
-                                            $cl_detalle->setTabla(10);
-                                            $a_clasificacion = $cl_detalle->v_detalle();
-                                            foreach ($a_clasificacion as $value) {
-                                                ?>
-                                                <option value="<?php echo $value['id'] ?>"><?php echo $value['descripcion'] ?></option>
-                                                <?php
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <!--
-                                <div class="row m-b-10">
-                                    <div class="col-md-8">
-                                        <label class="form-label" for="input-periodo">Clasificacion Costo (reporte de costos y gastos generales)</label>
-                                        <select class="form-control" name="select_ccosto" id="select_ccosto">
-                                            <?php
-                                            $a_centros = $cl_centro->ver_centros();
-                                            foreach ($a_centros as $filas) {
-                                                ?>
-                                                <option value="<?php echo $filas['anio'] . $filas['codigo'] ?>"><?php echo $filas['anio'] . ' | ' . $filas['descripcion'] ?></option>
-                                                <?php
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                -->
-
-
-                                <input type="hidden" name="hidden_total" id="hidden_total"/>
-                                <input type="hidden" name="hidden_monto_total" id="hidden_monto_total"/>
-
-                            </div>
-                            <div class="col-md-3">
-                                <div class="row m-b-3">
-                                    <div class="col-md-8">
-                                        <label class="form-label" for="exampleInputEmail1">Moneda</label>
-                                        <select class="form-control" name="select_moneda" id="select_moneda"
-                                                onchange="validar_moneda()">
-                                            <?php
-                                            $cl_detalle->setTabla(5);
-                                            $a_moneda = $cl_detalle->v_detalle();
-                                            foreach ($a_moneda as $value) {
-                                                ?>
-                                                <option value="<?php echo $value['id'] ?>"><?php echo $value['descripcion'] ?></option>
-                                                <?php
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <label class="form-label" for="exampleInputEmail1">Tipo Cambio</label>
-                                        <input class="form-control" type="email" id="exampleInputEmail1" placeholder="Enter email"/>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12 m-b-3">
-                                        <label class="form-label">% IGV</label>
-                                        <div class="form-check mb-2">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                            <label class="form-check-label" for="flexRadioDefault1">
-                                                10%
-                                            </label>
-                                        </div>
-                                        <div class="form-check mb-2">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                            <label class="form-check-label" for="flexRadioDefault2">
-                                                18%
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row m-b-3">
-                                    <div class="col-md-12">
-                                        <label class="form-label" for="exampleInputEmail1">Sub Total Gravado</label>
-                                        <input class="form-control" type="text" id="exampleInputEmail1" placeholder="Enter email"/>
-                                    </div>
-                                </div>
-                                <div class="row m-b-3">
-                                    <div class="col-md-12">
-                                        <label class="form-label" for="exampleInputEmail1">IGV</label>
-                                        <input class="form-control" type="text" id="exampleInputEmail1" placeholder="Enter email"/>
-                                    </div>
-                                </div>
-                                <div class="row m-b-3">
-                                    <div class="col-md-12">
-                                        <label class="form-label" for="exampleInputEmail1">Inafecto</label>
-                                        <input class="form-control" type="text" id="exampleInputEmail1" placeholder="Enter email"/>
-                                    </div>
-                                </div>
-                                <div class="row m-b-3">
-                                    <div class="col-md-12">
-                                        <label class="form-label" for="exampleInputEmail1">Total</label>
-                                        <input class="form-control" type="text" id="exampleInputEmail1" placeholder="Enter email"/>
-                                    </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Periodo</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control text-center" maxlength="6"
+                                           name="input_periodo" id="input_periodo"
+                                           value="<?php echo date('Y') . date('m') ?>" required="true"/>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Tipo Documento</label>
+                                <div class="col-md-3">
+                                    <select class="form-control" name="select_documento" id="select_documento" onchange="habilitarAmarre()">
+                                        <?php
+                                        $a_tidos = $cl_tido->ver_documentos();
+                                        foreach ($a_tidos as $value) {
+                                            ?>
+                                            <option value="<?php echo $value['id'] ?>"><?php echo $value['nombre'] ?></option>
+                                            <?php
+                                            echo PHP_EOL;
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <label class="col-md-2 control-label">Fecha</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" name="input_fecha" id="input_fecha"
+                                           required/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Serie</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control text-center" name="input_serie"
+                                           id="input_serie" maxlength="12" required/>
+                                </div>
+                                <label class="col-md-2 control-label">Numero</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control  text-center" name="input_numero"
+                                           id="input_numero" maxlength="15" required/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Proveedor:</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" name="input_buscar_proveedor"
+                                           id="input_buscar_proveedor"/>
+                                </div>
+                                <div class="col-md-1">
+                                    <a href="reg_entidad.php" class="btn btn-success" name="btn_crear_entidad"
+                                       id="btn_crear_entidad" target="_blank">Nuevo</a>
+                                </div>
+                                <label class="col-md-1 control-label">RUC</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control  text-center" name="input_ruc_proveedor"
+                                           id="input_ruc_proveedor" maxlength="11" required readonly="true"/>
+                                </div>
+                                <div class="col-md-1">
+                                    <input type="button" class="btn btn-warning" name="btn_verificar_documento"
+                                           id="btn_verificar_documento" disabled="true" onclick="validar_compra()"
+                                           value="Validar">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Nombre Comercial:</label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" name="input_nombre_proveedor"
+                                           id="input_nombre_proveedor" readonly="true"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Razon Social:</label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" name="input_razon_proveedor"
+                                           id="input_razon_proveedor" required readonly="true"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Direccion Fiscal:</label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" name="input_direccion_proveedor"
+                                           id="input_direccion_proveedor" readonly="true"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Documento Amarre</label>
+                                <div class="col-md-3">
+                                    <select class="form-control" name="select_documento_amarre"
+                                            id="select_documento_amarre">
+                                        <option value="4">FACTURA</option>
+                                        <option value="3">BOLETA</option>
+                                    </select>
+                                </div>
+                                <label class="col-md-2 control-label">Fecha Doc. Amarre</label>
+                                <div class="col-md-3">
+                                    <input type="date" class="form-control text-center"
+                                           name="input_fecha_amarre" id="input_fecha_amarre"
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Serie - Numero Amarre</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control text-center" maxlength="6"
+                                           placeholder="Serie"
+                                           name="input_serie_amarre" id="input_serie_amarre"
+                                    />
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control text-center" maxlength="6"
+                                           placeholder="Numero"
+                                           name="input_numero_amarre" id="input_numero_amarre"
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Orden de Compra</label>
+                                <div class="col-md-9">
+                                    <select class="form-control" name="select_ocompra" id="select_ocompra" onchange="ver_datos_orden()">
+                                        <option value="-">SELECCIONE PROVEEDOR</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Moneda</label>
+                                <div class="col-md-3">
+                                    <select class="form-control" name="select_moneda" id="select_moneda"
+                                            onchange="validar_moneda()">
+                                        <?php
+                                        $cl_detalle->setTabla(5);
+                                        $a_moneda = $cl_detalle->v_detalle();
+                                        foreach ($a_moneda as $value) {
+                                            ?>
+                                            <option value="<?php echo $value['id'] ?>"><?php echo $value['descripcion'] ?></option>
+                                            <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <label class="col-md-1 control-label">TC sunat</label>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control text-right" name="input_tc" id="input_tc"
+                                           maxlength="5" required/>
+                                </div>
+                                <label class="col-md-1 control-label">% Factura</label>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control text-right" name="input_porcentaje"
+                                           id="input_porcentaje" value="100" onkeyup="facturado()" required/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Sub Total</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control text-right" placeholder="0.00"
+                                           name="input_subtotal" id="input_subtotal" onkeyup="calcularIGV()"/>
+                                </div>
+                                <label class="col-md-1 control-label">IGV</label>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control text-right" placeholder="0.00"
+                                           name="input_igv" id="input_igv" onkeyup="calcular_total()"/>
+                                </div>
+                                <label class="col-md-1 control-label">Total</label>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control text-right" placeholder="0.00"
+                                           name="input_total" id="input_total" readonly/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Centro de Costo</label>
+                                <div class="col-md-3">
+                                    <select class="form-control" name="select_ccosto" id="select_ccosto">
+                                        <?php
+                                        $a_centros = $cl_centro->ver_centros();
+                                        foreach ($a_centros as $filas) {
+                                            ?>
+                                            <option value="<?php echo $filas['anio'] . $filas['codigo'] ?>"><?php echo $filas['anio'] . ' | ' . $filas['descripcion'] ?></option>
+                                            <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <label class="col-md-1 control-label">Tipo Compra</label>
+                                <div class="col-md-3">
+                                    <select class="form-control" name="select_clasificacion" id="select_clasificacion">
+                                        <?php
+                                        $cl_detalle->setTabla(10);
+                                        $a_clasificacion = $cl_detalle->v_detalle();
+                                        foreach ($a_clasificacion as $value) {
+                                            ?>
+                                            <option value="<?php echo $value['id'] ?>"><?php echo $value['descripcion'] ?></option>
+                                            <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Glosa:</label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" name="input_glosa" id="input_glosa"
+                                           required/>
+                                </div>
+                            </div>
+                            <input type="hidden" name="hidden_total" id="hidden_total"/>
+                            <input type="hidden" name="hidden_monto_total" id="hidden_monto_total"/>
+
                         </div>
                         <div class="panel-footer text-right">
                             <button type="submit" class="btn btn-success" id="btn_agregar_compra">Guardar</button>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -565,27 +602,30 @@ $cl_tido = new cl_tipo_documento();
         $("#hidden_total").val(total);
     }
 
-    function habilitarAmarre() {
+    function habilitarAmarre () {
         var idtipodocumento = $("#select_documento").val();
         if (idtipodocumento == "14" || idtipodocumento == "15") {
             alert("Tiene que ingresar la fecha, serie y numero del comprobante relacionado");
             $("#input_serie_amarre").prop("required", true);
-        } else {
+        }else {
             $("#input_serie_amarre").prop("required", false);
         }
     }
 
     $(function () {
         //autocomplete
-        $("#input-ruc-proveedor").autocomplete({
+        $("#input_buscar_proveedor").autocomplete({
             source: "ajax_post/buscar_proveedores.php",
             minLength: 2,
             select: function (event, ui) {
                 event.preventDefault();
-                $('#input-ruc-proveedor').val(ui.item.ruc);
+                $('#input_ruc_proveedor').val(ui.item.ruc);
                 cargar_ordenes(ui.item.ruc);
-                $('#input-razon-proveedor').val(ui.item.razon_social);
+                $('#input_razon_proveedor').val(ui.item.razon_social);
+                $('#input_nombre_proveedor').val(ui.item.nombre_comercial);
+                $('#input_direccion_proveedor').val(ui.item.direccion);
                 $('#btn_verificar_documento').prop('disabled', false);
+                $('#input_buscar_proveedor').val("");
             }
         });
     });

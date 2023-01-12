@@ -15,10 +15,13 @@ $cl_amarre = new cl_compra_amarre();
 $periodo = filter_input(INPUT_GET, 'input_periodo');
 
 $file_txt = "LE20531757590" . $periodo . "00080100001111.txt";
-if (unlink($file_txt)) {
-    // file was successfully deleted
+if (file_exists($file_txt)) {
+    if (unlink($file_txt)) {
+        // file was successfully deleted
+    } else {
+        echo "erorr archivo no existe";
+    }
 }
-
 
 $archivo = fopen($file_txt, "w");
 
@@ -104,9 +107,11 @@ foreach ($a_compras as $value) {
         $moneda = "USD";
     }
 
-    $monto_total_soles = $value['total'] * $value['tipo_cambio'];
-    $igv = $value['igv'] * $value['tipo_cambio'];
-    $base = $monto_total_soles - $igv;
+    $tc= $value['tipo_cambio'];
+    $monto_total_soles = $value['total'] *$tc ;
+    $igv = $value['igv'] * $tc;
+    $base = $igv / 0.18;
+    $inafecto = $monto_total_soles - $igv - $base;
     $contenido = $cl_compra->getPeriodo() . "00|" .
         $cl_varios->zerofill($value['codigo'], 4) . "|" .
         "M3|" .
@@ -126,7 +131,7 @@ foreach ($a_compras as $value) {
         "0.00|" .
         "0.00|" .
         "0.00|" .
-        "0.00|" .
+        number_format($inafecto, 2, ".", "") . "|" .
         "0.00|" .
         "0.00|" .
         "0.00|" .
@@ -161,5 +166,5 @@ fclose($archivo_no);
 ?>
 
 <h2>Archivos Generados</h2>
-<p>Libro de Compras - clic aqui <a download href="<?php echo $file_txt . "?v=" . rand()  ?>">Descargar</a></p>
-<p>Libro de Compras no Domiciliado - clic aqui <a download href="<?php echo $file_compra_txt . "?v=" . rand()  ?>">Descargar</a></p>
+<p>Libro de Compras - clic aqui <a download href="<?php echo $file_txt . "?v=" . rand() ?>">Descargar</a></p>
+<p>Libro de Compras no Domiciliado - clic aqui <a download href="<?php echo $file_compra_txt . "?v=" . rand() ?>">Descargar</a></p>
