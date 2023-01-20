@@ -1,2 +1,2 @@
 <?php
-header("Location: contents/app-prestamos.php");
+header("Location: contents/app-tarea-registro.php");
