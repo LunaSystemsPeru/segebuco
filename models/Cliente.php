@@ -209,7 +209,7 @@ class Cliente
         where id_cliente = '$this->idcliente'";
         $fila = $this->conectar->get_Row($sql);
         if ($fila) {
-            $this->id = $fila['id_cliente'];
+            $this->idcliente = $fila['id_cliente'];
             $this->documento = $fila['documento'];
             $this->nombre = $fila['nombre'];
             $this->direccion = $fila['direccion'];
