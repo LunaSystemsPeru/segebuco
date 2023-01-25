@@ -7,14 +7,17 @@ class TareaDiaria
     private $fecharegistro;
     private $fechainicio;
     private $fechatermino;
-    private $idsupervisor;
     private $idmaestro;
     private $estado;
     private $idembarcacion;
+    private $motorista;
     private $descripcion;
-    private $direccion;
+    private $guia;
+    private $idcotizacion;
+    private $idtiposervicio;
+    private $nombre;
     private $conectar;
-
+    
     function __construct()
     {
         $this->conectar = conectar::getInstancia();
@@ -86,17 +89,17 @@ class TareaDiaria
     /**
      * @return mixed
      */
-    public function getIdsupervisor()
+    public function getIdcotizacion()
     {
-        return $this->idsupervisor;
+        return $this->idcotizacion;
     }
 
     /**
-     * @param mixed $idsupervicion
+     * @param mixed $idcotizacion
      */
-    public function setIdsupervisor($idsupervisor)
+    public function setIdcotizacion($idcotizacion)
     {
-        $this->idsupervisor = $idsupervisor;
+        $this->idcotizacion = $idcotizacion;
     }
 
     /**
@@ -165,23 +168,68 @@ class TareaDiaria
     /**
      * @return mixed
      */
-    public function getDireccion()
+    public function getGuia()
     {
-        return $this->direccion;
+        return $this->guia;
     }
 
     /**
-     * @param mixed $direccion
+     * @param mixed $guia
      */
-    public function setDireccion($direccion)
+    public function setGuia($guia)
     {
-        $this->direccion = $direccion;
+        $this->guia = $guia;
+    }
+    /**
+     * @return mixed
+     */
+    public function getMotorista()
+    {
+        return $this->motorista;
+    }
+
+    /**
+     * @param mixed $motorista
+     */
+    public function setMotorista($motorista)
+    {
+        $this->motorista = $motorista;
+    }
+    /**
+     * @return mixed
+     */
+    public function getIdTiposervicio()
+    {
+        return $this->idtiposervicio;
+    }
+
+    /**
+     * @param mixed $idtiposervicio
+     */
+    public function setIdtiposervicio($idtiposervicio)
+    {
+        $this->idtiposervicio = $idtiposervicio;
+    }
+    /**
+     * @return mixed
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    /**
+     * @param mixed $nombre
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
     }
 
     function obtenerId()
     {
         $sql = "SELECT IFNULL(MAX(id) + 1, 1) AS codigo FROM tareas_diarias";
-        $this->id = $this->conectar->get_valor_query($sql, 'codigo');
+        return $this->id = $this->conectar->get_valor_query($sql, 'codigo');
     }
 
     function insertar()
@@ -191,14 +239,17 @@ class TareaDiaria
             '$this->fecharegistro',
             '$this->fechainicio',
             '$this->fechatermino',
-            '$this->idsupervisor',
             '$this->idmaestro',
             '$this->estado',
             '$this->idembarcacion',
+            '$this->motorista',
             '$this->descripcion',
-            '$this->direccion'
+            '$this->guia',
+            '$this->idcotizacion',
+            '$this->idtiposervicio',
+            '$this->nombre'
         )";
-        $this->conectar->ejecutar_idu($sql);
+        return $this->conectar->ejecutar_idu($sql);
     }
 
     function modificar()
@@ -207,13 +258,16 @@ class TareaDiaria
         fecha_registro = '$this->fecharegistro',
         fec_inicio = '$this->fechainicio',
         fec_termino = '$this->fechatermino',
-        supervisorid = '$this->idsupervisor',
         maestroid = '$this->idmaestro',
         estado = '$this->estado',
         embarcacionid = '$this->idembarcacion',
+        motorista_datos = '$this->motorista',
         descripcion = '$this->descripcion',
-        direccion = '$this->direccion',";
-        $this->conectar->ejecutar_idu($sql);
+        guia_nro = '$this->guia',
+        cotizacionid = '$this->idcotizacion',
+        tiposervicioid = '$this->idtiposervicio',
+        nombre_corto = '$this->nombre',";
+        return $this->conectar->ejecutar_idu($sql);
     }
 
     function obtenerDatos(){
@@ -224,17 +278,20 @@ class TareaDiaria
             $this->fecharegistro = $fila['fecha_registro'];
             $this->fechainicio = $fila['fec_inico'];
             $this->fechatermino = $fila['fec_termino'];
-            $this->idsupervisor = $fila['supervisorid'];
             $this->idmaestro = $fila['maestroid'];
             $this->estado = $fila['estado'];
             $this->idembarcacion = $fila['embarcacionid'];
+            $this->motorista = $fila['motorista_datos'];
             $this->descripcion = $fila['descripcion'];
-            $this->direccion = $fila['direccion'];
+            $this->guia = $fila['guia_nro'];
+            $this->idcotizacion = $fila['cotizacionid'];
+            $this->idtiposervicio = $fila['tiposervicioid'];
+            $this->nombre = $fila['nombre_corto'];
         }
     }
 
     function verFilas(){
         $sql = "SELECT * FROM tareas_diaria";
-        $this->conectar->get_Cursor($sql);
+        return $this->conectar->get_Cursor($sql);
     }
 }

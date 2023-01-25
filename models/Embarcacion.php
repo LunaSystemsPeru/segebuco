@@ -62,7 +62,7 @@ class Embarcacion{
     function obtenerId()
     {
         $sql = "SELECT IFNULL(MAX(id) + 1, 1) AS codigo FROM embarcacion";
-        $this->id = $this->conectar->get_valor_query($sql, 'codigo');
+        return $this->id = $this->conectar->get_valor_query($sql, 'codigo');
     }
 
     function insertar()
@@ -72,7 +72,7 @@ class Embarcacion{
             '$this->nombre',
             '$this->idcliente'
         )";
-        $this->conectar->ejecutar_idu($sql);
+        return $this->conectar->ejecutar_idu($sql);
     }
 
     function modificar()
@@ -80,7 +80,7 @@ class Embarcacion{
         $sql = "UPDATE embarcacion SET
         nombre = '$this->nombre',
         clienteid = '$this->idcliente'";
-        $this->conectar->ejecutar_idu($sql);
+        return $this->conectar->ejecutar_idu($sql);
     }
 
     function obtenerDatos(){
@@ -95,6 +95,11 @@ class Embarcacion{
 
     function verFilas(){
         $sql = "SELECT * FROM embarcacion";
-        $this->conectar->get_Cursor($sql);
+        return $this->conectar->get_Cursor($sql);
+    }
+
+    function verEmbarcacion(){
+        $sql = "SELECT * FROM embarcacion WHERE nombre LIKE '%$this->nombre%'";
+        return $this->conectar->get_Cursor($sql);
     }
 }

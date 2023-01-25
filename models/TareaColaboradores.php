@@ -1,10 +1,10 @@
 <?php
 require_once 'Conectar.php';
 
-class EmbarcacionCliente{
+class TareaColaboradores{
     private $id;
-    private $razonsocial;
-    private $nombre;
+    private $idtarea;
+    private $idcolaborador;
     private $conectar;
 
     function __construct()
@@ -30,71 +30,71 @@ class EmbarcacionCliente{
     /**
      * @return mixed
      */
-    public function getRazonsocial()
+    public function getIdtarea()
     {
-        return $this->razonsocial;;
+        return $this->idtarea;
     }
 
     /**
-     * @param mixed $razonsocial
+     * @param mixed $idtarea
      */
-    public function setRazonsocial($razonsocial)
+    public function setIdtarea($idtarea)
     {
-        $this->razonsocial = $razonsocial;
+        $this->idtarea = $idtarea;
     }
 
     /**
      * @return mixed
      */
-    public function getNombre()
+    public function getIdcolaborador()
     {
-        return $this->nombre;
+        return $this->idcolaborador;
     }
 
     /**
-     * @param mixed $nombre
+     * @param mixed $idcolaborador
      */
-    public function setNombre($nombre)
+    public function setIdcolaborador($idcolaborador)
     {
-        $this->nombre = $nombre;
+        $this->idcolaborador = $idcolaborador;
     }
 
     function obtenerId()
     {
-        $sql = "SELECT IFNULL(MAX(id) + 1, 1) AS codigo FROM clientes";
+        $sql = "SELECT IFNULL(MAX(id) + 1, 1) AS codigo FROM tareas_colaboradores";
         return $this->id = $this->conectar->get_valor_query($sql, 'codigo');
     }
 
     function insertar()
     {
-        $sql = "INSERT INTO clientes VALUE(
+        $sql = "INSERT INTO tareas_colaboradores VALUE(
             '$this->id',
-            '$this->razonsocial',
-            '$this->nombre'
+            '$this->idtarea',
+            '$this->idcolaborador'
         )";
         return $this->conectar->ejecutar_idu($sql);
     }
 
     function modificar()
     {
-        $sql = "UPDATE clientes SET
-        datos = '$this->razonsocial',
-        cargoid = '$this->nombre'";
+        $sql = "UPDATE tareas_colaboradores SET
+        tareaid = '$this->idtarea',
+        colaboradorid = '$this->idcolaborador'";
         return $this->conectar->ejecutar_idu($sql);
     }
 
     function obtenerDatos(){
-        $sql = "SELECT * FROM clientes WHERE id = '$this->id'";
+        $sql = "SELECT * FROM tareas_colaboradores WHERE id = '$this->id'";
         $fila = $this->conectar->get_Row($sql);
         if($fila){
             $this->id = $fila['id'];
-            $this->razonsocial = $fila['razon_social'];
-            $this->nombre = $fila['nombre_corto'];
+            $this->idtarea = $fila['tareaid'];
+            $this->idcolaborador = $fila['colaboradorid'];
         }
     }
 
     function verFilas(){
-        $sql = "SELECT * FROM clientes";
+        $sql = "SELECT * FROM tareas_colaboradores";
         return $this->conectar->get_Cursor($sql);
     }
 }

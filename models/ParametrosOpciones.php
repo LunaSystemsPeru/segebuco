@@ -96,34 +96,34 @@ class ParametrosOpciones{
 
     function obtenerId()
     {
-        $sql = "SELECT IFNULL(MAX(id) + 1, 1) AS codigo FROM parametros_obciones";
-        $this->id = $this->conectar->get_valor_query($sql, 'codigo');
+        $sql = "SELECT IFNULL(MAX(id) + 1, 1) AS codigo FROM parametros_opciones";
+        return $this->id = $this->conectar->get_valor_query($sql, 'codigo');
     }
 
     function insertar()
     {
-        $sql = "INSERT INTO parametros_obciones VALUE(
+        $sql = "INSERT INTO parametros_opciones VALUE(
             '$this->id',
             '$this->descripcion',
             '$this->valor1',
             '$this->valor2',
             '$this->idparametro'
         )";
-        $this->conectar->ejecutar_idu($sql);
+        return $this->conectar->ejecutar_idu($sql);
     }
 
     function modificar()
     {
-        $sql = "UPDATE parametros_obciones SET
+        $sql = "UPDATE parametros_opciones SET
         fecha_registro = '$this->descripcion',
         fec_inicio = '$this->valor1',
         fec_termino = '$this->valor2',
         supervisorid = '$this->idparametro'";
-        $this->conectar->ejecutar_idu($sql);
+        return $this->conectar->ejecutar_idu($sql);
     }
 
     function obtenerDatos(){
-        $sql = "SELECT * FROM parametros_obciones WHERE id = '$this->id'";
+        $sql = "SELECT * FROM parametros_opciones WHERE id = '$this->id'";
         $fila = $this->conectar->get_Row($sql);
         if($fila){
             $this->id = $fila['id'];
@@ -135,7 +135,7 @@ class ParametrosOpciones{
     }
 
     function verFilas(){
-        $sql = "SELECT * FROM parametros_obciones";
-        $this->conectar->get_Cursor($sql);
+        $sql = "SELECT * FROM parametros_opciones WHERE parametroid = '$this->idparametro'";
+        return $this->conectar->get_Cursor($sql);
     }
 }
