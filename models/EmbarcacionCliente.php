@@ -79,7 +79,8 @@ class EmbarcacionCliente{
     {
         $sql = "UPDATE clientes SET
         datos = '$this->razonsocial',
-        cargoid = '$this->nombre'";
+        cargoid = '$this->nombre'
+        WHERE id = '$this->id'";
         return $this->conectar->ejecutar_idu($sql);
     }
 

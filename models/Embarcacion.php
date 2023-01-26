@@ -1,7 +1,8 @@
 <?php
 require_once 'Conectar.php';
 
-class Embarcacion{
+class Embarcacion
+{
     private $id;
     private $nombre;
     private $idcliente;
@@ -79,26 +80,30 @@ class Embarcacion{
     {
         $sql = "UPDATE embarcacion SET
         nombre = '$this->nombre',
-        clienteid = '$this->idcliente'";
+        clienteid = '$this->idcliente'
+        WHERE id = '$this->id'";
         return $this->conectar->ejecutar_idu($sql);
     }
 
-    function obtenerDatos(){
+    function obtenerDatos()
+    {
         $sql = "SELECT * FROM embarcacion WHERE id = '$this->id'";
         $fila = $this->conectar->get_Row($sql);
-        if($fila){
+        if ($fila) {
             $this->id = $fila['id'];
             $this->nombre = $fila['nombre'];
             $this->idcliente = $fila['clienteid'];
         }
     }
 
-    function verFilas(){
+    function verFilas()
+    {
         $sql = "SELECT * FROM embarcacion";
         return $this->conectar->get_Cursor($sql);
     }
 
-    function verEmbarcacion(){
+    function verEmbarcacion()
+    {
         $sql = "SELECT * FROM embarcacion WHERE nombre LIKE '%$this->nombre%'";
         return $this->conectar->get_Cursor($sql);
     }

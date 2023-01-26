@@ -266,7 +266,8 @@ class TareaDiaria
         guia_nro = '$this->guia',
         cotizacionid = '$this->idcotizacion',
         tiposervicioid = '$this->idtiposervicio',
-        nombre_corto = '$this->nombre',";
+        nombre_corto = '$this->nombre'
+        WHERE id = '$this->id'";
         return $this->conectar->ejecutar_idu($sql);
     }
 

@@ -60,7 +60,8 @@ class Parametros {
     function modificar()
     {
         $sql = "UPDATE parametros SET
-        descripcion = '$this->descripcion'";
+        descripcion = '$this->descripcion'
+        WHERE id = '$this->id'";
         $this->conectar->ejecutar_idu($sql);
     }
 

@@ -118,7 +118,8 @@ class ParametrosOpciones{
         fecha_registro = '$this->descripcion',
         fec_inicio = '$this->valor1',
         fec_termino = '$this->valor2',
-        supervisorid = '$this->idparametro'";
+        supervisorid = '$this->idparametro'
+        WHERE id = '$this->id'";
         return $this->conectar->ejecutar_idu($sql);
     }
 

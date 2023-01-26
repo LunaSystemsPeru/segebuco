@@ -152,7 +152,15 @@ class Colaboradores {
         documento_tipo_id = '$this->iddocumentotipo',
         documento_nro = '$this->nrodocumento',
         fecha_nacimiento = '$this->fecha',
-        estado = '$this->estado'";
+        estado = '$this->estado'
+        WHERE id = '$this->id'";
+        return $this->conectar->ejecutar_idu($sql);
+    }
+
+    function modificarEstado(){
+        $sql = "UPDATE colaboradores SET
+        estado = '$this->estado'
+        WHERE id = '$this->id'";
         return $this->conectar->ejecutar_idu($sql);
     }
 
@@ -171,7 +179,7 @@ class Colaboradores {
     }
 
     function verFilas(){
-        $sql = "SELECT * FROM colaboradores WHERE cargoid = '$this->idcargo'";
+        $sql = "SELECT * FROM colaboradores WHERE cargoid = '$this->idcargo' AND estado = '$this->estado'";
         return $this->conectar->get_Cursor($sql);
     }
 }

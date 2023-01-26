@@ -79,7 +79,8 @@ class TareaColaboradores{
     {
         $sql = "UPDATE tareas_colaboradores SET
         tareaid = '$this->idtarea',
-        colaboradorid = '$this->idcolaborador'";
+        colaboradorid = '$this->idcolaborador'
+        WHERE id = '$this->id'";
         return $this->conectar->ejecutar_idu($sql);
     }
 

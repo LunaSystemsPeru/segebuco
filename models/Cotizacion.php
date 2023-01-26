@@ -196,7 +196,8 @@ class Cotizacion
             fecha_registro = '$this->fecregistro',
             monedaid = '$this->idmoneda',
             monto_cotizacion = '$this->moncotizacion',
-            monto_aprobado = '$this->monaprobado'";
+            monto_aprobado = '$this->monaprobado'
+            WHERE id = '$this->id'";
         return $this->conectar->ejecutar_idu($sql);
     }
 

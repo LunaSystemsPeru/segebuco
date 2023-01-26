@@ -12,19 +12,35 @@ $Maestro = new Colaboradores();
 $Trabajador = new Colaboradores();
 $Servicio = new ParametrosOpciones();
 
-$Maestro->setIdcargo(2);
+
+$Maestro->setIdcargo(2); //Cargo de maestro de acuerdo a la tabla parametroopciones
+$Maestro->setEstado(1); //Estado 1 activo , 0 inactivo
 $l_maestro = $Maestro->verFilas();
-$Trabajador->setIdcargo(3);
+$Trabajador->setIdcargo(3); //Cargo de maestro de acuerdo a la tabla parametroopciones
+$Trabajador->setEstado(1); //Estado 1 activo , 0 inactivo
 $l_trabajador = $Trabajador->verFilas();
 $l_cliente = $Cliente->verFilas();
 $l_embarcacion = $Embarcacion->verFilas();
-$Servicio->setIdparametro(2);
+$Servicio->setIdparametro(2); //tipo de servicio a mostrar de acuerdo a la tabla parametros
 $l_servicio = $Servicio->verFilas();
 ?>
 <!doctype html>
 <html lang="es">
 
 <head>
+    <style>
+        .select2 {
+            width: calc(100% - 94.275px) !important;
+            height: 36px !important;
+        }
+        .select2-container--default .select2-selection--single{
+            border: none !important;
+            height: 36px !important;
+        }
+        .select2-results__option{
+            color: black;
+        }
+    </style>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -90,13 +106,13 @@ $l_servicio = $Servicio->verFilas();
                         <div class="form-group basic">
                             <div class="input-group">
                                 <label class="label w-100 pb-1" for="select-embarcacion">E/P:</label>
-                                <select class="form-select" name="select-embarcacion" id="select-embarcacion">
+                                <select name="select-embarcacion" id="select-embarcacion">
                                     <option></option>
                                     <?php foreach ($l_embarcacion as $fila) { ?>
                                         <option value="<?php echo $fila['id']; ?>"><?php echo $fila['nombre']; ?></option>
                                     <?php } ?>
                                 </select>
-                                <button class="btn btn-outline-dark" type="button" data-bs-toggle="modal" data-bs-target="#modalEmbarcacion" data-bs-whatever="@mdo">+ Nuevo</button>
+                                <button class="btn btn-outline-dark" type="button" data-bs-toggle="modal" data-bs-target="#modalEmbarcacion" data-bs-whatever="@mdo" id="btnemb">+ Nuevo</button>
                             </div>
                         </div>
 
@@ -267,14 +283,16 @@ $l_servicio = $Servicio->verFilas();
 
     <script>
         $("#select-embarcacion").select2({
-            placeholder: "Seleccionar Embarcacion"
+            placeholder: "Seleccionar Embarcación"
         });
 
         function registrar() {
             let trabajadores = [];
 
             $("input[type=checkbox]:checked").each(function() {
-                trabajadores.push({'id':this.value});
+                trabajadores.push({
+                    'id': this.value
+                });
             });
 
             let datos = {
@@ -292,7 +310,7 @@ $l_servicio = $Servicio->verFilas();
             };
 
             $.post('../controller/registrar-tareas.php', datos, function(data) {
-                // alert(data);
+                alert(data);
                 let resultdata = JSON.parse(data);
                 if (resultdata) {
                     if (resultdata.success) {
@@ -338,8 +356,8 @@ $l_servicio = $Servicio->verFilas();
                             timer: 2500,
                             timerProgressBar: true
                         });
-                        $("#select-embarcacion").append("<option value='"+ resultdata.id +"' >"+ resultdata.nombre +"</option>");
-                        $("#select-embarcacion option[value="+ resultdata.id +"]").attr("selected",true);
+                        $("#select-embarcacion").append("<option value='" + resultdata.id + "' >" + resultdata.nombre + "</option>");
+                        $("#select-embarcacion option[value=" + resultdata.id + "]").attr("selected", true);
                     }
                 } else {
                     alert(data);
@@ -349,6 +367,9 @@ $l_servicio = $Servicio->verFilas();
             $("#modalEmbarcacion").modal("toggle")
             console.log(datos);
         }
+        /* $(function() {
+            alert($(".sel-emb").css("width"));
+        }); */
     </script>
 </body>
 
