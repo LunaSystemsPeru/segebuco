@@ -17,11 +17,12 @@ class TareaDiaria
     private $idtiposervicio;
     private $nombre;
     private $conectar;
-    
+
     function __construct()
     {
         $this->conectar = conectar::getInstancia();
     }
+
     /**
      * @return mixed
      */
@@ -31,7 +32,7 @@ class TareaDiaria
     }
 
     /**
-     * @param mixed  $id
+     * @param mixed $id
      */
     public function setId($id)
     {
@@ -165,6 +166,7 @@ class TareaDiaria
     {
         $this->descripcion = $descripcion;
     }
+
     /**
      * @return mixed
      */
@@ -180,6 +182,7 @@ class TareaDiaria
     {
         $this->guia = $guia;
     }
+
     /**
      * @return mixed
      */
@@ -195,6 +198,7 @@ class TareaDiaria
     {
         $this->motorista = $motorista;
     }
+
     /**
      * @return mixed
      */
@@ -210,6 +214,7 @@ class TareaDiaria
     {
         $this->idtiposervicio = $idtiposervicio;
     }
+
     /**
      * @return mixed
      */
@@ -236,7 +241,7 @@ class TareaDiaria
     {
         $sql = "INSERT INTO tareas_diarias VALUE(
             '$this->id',
-            '$this->fecharegistro',
+            current_timestamp(),
             '$this->fechainicio',
             '$this->fechatermino',
             '$this->idmaestro',
@@ -244,11 +249,13 @@ class TareaDiaria
             '$this->idembarcacion',
             '$this->motorista',
             '$this->descripcion',
-            '$this->guia',
-            '$this->idcotizacion',
+            '-',
+            '0',
             '$this->idtiposervicio',
             '$this->nombre'
         )";
+        //echo $sql;
+
         return $this->conectar->ejecutar_idu($sql);
     }
 
@@ -271,10 +278,11 @@ class TareaDiaria
         return $this->conectar->ejecutar_idu($sql);
     }
 
-    function obtenerDatos(){
+    function obtenerDatos()
+    {
         $sql = "SELECT * FROM tareas_diarias WHERE id = '$this->id'";
         $fila = $this->conectar->get_Row($sql);
-        if($fila){
+        if ($fila) {
             $this->id = $fila['id'];
             $this->fecharegistro = $fila['fecha_registro'];
             $this->fechainicio = $fila['fec_inico'];
@@ -291,8 +299,14 @@ class TareaDiaria
         }
     }
 
-    function verFilas(){
-        $sql = "SELECT * FROM tareas_diaria";
+    function verFilas()
+    {
+        $sql = "select td.nombre_corto, td.fec_inicio, td.estado, td.embarcacionid, e.nombre as nep, c.nombre_corto as ncliente, pd.descripcion as tiposervicio, guia_nro
+from tareas_diarias as td 
+inner join embarcacion as e on e.id = td.embarcacionid
+inner join clientes as c on c.id = e.clienteid
+inner join parametros_opciones as pd on pd.id = td.tiposervicioid
+where td.estado = 0";
         return $this->conectar->get_Cursor($sql);
     }
 }

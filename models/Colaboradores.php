@@ -182,4 +182,9 @@ class Colaboradores {
         $sql = "SELECT * FROM colaboradores WHERE cargoid = '$this->idcargo' AND estado = '$this->estado'";
         return $this->conectar->get_Cursor($sql);
     }
+
+    function verObreros(){
+        $sql = "SELECT * FROM colaboradores WHERE cargoid != '$this->idcargo' AND estado = '$this->estado'";
+        return $this->conectar->get_Cursor($sql);
+    }
 }

@@ -13,12 +13,12 @@ $Trabajador = new Colaboradores();
 $Servicio = new ParametrosOpciones();
 
 
-$Maestro->setIdcargo(2); //Cargo de maestro de acuerdo a la tabla parametroopciones
+$Maestro->setIdcargo(1); //Cargo de maestro de acuerdo a la tabla parametroopciones
 $Maestro->setEstado(1); //Estado 1 activo , 0 inactivo
 $l_maestro = $Maestro->verFilas();
-$Trabajador->setIdcargo(3); //Cargo de maestro de acuerdo a la tabla parametroopciones
+$Trabajador->setIdcargo(1); //Cargo de maestro de acuerdo a la tabla parametroopciones
 $Trabajador->setEstado(1); //Estado 1 activo , 0 inactivo
-$l_trabajador = $Trabajador->verFilas();
+$l_trabajador = $Trabajador->verObreros();
 $l_cliente = $Cliente->verFilas();
 $l_embarcacion = $Embarcacion->verFilas();
 $Servicio->setIdparametro(2); //tipo de servicio a mostrar de acuerdo a la tabla parametros
@@ -374,3 +374,25 @@ $l_servicio = $Servicio->verFilas();
 </body>
 
 </html>
+
+
+<!--
+cambiar a actividades (tareas)
+
+colocar numero de guia
+observaciones
+nro de pase
+
+
+al hacer clic mostrar resumen del trabajo
+que peda odificar, eliminar
+
+usuarios al ingresar a la app
+usuarios deben tener permisos
+
+
+en laptop al finalizar actividad , colocar cotizacion
+
+agregar cotizaciones para control
+
+--->

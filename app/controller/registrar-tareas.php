@@ -38,7 +38,7 @@ foreach ($arraytrabajadores as $lista) {
     $Trabajadores->obtenerId();
     $Colaboradores->setId($lista->id);
     $Colaboradores->setEstado(0);
-    $Colaboradores->modificarEstado();
+    //$Colaboradores->modificarEstado();
     $Trabajadores->insertar();
 }
 

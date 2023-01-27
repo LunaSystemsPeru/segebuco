@@ -3,8 +3,12 @@ include '../fixed/cargarSession.php';
 $namepage = basename(__FILE__);
 
 require '../../tools/Util.php';
+require '../../models/TareaDiaria.php';
 
 $Util = new Util();
+$Tarea = new TareaDiaria();
+
+$l_tareas = $Tarea->verFilas();
 
 
 ?>
@@ -47,7 +51,7 @@ $Util = new Util();
     </div>
     <div class="right">
 
-        <a href="app-tarea-registro.php" class="headerButton" >
+        <a href="app-tarea-registro.php" class="headerButton">
             <ion-icon name="add-outline"></ion-icon>
         </a>
 
@@ -120,24 +124,36 @@ $Util = new Util();
     <div class="section mt-2 mb-2">
 
         <div class="goals">
-            <!-- item -->
-            <div class="item">
-                <a href="app-cliente-detalle.php?id=1">
-                    <div class="in">
-                        <div>
-                            <h4>INSTALACION TUBERIA 1/2" DE PETROLEO LINEA RETORNO EN PANGA DE LA E/P YAGODA B</h4>
-                            <p>Fecha Inicio:    21/10/2022</p>
+            <?php
+            foreach ($l_tareas as $item) {
+                ?>
+                <!-- item -->
+                <div class="item">
+                    <a href="app-cliente-detalle.php?id=1">
+                        <div class="in">
+                            <div>
+                                <h4><?php echo $item['nombre_corto'] . " | " . $item['nep']  ." | " . $item['ncliente']?></h4>
+                                <p>Fecha Inicio: <?php echo $item['fec_inicio'] ?></p>
+                                <p><?php echo $item['tiposervicio'] ?></p>
+                                <p><?php echo $item['guia_nro'] ?></p>
+                            </div>
+                            <!--
+                            <div class="price">S/SOLPED</div>
+                            -->
                         </div>
-                        <div class="price">3 dias</div>
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: <?php echo number_format(80, 0) ?>%;" aria-valuenow="<?php echo number_format(80, 0) ?>"
-                             aria-valuemin="0" aria-valuemax="100"><?php echo number_format(80, 0) ?>%
+                        <!--
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: <?php echo number_format(80, 0) ?>%;" aria-valuenow="<?php echo number_format(80, 0) ?>"
+                                 aria-valuemin="0" aria-valuemax="100"><?php echo number_format(80, 0) ?>%
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
-            <!-- * item -->
+                        -->
+                    </a>
+                </div>
+                <!-- * item -->
+                <?php
+            }
+            ?>
 
 
         </div>
