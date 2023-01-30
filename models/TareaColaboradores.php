@@ -95,7 +95,14 @@ class TareaColaboradores{
     }
 
     function verFilas(){
-        $sql = "SELECT * FROM tareas_colaboradores";
+        $sql = "SELECT c.id, c.datos FROM tareas_colaboradores AS tc
+            INNER JOIN colaboradores AS c ON c.id = tc.colaboradorid
+            WHERE tareaid = '$this->idtarea'";
         return $this->conectar->get_Cursor($sql);
+    }
+
+    function eliminar(){
+        $sql = "DELETE FROM tareas_colaboradores WHERE tareaid = '$this->idtarea'";
+        return $this->conectar->ejecutar_idu($sql);
     }
 }

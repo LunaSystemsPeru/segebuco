@@ -4,25 +4,42 @@ include '../../models/EmbarcacionCliente.php';
 include '../../models/Colaboradores.php';
 include '../../models/Embarcacion.php';
 include '../../models/ParametrosOpciones.php';
+include '../../models/TareaDiaria.php';
+include '../../models/TareaColaboradores.php';
 
 $namepage = basename(__FILE__);
 $Cliente = new EmbarcacionCliente();
 $Embarcacion = new Embarcacion();
 $Maestro = new Colaboradores();
 $Trabajador = new Colaboradores();
+$Obrero = new TareaColaboradores();
 $Servicio = new ParametrosOpciones();
+$Tarea = new TareaDiaria();
 
+$arr = array();
 
-$Maestro->setIdcargo(1); //Cargo de maestro de acuerdo a la tabla parametroopciones
+$Tarea->setId(filter_input(INPUT_GET, 'id'));
+if ($Tarea->getId()) {
+    $Tarea->obtenerDatos();
+
+    $Obrero->setIdtarea($Tarea->getId());
+    $l_obrero = $Obrero->verFilas();
+    foreach ($l_obrero as $fila) {
+        $arr[] = $fila['id'];
+    }
+}
+
+$Maestro->setIdcargo(2); //Cargo de maestro de acuerdo a la tabla parametroopciones
 $Maestro->setEstado(1); //Estado 1 activo , 0 inactivo
 $l_maestro = $Maestro->verFilas();
-$Trabajador->setIdcargo(1); //Cargo de maestro de acuerdo a la tabla parametroopciones
+$Trabajador->setIdcargo(2); //Cargo de Trabajadores de acuerdo a la tabla parametroopciones
 $Trabajador->setEstado(1); //Estado 1 activo , 0 inactivo
 $l_trabajador = $Trabajador->verObreros();
 $l_cliente = $Cliente->verFilas();
 $l_embarcacion = $Embarcacion->verFilas();
 $Servicio->setIdparametro(2); //tipo de servicio a mostrar de acuerdo a la tabla parametros
 $l_servicio = $Servicio->verFilas();
+
 ?>
 <!doctype html>
 <html lang="es">
@@ -33,11 +50,13 @@ $l_servicio = $Servicio->verFilas();
             width: calc(100% - 94.275px) !important;
             height: 36px !important;
         }
-        .select2-container--default .select2-selection--single{
+
+        .select2-container--default .select2-selection--single {
             border: none !important;
             height: 36px !important;
         }
-        .select2-results__option{
+
+        .select2-results__option {
             color: black;
         }
     </style>
@@ -87,25 +106,22 @@ $l_servicio = $Servicio->verFilas();
             <div class="card">
                 <div class="card-body">
                     <form id="formulario" novalidate>
-                        <!-- campos ocultos -->
-                        <input type="datetime-local" hidden id="input-registro" name="input-registro" value="<?php echo date("Y-m-d"); ?>">
-
+                        <input type="text" id="hidden-id-tarea" hidden value="<?php echo $Tarea->getId(); ?>">
+                        <input type="text" id="hidden-estado" hidden value="<?php echo ($Tarea->getId())?$Tarea->getEstado():'0'; ?>">
                         <div class="form-group basic">
                             <div class="input-wrapper">
-                                <label class="label" for="text4">Tipo Servicio:</label>
+                                <label class="label fw-bold" for="text4">Tipo Servicio:</label>
                                 <select class="form-select" id="select-servicio" name="select-servicio">
                                     <?php foreach ($l_servicio as $fila) { ?>
                                         <option value="<?php echo $fila['id']; ?>"><?php echo $fila['descripcion']; ?></option>
                                     <?php } ?>
-                                    <!-- <option>EMERGENCIA</option>
-                                    <option>CON SOLPED</option> -->
                                 </select>
                             </div>
                         </div>
 
                         <div class="form-group basic">
                             <div class="input-group">
-                                <label class="label w-100 pb-1" for="select-embarcacion">E/P:</label>
+                                <label class="label w-100 pb-1 fw-bold" for="select-embarcacion">E/P:</label>
                                 <select name="select-embarcacion" id="select-embarcacion">
                                     <option></option>
                                     <?php foreach ($l_embarcacion as $fila) { ?>
@@ -118,7 +134,7 @@ $l_servicio = $Servicio->verFilas();
 
                         <div class="form-group basic">
                             <div class="input-wrapper">
-                                <label class="label" for="select-maestro">MAESTRO</label>
+                                <label class="label fw-bold" for="select-maestro">MAESTRO</label>
                                 <select class="form-select" name="select-maestro" id="select-maestro">
                                     <?php foreach ($l_maestro as $fila) { ?>
                                         <option value="<?php echo $fila['id']; ?>"><?php echo $fila['datos']; ?></option>
@@ -132,8 +148,8 @@ $l_servicio = $Servicio->verFilas();
 
                         <div class="form-group basic">
                             <div class="input-wrapper">
-                                <label class="label" for="input-motorista">Motorista</label>
-                                <input type="text" class="form-control" id="input-motorista" name="input-motorista" required>
+                                <label class="label fw-bold" for="input-motorista">Motorista</label>
+                                <input type="text" class="form-control" id="input-motorista" name="input-motorista" value="<?php echo $Tarea->getMotorista(); ?>" required>
                                 <i class="clear-input">
                                     <ion-icon name="close-circle"></ion-icon>
                                 </i>
@@ -142,8 +158,8 @@ $l_servicio = $Servicio->verFilas();
 
                         <div class="form-group basic">
                             <div class="input-wrapper">
-                                <label class="label" for="input-tarea">Nombre de la tarea</label>
-                                <input type="text" class="form-control" id="input-tarea" name="input-tarea" required>
+                                <label class="label fw-bold" for="input-tarea">Nombre de la tarea</label>
+                                <input type="text" class="form-control" id="input-tarea" name="input-tarea" value="<?php echo $Tarea->getNombre(); ?>" required>
                                 <i class="clear-input">
                                     <ion-icon name="close-circle"></ion-icon>
                                 </i>
@@ -152,8 +168,8 @@ $l_servicio = $Servicio->verFilas();
 
                         <div class="form-group basic">
                             <div class="input-wrapper">
-                                <label class="label" for="input-descripcion">Tareas:</label>
-                                <textarea class="form-control" id="input-descripcion" rows="5" name="input-descripcion" required></textarea>
+                                <label class="label fw-bold" for="input-descripcion">Tareas:</label>
+                                <textarea class="form-control" id="input-descripcion" rows="5" name="input-descripcion" required><?php echo $Tarea->getDescripcion(); ?></textarea>
                                 <i class="clear-input">
                                     <ion-icon name="close-circle"></ion-icon>
                                 </i>
@@ -162,8 +178,8 @@ $l_servicio = $Servicio->verFilas();
 
                         <div class="form-group basic">
                             <div class="input-wrapper">
-                                <label class="label" for="input-inicio">fecha Inicio</label>
-                                <input type="datetime-local" class="form-control" id="input-inicio" name="input-inicio" autocomplete="off" required>
+                                <label class="label fw-bold" for="input-inicio">fecha Inicio</label>
+                                <input type="datetime-local" class="form-control" id="input-inicio" name="input-inicio" value="<?php echo $Tarea->getFechainicio(); ?>" autocomplete="off" required>
                                 <i class="clear-input">
                                     <ion-icon name="close-circle"></ion-icon>
                                 </i>
@@ -172,8 +188,8 @@ $l_servicio = $Servicio->verFilas();
 
                         <div class="form-group basic mb-2">
                             <div class="input-wrapper">
-                                <label class="label" for="input-fin">Fecha Fin</label>
-                                <input type="datetime-local" class="form-control" id="input-fin" name="input-fin" autocomplete="off" required>
+                                <label class="label fw-bold" for="input-fin">Fecha Fin</label>
+                                <input type="datetime-local" class="form-control" id="input-fin" name="input-fin" value="<?php echo $Tarea->getFechatermino(); ?>" autocomplete="off" required>
                                 <i class="clear-input">
                                     <ion-icon name="close-circle"></ion-icon>
                                 </i>
@@ -182,12 +198,12 @@ $l_servicio = $Servicio->verFilas();
 
                         <div class="form-group basic">
                             <div class="input-wrapper">
-                                <label class="label">Trabajadores</label>
+                                <label class="label fw-bold">Trabajadores</label>
                                 <div class="input-list">
                                     <?php foreach ($l_trabajador as $fila) { ?>
                                         <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="<?php echo $fila['id']; ?>" value="<?php echo $fila['id']; ?>">
-                                            <label class="form-check-label" for="<?php echo $fila['id']; ?>"><?php echo $fila['datos']; ?></label>
+                                            <input type="checkbox" class="form-check-input" <?php echo (in_array($fila['id'], $arr)) ? "checked" : ""; ?> id="<?php echo 't' . $fila['id']; ?>" value="<?php echo $fila['id']; ?>">
+                                            <label class="form-check-label" for="<?php echo 't' . $fila['id']; ?>"><?php echo $fila['datos']; ?></label>
                                         </div>
                                     <?php } ?>
                                 </div>
@@ -236,7 +252,7 @@ $l_servicio = $Servicio->verFilas();
                     </div>
                 </div>
                 <div class="card-footer text-center">
-                    <button type="button" onclick="registrar()" class="btn btn-outline-warning">
+                    <button type="button" id="btn-accion" onclick="registrar()" class="btn btn-outline-warning">
                         <ion-icon name="barcode-outline"></ion-icon>
                         Guardar Tarea
                     </button>
@@ -282,6 +298,13 @@ $l_servicio = $Servicio->verFilas();
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
+        if ("<?php echo $Tarea->getId() ?>") {
+            $("#select-servicio option[value='<?php echo $Tarea->getIdTiposervicio() ?>']").attr("selected", true);
+            $("#select-embarcacion option[value='<?php echo $Tarea->getIdembarcacion() ?>']").attr("selected", true);
+            $("#select-mestro option[value='<?php echo $Tarea->getIdmaestro() ?>']").attr("selected", true);
+            $("#btn-accion").html("<ion-icon name=barcode-outline></ion-icon> Actualizar Tarea");
+        }
+
         $("#select-embarcacion").select2({
             placeholder: "Seleccionar Embarcación"
         });
@@ -296,7 +319,8 @@ $l_servicio = $Servicio->verFilas();
             });
 
             let datos = {
-                'input-registro': $('#input-registro').val(),
+                'hidden-id-tarea': $("#hidden-id-tarea").val(),
+                'hidden-estado': $("#hidden-estado").val(),
                 'select-servicio': $('#select-servicio').val(),
                 'select-embarcacion': $('#select-embarcacion').val(),
                 'input-motorista': $('#input-motorista').val(),
@@ -310,7 +334,7 @@ $l_servicio = $Servicio->verFilas();
             };
 
             $.post('../controller/registrar-tareas.php', datos, function(data) {
-                alert(data);
+                // alert(data);
                 let resultdata = JSON.parse(data);
                 if (resultdata) {
                     if (resultdata.success) {
@@ -367,9 +391,6 @@ $l_servicio = $Servicio->verFilas();
             $("#modalEmbarcacion").modal("toggle")
             console.log(datos);
         }
-        /* $(function() {
-            alert($(".sel-emb").css("width"));
-        }); */
     </script>
 </body>
 

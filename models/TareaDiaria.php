@@ -262,7 +262,7 @@ class TareaDiaria
     function modificar()
     {
         $sql = "UPDATE tareas_diarias SET
-        fecha_registro = '$this->fecharegistro',
+        fecha_registro = current_timestamp(),
         fec_inicio = '$this->fechainicio',
         fec_termino = '$this->fechatermino',
         maestroid = '$this->idmaestro',
@@ -285,7 +285,7 @@ class TareaDiaria
         if ($fila) {
             $this->id = $fila['id'];
             $this->fecharegistro = $fila['fecha_registro'];
-            $this->fechainicio = $fila['fec_inico'];
+            $this->fechainicio = $fila['fec_inicio'];
             $this->fechatermino = $fila['fec_termino'];
             $this->idmaestro = $fila['maestroid'];
             $this->estado = $fila['estado'];
@@ -301,7 +301,7 @@ class TareaDiaria
 
     function verFilas()
     {
-        $sql = "select td.nombre_corto, td.fec_inicio, td.estado, td.embarcacionid, e.nombre as nep, c.nombre_corto as ncliente, pd.descripcion as tiposervicio, guia_nro
+        $sql = "select td.id, td.nombre_corto, td.fec_inicio, td.estado, td.embarcacionid, e.nombre as nep, c.nombre_corto as ncliente, pd.descripcion as tiposervicio, guia_nro
 from tareas_diarias as td 
 inner join embarcacion as e on e.id = td.embarcacionid
 inner join clientes as c on c.id = e.clienteid
