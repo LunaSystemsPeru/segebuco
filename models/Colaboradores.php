@@ -179,12 +179,12 @@ class Colaboradores {
     }
 
     function verFilas(){
-        $sql = "SELECT * FROM colaboradores WHERE cargoid = '$this->idcargo' AND estado = '$this->estado'";
+        $sql = "SELECT * FROM colaboradores WHERE cargoid = '$this->idcargo' AND estado = '$this->estado' order by datos asc ";
         return $this->conectar->get_Cursor($sql);
     }
 
     function verObreros(){
-        $sql = "SELECT * FROM colaboradores WHERE cargoid != '$this->idcargo' AND estado = '$this->estado'";
+        $sql = "SELECT * FROM colaboradores WHERE cargoid != '$this->idcargo' AND estado = '$this->estado'  order by datos asc";
         return $this->conectar->get_Cursor($sql);
     }
 }
