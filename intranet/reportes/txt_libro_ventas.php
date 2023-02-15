@@ -86,7 +86,12 @@ foreach ($a_ventas as $value) {
     $cod_sunat = $value['sunat'];
     $serie_doc = $cl_varios->zerofill($value['serie'], 4);
 
-    $monto_total_soles = $value['total'] * $value['tipo_cambio'];
+    $total_comprobante = $value['total'];
+    if ($value['tipo_documento'] == 14) {
+        $total_comprobante = $total_comprobante * -1;
+    }
+
+    $monto_total_soles = $total_comprobante * $value['tipo_cambio'];
     $base = $monto_total_soles / 1.18;
     $igv = $base * 0.18;
     $contenido = $periodo_doc . "00|" .

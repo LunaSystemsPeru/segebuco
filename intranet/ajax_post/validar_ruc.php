@@ -5,12 +5,10 @@ $c_entidad = new cl_entidad();
 
 $ruc = filter_input(INPUT_POST, 'ruc');
 $c_entidad->setRuc($ruc);
-//$direcion = 'https://www.conmetal.pe/erp/ajax_post/consulta_ruc_nubefact.php?ruc=' . $ruc;
 if (strlen($ruc) == 8) {
-    $direcion = 'http://lunasystemsperu.com/consultas_json/composer/consultas_dni_JMP.php?dni=' . $ruc;
+    $direcion = 'https://goempresarial.com/apis/peru-consult-api/public/api/v1/dni/' . $ruc . '?token=abcxyz';
 } else {
-    //$direcion = 'http://lunasystemsperu.com/consultas_json/composer/consulta_sunat_JMP.php?ruc=' . $ruc;
-    $direcion = "http://lunasystemsperu.com/apis/apiruc.php?ruc=" . $ruc;
+    $direcion = 'https://goempresarial.com/apis/peru-consult-api/public/api/v1/ruc/' . $ruc . '?token=abcxyz';
 }
 
 $encontrado_entidad = false;
@@ -27,9 +25,9 @@ if ($encontrado_entidad) {
         $fila_ruc['estado'] = 'ACTIVO';
     }
     array_push($array_ruc, $fila_ruc);
-    $rpt = (object) array(
-                "success" => "existe",
-                "result" => $fila_ruc
+    $rpt = (object)array(
+        "success" => "existe",
+        "result" => $fila_ruc
     );
     echo json_encode($rpt);
     //echo json_encode($fila_ruc);
@@ -40,7 +38,7 @@ if ($encontrado_entidad) {
         die('Error');
     }
 
-    $rpt = (object) array(
+    $rpt = (object)array(
         "success" => "nuevo",
         "result" => json_decode($json_ruc, true)
     );
