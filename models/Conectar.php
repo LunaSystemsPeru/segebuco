@@ -13,12 +13,12 @@ class conectar
     private static $_instancia;
     private $_connection;
     private $_link;
-    //private $_host = "localhost";
-    private $_host = "174.138.2.254";
-    private $_user = "lspadmin";
-    private $_pass = ":18;t4BC9ZfjcF";
+    // private $_host = "localhost";
+    private $_host = "localhost";
+    private $_user = "goempres_root";
+    private $_pass = "k;6?6,m{7ePs";
     // Almacenar una unica instancia
-    private $_db = "casabiblia";
+    private $_db = "goempres_segebuco_app";
 
     //mysqldump -h artemisa.servidoresph.com -u brunoasc_luis_bd -p brunoasc_casabiblia_new > goempres_casabiblia.sql   C]6&TN4Bt@&I
 
