@@ -81,6 +81,7 @@ $contaritems = 0;
                     <i data-feather="log-out" class="align-self-center topbar-icon"></i>
                 </a>
             </li>
+
             <li class="menu-item">
                 <!-- Mobile menu toggle-->
                 <a class="navbar-toggle nav-link" id="mobileToggle">
