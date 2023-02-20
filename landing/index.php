@@ -133,18 +133,18 @@
 			<div class="row">
 				<div class="col-lg-12col-sm-12">
 					<div class="slider-content">
-						<h4> Welcome to dreamit </h4>
-						<h1> Best Home Services</h1>
-						<h1>Repairer Offers </h1>
-						<p>Have a plumbing issue? Call 24 hours emergency services all time.</p>
+						<h4> BIENVENIDO A SEGEBUCO</h4>
+						<h1> Los Mejores Servicios</h1>
+						<h1> Oferta de Reparadores </h1>
+						<p>¿Tienes un problema? llame a los servicios de emergencia las 24 horas todo el tiempo</p>
 						<div class="hero-text">
-							<i class="fas fa-phone"></i> <span> 088 01318 254 </span>
+							<i class="fas fa-phone"></i> <span> (043) 261036-(043) 584363 </span>
 						</div>
 						<div class="slider-button">
-							<a href="#">Get Started</a>
+							<a href="#">Iniciar</a>
 						</div>
 						<div class="slider-button1">
-							<a href="#">Contact Us</a>
+							<a href="#">Contactanos</a>
 						</div>
 					</div>
 				 </div>
@@ -156,9 +156,9 @@
 			<div class="row">
 				<div class="col-lg-12 col-md-6 col-sm-12">
 					<div class="slider-content">
-						<h4> Welcome to dreamit </h4>
-						<h1> Best Home Services</h1>
-						<h1>Repairer Offers </h1>
+						<h4> Bienvenido </h4>
+						<h1> Los mejores Servicios a Domicilios</h1>
+						<h1> Ofertas de Reparadores </h1>
 						<p>Have a plumbing issue? Call 24 hours emergency services all time.</p>
 						<div class="hero-text">
 							<i class="fas fa-phone"></i> <span> 088 01318 254 </span>
