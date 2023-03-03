@@ -1,18 +1,16 @@
 <?php
 require '../../tools/Zebra_Session.php';
 require '../../models/Usuario.php';
-require '../../models/Banco.php';
 
 $Usuario = new Usuario();
-$Banco  = new Banco();
 $Conectar = Conectar::getInstancia();
 
 $password = filter_input(INPUT_POST, 'input-password');
-$Usuario->setUsuario(filter_input(INPUT_POST, 'input-usuario'));
+$Usuario->setUsername(filter_input(INPUT_POST, 'input-usuario'));
 
-$Usuario->verificarUsuario();
+$Usuario->validarUsername();
 
-if ($Usuario->getId() > 0) {
+if ($Usuario->getId()) {
     //usuario existe
     //verisifcar si esta activo
     $Usuario->obtenerDatos();
@@ -27,13 +25,9 @@ if ($Usuario->getId() > 0) {
                 echo $e;
             }
 
-            $Banco->setUsuarioid($Usuario->getId());
-            $Banco->obtenerBancoUsuario();
-
             $_SESSION['usuarioid'] = $Usuario->getId();
-            $_SESSION['bancoid'] = $Banco->getId();
-//            $Usuario->actualizarLogeo();
-            header("Location: ../contents/app-prestamos.php");
+            $Usuario->actualizarLogeo();
+            header("Location: ../contents/app-tareas.php");
         } else {
             //contraseña incorrecta
             header("Location: ../contents/app-login.php?error=4");

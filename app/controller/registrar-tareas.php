@@ -23,7 +23,8 @@ $Tarea->setGuia("-");
 $Tarea->setIdcotizacion(filter_input(INPUT_POST, 'input-cotizacion'));
 $Tarea->setIdcotizacion(0);
 // $Tarea->setIdcotizacion(1);
-$Tarea->setIdtiposervicio(filter_input(INPUT_POST, 'select-servicio'));
+//$Tarea->setIdtiposervicio(filter_input(INPUT_POST, 'select-servicio'));
+$Tarea->setIdtiposervicio(4);
 $Tarea->setNombre(filter_input(INPUT_POST, 'input-nombre'));
 
 
