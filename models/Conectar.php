@@ -18,7 +18,7 @@ class conectar
     private $_user = "goempres_root";
     private $_pass = "k;6?6,m{7ePs";
     // Almacenar una unica instancia
-    private $_db = "goempres_segebuco_app";
+    private $_db = "goempres_segebuco";
 
     //mysqldump -h artemisa.servidoresph.com -u brunoasc_luis_bd -p brunoasc_casabiblia_new > goempres_casabiblia.sql   C]6&TN4Bt@&I
 

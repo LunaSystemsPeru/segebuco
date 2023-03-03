@@ -84,7 +84,7 @@ if ($error == 5) {
 
     <div class="section mb-5 p-2">
 
-        <form action="../contents/app-tareas.php" method="post">
+        <form action="../controller/login.php" method="post">
             <div class="card">
                 <div class="card-body pb-1">
                     <div class="form-group basic">
