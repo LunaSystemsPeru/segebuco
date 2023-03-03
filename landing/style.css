@@ -1814,7 +1814,7 @@ h4.accordion-item__label {
 <!-- ============================================================== -->*/
 .slider1.slider-area {
     height: 750px;
-    background: url(assets/images/slider/slider1.jpg);
+    background: url(assets/images/slider/slider9.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: scroll;
@@ -1822,7 +1822,7 @@ h4.accordion-item__label {
 }
 .slider2.slider-area {
     height: 750px;
-    background: url(assets/images/slider/slider.jpg);
+    background: url(assets/images/slider/slider11.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: scroll;
@@ -2440,7 +2440,7 @@ a.slider-button2:hover:after {
     width: 100%;
     bottom: 0;
     left: 0;
-    background: url(assets/images/resource/fc.jpg);
+    background: url(assets/images/resource/services_one.jpg);
     transform: scale(0.5, 1);
     background-size: cover;
     background-position: center;
@@ -3271,11 +3271,11 @@ span.bottom-m {
 --< dreamit case study area Css -->
 ======================================================*/
 .case-study-title-area {
-    background: url(assets/images/resource/case.jpg);
+    /*background: url(assets/images/resource/case.jpg);
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    background-attachment: scroll;
+    background-attachment: scroll;*/
     padding: 90px 0 150px;
 }
 .row.case-study-top {

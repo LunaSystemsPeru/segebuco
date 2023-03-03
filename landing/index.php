@@ -9,7 +9,7 @@
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Favicon -->
-	<link rel="icon" type="image/png" sizes="56x56" href="assets/images/fav-icon/favicon.ico">
+	<link rel="icon" type="image/png" sizes="56x56" href="assets/images/resource/fav-icon/favicon.ico">
 	<!-- bootstrap CSS -->
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css" media="all" />
 	<!-- carousel CSS -->
@@ -134,9 +134,9 @@
 				<div class="col-lg-12col-sm-12">
 					<div class="slider-content">
 						<h4> BIENVENIDO A SEGEBUCO</h4>
-						<h1> Los Mejores Servicios</h1>
-						<h1> Oferta de Reparadores </h1>
-						<p>¿Tienes un problema? llame a los servicios de emergencia las 24 horas todo el tiempo</p>
+						<h1> Brindamos los Mejores</h1>
+						<h1> Servicios </h1>
+						<p> Atendemos las 24 horas.</p>
 						<div class="hero-text">
 							<i class="fas fa-phone"></i> <span> (043) 261036-(043) 584363 </span>
 						</div>
@@ -156,18 +156,18 @@
 			<div class="row">
 				<div class="col-lg-12 col-md-6 col-sm-12">
 					<div class="slider-content">
-						<h4> Bienvenido </h4>
-						<h1> Los mejores Servicios a Domicilios</h1>
-						<h1> Ofertas de Reparadores </h1>
-						<p>Have a plumbing issue? Call 24 hours emergency services all time.</p>
+                        <h4> BIENVENIDO A SEGEBUCO</h4>
+                        <h1> Brindamos los Mejores</h1>
+                        <h1> Servicios </h1>
+                        <p> Atendemos las 24 horas.</p>
 						<div class="hero-text">
-							<i class="fas fa-phone"></i> <span> 088 01318 254 </span>
+							<i class="fas fa-phone"></i> <span> (043) 261036-(043) 584363 </span>
 						</div>
 						<div class="slider-button">
-							<a href="#">Get Started</a>
+							<a href="#">Iniciar</a>
 						</div>
 						<div class="slider-button1">
-							<a href="#">Contact Us</a>
+							<a href="#">Contactanos</a>
 						</div>
 					</div>
 				 </div>
@@ -188,11 +188,10 @@
 			<div class="col-lg-3 col-md-6 col-sm-12">
 				<div class="dreamit-feature-single-box">
 					<div class="feature-box-icon">
-						<span><i class="flaticon-driver"></i></span>
+						<span><i class="flaticon-electrician"></i></span>
 					</div>
 					<div class="feature-box-title">
-						<h2>Handyman</h2>
-						<p>Lorem ipsum dolor thises amet, consectetur is adipiscing elit</p>
+						<h2>INDUSTRIAL</h2>
 					</div>
 					<div class="feature-icon-bottom text-right">
 						<i class="flaticon-car-service"></i>
@@ -200,13 +199,12 @@
 				</div>
 			</div>
 			<div class="col-lg-3 col-md-6 col-sm-12">
-				<div class="dreamit-feature-single-box">
+				<div class="dreamit-feature-single-box single_one">
 					<div class="feature-box-icon">
 						<span><i class="flaticon-car-repair"></i></span>
 					</div>
 					<div class="feature-box-title">
-						<h2>Electrician</h2>
-						<p>Lorem ipsum dolor thises amet, consectetur is adipiscing elit</p>
+						<h2>AGROINDUSTRIAL</h2>
 					</div>
 					<div class="feature-icon-bottom text-right">
 						<i class="flaticon-car-repair"></i>
@@ -219,8 +217,7 @@
 						<span><i class="flaticon-driver"></i></span>
 					</div>
 					<div class="feature-box-title">
-						<h2>Plumber</h2>
-						<p>Lorem ipsum dolor thises amet, consectetur is adipiscing elit</p>
+						<h2>NAVAL</h2>
 					</div>
 					<div class="feature-icon-bottom text-right">
 						<i class="flaticon-driver"></i>
@@ -233,8 +230,7 @@
 						<span><i class="flaticon-toolbox-2"></i></span>
 					</div>
 					<div class="feature-box-title">
-						<h2>Carpenter</h2>
-						<p>Lorem ipsum dolor thises amet, consectetur is adipiscing elit</p>
+						<h2>MINERO</h2>
 					</div>
 					<div class="feature-icon-bottom text-right">
 						<i class="flaticon-toolbox-2"></i>
@@ -258,18 +254,25 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="dreamit-section-title text-left">
-							<h5>About</h5>
-							<h2>20 Years Experience In The</h2>
-							<h2>Handyman <span>& Plumber</span></h2>
+							<h5>Contamos con</h5>
+							<h2>13 Años de Experiencia en</h2>
+							<h2>Proyectos Indrustrial, Agroindustrial, Naval<span> & Minero</span></h2>
 							<div class="em_bar_bg text-left"></div>
-							<p>Proin gravida nibh vel velit auctor aliquet. sollicitudi lorem quis bibendum auctor, nisi elit consequat ipsum, sagittis sem nibh elit veniam, quis nostrud exercitation</p>
+							<p>
+                                SEGEBUCO cuenta con un plantel técnico
+                                calificado y profesionales especialistas,
+                                personal de apoyo debidamente seleccionado,
+                                también cuenta con asesoramiento
+                                permanente en el área legal, administrativa,
+                                proyectos y de seguridad industrial.
+                            </p>
 						</div>
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-12">
 						<div class="elementor-widget-icon-box">
 							<i class="flaticon-electrician-6"></i>
 							<div class="elementor-widget-title">
-								<h2>The Best Quality Services</h2>
+								<h2>Los Mejores Servicios de Calidad</h2>
 							</div>
 						</div>
 					</div>
@@ -277,22 +280,22 @@
 						<div class="elementor-widget-icon-box">
 							<i class="flaticon-electrician-4"></i>
 							<div class="elementor-widget-title">
-								<h2>Warranty & Maintenance</h2>
+								<h2>Garantia & Mantenimiento</h2>
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-12 col-sm-12">
 						<div class="about-content-text pt-3">
-							<p><i class="far fa-check-circle"></i> <span>Praesent quis odio sit amet nisl luctus venenatis.</span></p>
+							<p><i class="far fa-check-circle"></i> <span>Diseño, Fabricación y montaje de Plantas Evaporadoras.</span></p>
 						</div>
 						<div class="about-content-text">
-							<p><i class="far fa-check-circle"></i> <span>Regular solution give for home problems by handyman.</span></p>
+							<p><i class="far fa-check-circle"></i> <span>Instalación completa de separadores Ambientales.</span></p>
 						</div>
 						<div class="about-content-text">
-							<p><i class="far fa-check-circle"></i> <span>Office Desk and Floor Cleaning Services.</span></p>
+							<p><i class="far fa-check-circle"></i> <span>Fabricación de Exhaustores, Molinos, Filtros Purificadores.</span></p>
 						</div>
 						<div class="dreamit-button">
-							<a href="#">About More </a>
+							<a href="#">Mas Información </a>
 						</div>
 					</div>	
 				</div>
@@ -317,9 +320,9 @@
 		<div class="row">
 			<div class="col-lg-12 col-sm-12">
 				<div class="dreamit-section-title white text-center pb-30">
-					<h5>OUR SERVICES</h5>
-					<h2>We Provide One Of The Best</h2>
-					<h2>Handyman <span>Services</span></h2>
+					<h5>NUESTROS SERVICIOS</h5>
+					<h2>Te Brindamos los Mejores</h2>
+					<h2><span>Servicios</span></h2>
 					<div class="em_bar_bg text-left"></div>
 				</div>
 			</div>
@@ -333,8 +336,7 @@
 								<i class="flaticon-car-service"></i>
 							</div>
 							<div class="dreamit-service-title">
-								<h2>Plumber Services</h2>
-								<p>Lorem Ipsum simply dummy text of the printing</p>
+								<h2>Fabricación y Montaje de Estructura Metalicas</h2>
 							</div>
 						</div>
 					</div>
@@ -348,8 +350,7 @@
 								<i class="flaticon-electrical-circuit"></i>
 							</div>
 							<div class="dreamit-service-title1">
-								<h2>Electrician Service</h2>
-								<p>Lorem Ipsum simply dummy text of the printing</p>
+								<h2>Fabricación y Montaje de Equipos Navales e Industriales</h2>
 							</div>
 						</div>
 					</div>
@@ -363,8 +364,7 @@
 								<i class="flaticon-electrician-4"></i>
 							</div>
 							<div class="dreamit-service-title">
-								<h2>Painter Services</h2>
-								<p>Lorem Ipsum simply dummy text of the printing</p>
+								<h2>Reparación de Embarcaciones Pesqueras</h2>
 							</div>
 						</div>
 					</div>
@@ -378,8 +378,7 @@
 								<i class="flaticon-electrician-6"></i>
 							</div>
 							<div class="dreamit-service-title1">
-								<h2>Carpenter Service</h2>
-								<p>Lorem Ipsum simply dummy text of the printing</p>
+								<h2>Mantenimiento de Equipos Industriales y Navales</h2>
 							</div>
 						</div>
 					</div>
@@ -393,8 +392,7 @@
 								<i class="flaticon-cleaning-1"></i>
 							</div>
 							<div class="dreamit-service-title">
-								<h2>Cleaning Services</h2>
-								<p>Lorem Ipsum simply dummy text of the printing</p>
+								<h2>Ingenieria y DIseño de equipos Industriales</h2>
 							</div>
 						</div>
 					</div>
@@ -408,8 +406,7 @@
 								<i class="flaticon-electrician-5"></i>
 							</div>
 							<div class="dreamit-service-title1">
-								<h2>Roof Services</h2>
-								<p>Lorem Ipsum simply dummy text of the printing</p>
+								<h2>Traslado e Izaje <br>de maquinaria</h2>
 							</div>
 						</div>
 					</div>
@@ -425,7 +422,7 @@
 <!--==================================================-->
 <!-- Start dreamit process Area -->
 <!--==================================================-->
-<div class="why-choose-us-area pb-95">
+<!--div class="why-choose-us-area pb-95">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-6 col-md-6 col-sm-12">
@@ -458,7 +455,7 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div-->
 <!--==================================================-->
 <!-- End dreamit process Area -->
 <!--==================================================-->
@@ -470,10 +467,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 col-sm-12">
-				<div class="dreamit-section-title white text-center">
-					<h5>CASE STUDY WORK</h5>
-					<h2>Handyman Best Work &</h2>
-					<h2>Solution Project</h2>
+				<div class="dreamit-section-title black text-center">
+					<h2>Nuestros Proyectos</h2>
 					<div class="em_bar_bg text-left"></div>
 				</div>
 			</div>	
@@ -630,7 +625,7 @@
 <!--==================================================-->
 <!-- Start dreamit team title Area -->
 <!--==================================================-->
-<div class="team-title-area style-two">
+<!--div class="team-title-area style-two">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 col-sm-12">
@@ -643,7 +638,7 @@
 			</div>
 		</div>d
 	</div>
-</div>
+</div-->
 <!--==================================================-->
 <!-- End dreamit team title Area -->
 <!--==================================================-->
@@ -651,7 +646,7 @@
 <!--==================================================-->
 <!-- Start dreamit team Area -->
 <!--==================================================-->
-<div class="team-area">
+<!--div class="team-area">
 	<div class="container">
 		<div class="row team-top">
 			<div class="col-lg-4 col-md-6 col-sm-12">
@@ -716,7 +711,7 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div-->
 <!--==================================================-->
 <!-- End dreamit team Area -->
 <!--==================================================-->
@@ -724,7 +719,7 @@
 <!--==================================================-->
 <!--Start dreamit testimonial Area -->
 <!--==================================================-->
-<div class="testimonial-area pt-70 pb-90">
+<!--div class="testimonial-area pt-70 pb-90">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 col-sm-12">
@@ -809,7 +804,7 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div-->
 <!--==================================================-->
 <!-- End dreamit testimonial Area -->
 <!--==================================================-->
@@ -822,9 +817,9 @@
 		<div class="row">
 			<div class="col-lg-12 col-sm-12">
 				<div class="dreamit-section-title text-center pb-30">
-					<h5>OUR BLOG</h5>
-					<h2>Our Latest Newspaper &</h2>
-					<h2>Handyman <span>Articles</span></h2>
+					<h5>NUESTRO BLOG</h5>
+					<h2>Nuestro Ultimo</h2>
+					<h2><span>Periodo</span></h2>
 					<div class="em_bar_bg text-left"></div>
 				</div>
 			</div>
@@ -1063,7 +1058,7 @@
 							<h1 class="counter">5721 <span></span></h1>
 						</div>
 						<div class="counter-title">
-							<h4>Complete Project</h4>
+							<h4>Proyectos Completados</h4>
 						</div>
 					</div>
 				</div>
@@ -1078,7 +1073,7 @@
 							<h1 class="counter">8746</h1>
 						</div>
 						<div class="counter-title">
-							<h4>Complete Project</h4>
+							<h4>Proyectos Completados</h4>
 						</div>
 					</div>
 				</div>
@@ -1093,7 +1088,7 @@
 							<h1 class="counter">265</h1>
 						</div>
 						<div class="counter-title">
-							<h4>Complete Award</h4>
+							<h4>Proyecto Completados</h4>
 						</div>
 					</div>
 				</div>
@@ -1108,7 +1103,7 @@
 							<h1 class="counter">423</h1>
 						</div>
 						<div class="counter-title">
-							<h4>Client Satisfied</h4>
+							<h4>Clientes Satisfechos</h4>
 						</div>
 					</div>
 				</div>
@@ -1134,40 +1129,40 @@
 			<div class="col-lg-6 col-md-6 col-sm-12">
 				<div class="contact-form-box style-two">
 					<div class="dreamit-section-title section-b text-left">
-						<h5>GET A QUOTE</h5>
-						<h2>Get Quote For Services</h2>
+						<h5>CONSIGUE UNA COTIZACIÓN</h5>
+						<h2>De Nuestros Servicios</h2>
 						<div class="em_bar_bg text-left"></div>
 					</div>
 					<form action="https://formspree.io/f/myyleorq" method="POST" id="dreamit-form">
 						<div class="row">
 							<div class="col-lg-6 col-md-6 col-sm-12">
 								<div class="from-box">
-									<input type="text" placeholder="Your Name">
+									<input type="text" placeholder="Nombre Completo">
 								</div>
 							</div>
 							<div class="col-lg-6 col-md-6 col-sm-12">
 								<div class="from-box">
-									<input type="text" placeholder="Your Email">
+									<input type="text" placeholder="Email">
 								</div>
 							</div>
 							<div class="col-lg-6 col-md-6 col-sm-12">
 								<div class="from-box">
-									<input type="text" placeholder="Your Phone">
+									<input type="text" placeholder="Telefono">
 								</div>
 							</div>
 							<div class="col-lg-6 col-md-6 col-sm-12">
 								<div class="from-box">
-									<input type="text" placeholder="Subject">
+									<input type="text" placeholder="Tema">
 								</div>
 							</div>
 							<div class="col-lg-12 col-sm-12">
 								<div class="from-box">
-									<textarea name="massage" id="massage" cols="30" rows="10" placeholder="Massage"></textarea>
+									<textarea name="massage" id="massage" cols="30" rows="10" placeholder="Mensaje"></textarea>
 								</div>
 							</div>
 							<div class="col-lg-12">
 								<div class="contact-button text-center">
-									<button type="submit">Send Message</button>
+									<button type="submit">Enviar Mensaje</button>
 								</div>
 							</div>
 						</div>
@@ -1196,33 +1191,38 @@
 						</a>
 					</div>
 					<div class="company-info-desc pr-2">
-						<p>Sedut perspiciatis unde omnis iste natus error sitlutem acc usantium doloremque</p>
+						<p>
+                            SEGEBUCO SAC. es una empresa de
+                            alcance nacional, dedicada a la ejecución de
+                            proyectos Civiles, Metal Mecánicas y Eléctricos.
+                        </p>
 					</div>
 					<div class="company_icon">
 						<a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a>
-						<a class="instagram" href="#"><i class="fab fa-instagram"></i></a>
+						<!--a class="instagram" href="#"><i class="fab fa-instagram"></i></a>
 						<a class="pinterest" href="#"><i class="fab fa-pinterest-p"></i></a>
-						<a class="twitter" href="#"><i class="fab fa-twitter"></i></a>
+						<a class="twitter" href="#"><i class="fab fa-twitter"></i></a-->
 					</div>
 				</div>					
 			</div>
 			<div class="col-lg-3 col-md-6 col-sm-12">
 				<div class="widget widget-nav-menu pl-2">
-					<h4 class="widget-title">Our Service</h4>
+					<h4 class="widget-title">Nuestros Servicios</h4>
 					<div class="menu-quick-link-content">
 						<ul class="menu">
-							<li><a href="#">Our Services</a></li>
-							<li><a href="#">Electrician Services</a></li>
-							<li><a href="#">Handyman Service</a></li>
-							<li><a href="#">Plumbing Services</a></li>
-							<li><a href="#">Repair Services</a></li>
+							<li><a href="#">Fabricacion y Montaje de estructural metalicas</a></li>
+							<li><a href="#">Fabricacion y montaje de equipos navales e industriales</a></li>
+							<li><a href="#">Reparacion de embarcaciones pesqueras</a></li>
+							<li><a href="#">Mantenimiento de equipos industriales y navales</a></li>
+                            <li><a href="#">Ingenieria y diseño de equipos industriales</a></li>
+                            <li><a href="#">Traslado e Izaje de maquinaria</a></li>
 						</ul>
 					</div>
 				</div>
 			</div>	
 			<div class="col-lg-3 col-md-6 col-sm-12">
 				<div class="widget-footer-title">
-					<h2>Recent Post</h2>
+					<h2>Publicaciones Recientes</h2>
 				</div>
 				<div class="footer-recent-post style-two">
 					<div class="footer-recent-post-thumb">
@@ -1246,16 +1246,20 @@
 			<div class="col-lg-3 col-md-6 col-sm-12">
 				<div id="footer-widget-address">
 					<div class="footer-widget-address-inner">
-						<h4 class="widget-title">Quick Contact</h4>
+						<h4 class="widget-title">Contactanos</h4>
 						<div class="footer-inner pr-2">
 							<div class="footer-socail-icon">
 								<i class="fa fa-home"></i>
 							</div>
 							<div class="footer-socail-info">
 								<p>
-									<span>Address:</span>
-									<br>Dhaka, Bangladesh Road 22
+									<span>DIRECCIÓN:</span>
+									<br>P.J. Ramón Castillo Mz. G Lt 6 – CHIMBOTE
 								</p>
+                                <p>
+                                    <span>DIRECCIÓN TALLER:</span>
+                                    <br>Florida Alta Mz J Lt 16
+                                </p>
 							</div>
 						</div>
 						<div class="footer-inner pr-2">
@@ -1264,9 +1268,12 @@
 							</div>
 							<div class="footer-socail-info">
 								<p>
-									<span>Teliphone:</span>
-									<br>088 4785 6589
-								</p>
+									<span>TELEFONO:</span>
+									<br>(043) 261036/(043) 584363
+                                    <br>Claro- 949490436
+                                    <br>Entel- 977966254
+                                    <br>Movistar -954976314
+                                </p>
 							</div>
 						</div>
 						<div class="footer-inner pr-2">
@@ -1276,15 +1283,16 @@
 							<div class="footer-socail-info">
 								<p>
 									<span>Email:</span>
-									<br>Example@gmail.com
-								</p>
+									<br>segebuco@gmail.com
+                                    <br>walvarez@segebuco.com
+                                </p>
 							</div>
 						</div>
 					</div>
 				</div>	
 			</div>
 		</div>
-		<div class="row footer-bottom mt-50">
+		<!--div class="row footer-bottom mt-50">
 			<div class="col-lg-6 col-md-6">
 				<div class="footer-bottom-content">
 					<div class="footer-bottom-content-copy">
@@ -1294,7 +1302,7 @@
 			</div>
 			<div class="col-lg-6">
 			</div>
-		</div>
+		</div-->
 	</div>
 </div>		
 <!--==================================================-->
