@@ -170,7 +170,7 @@ $l_servicio = $Servicio->verFilas();
 
                     <div class="form-group basic">
                         <div class="input-wrapper">
-                            <label class="label fw-bold" for="input-descripcion">Tareas:</label>
+                            <label class="label fw-bold" for="input-descripcion">Actividad/Trabajo/Sistema:</label>
                             <textarea class="form-control" id="input-descripcion" rows="5" name="input-descripcion" required><?php echo $Tarea->getDescripcion(); ?></textarea>
                             <i class="clear-input">
                                 <ion-icon name="close-circle"></ion-icon>
