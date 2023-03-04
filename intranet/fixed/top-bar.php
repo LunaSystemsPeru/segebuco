@@ -143,7 +143,7 @@ $contaritems = 0;
                             <span><i data-feather="box" class="align-self-center hori-menu-icon"></i>Flota</span>
                         </a>
                         <ul class="submenu">
-                            <li><a href="lista-vehiculos.php"><i class="ti ti-minus"></i>Tareas Diarias</a></li>
+                            <li><a href="lista-tareas-diarias.php"><i class="ti ti-minus"></i>Tareas Diarias</a></li>
                         </ul><!--end submenu-->
                     </li><!--end has-submenu-->
 
