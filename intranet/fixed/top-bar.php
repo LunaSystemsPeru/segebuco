@@ -110,7 +110,7 @@ $contaritems = 0;
                         </a>
                         <ul class="submenu">
                             <li><a href="lista-ventas.php"><i class="ti ti-minus"></i>Facturacion Electronica</a></li>
-                            <li><a href="lista-ventas.php"><i class="ti ti-minus"></i>Guia de Remision</a></li>
+                            <li><a href="lista-guia-remision.php"><i class="ti ti-minus"></i>Guia de Remision</a></li>
                             <li><a href="lista-entidades.php"><i class="ti ti-minus"></i>Clientes</a></li>
                         </ul><!--end submenu-->
                     </li><!--end has-submenu-->
