@@ -176,7 +176,7 @@
                                                 <input type="number" class="form-control" id="input_documento_cliente"
                                                        placeholder="ingrese DNI o RUC" maxlength="11" value="<?php echo $Entidad->getNrodocumento() ?>">
                                                 <input type="hidden" id="hidden-idcliente" value="<?php echo $clienteid ?>">
-                                                <button class="btn btn-secondary" type="button" onclick="obtenerDatosDocumento()">Buscar Datos</button>
+                                                <button class="btn btn-secondary" type="button" onclick="obtenerDatosDocumento()"><i class="fa fa-plus"></i> Buscar Datos</button>
                                             </div>
                                         </div>
                                     </div>
