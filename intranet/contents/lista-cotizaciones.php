@@ -71,7 +71,10 @@ ini_set('error_reporting', E_ALL);
                     <div class="card">
                         <div class="card-header">
                             <a href="form-cotizacion.php" class="btn btn-sm btn-outline-primary">
-                                <i data-feather="plus" class="align-self-center icon-xs"></i> Agregar Cotizacion
+                                <i data-feather="plus" class="align-self-center icon-xs"></i> Agregar Cotizacion Simple
+                            </a>
+                            <a href="#" class="btn btn-sm btn-outline-primary">
+                                <i data-feather="plus" class="align-self-center icon-xs"></i> Agregar Cotizacion Completa
                             </a>
                         </div>
                     </div>

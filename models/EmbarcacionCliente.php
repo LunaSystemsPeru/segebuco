@@ -5,6 +5,8 @@ class EmbarcacionCliente{
     private $id;
     private $razonsocial;
     private $nombre;
+    private $nrodocumento;
+    private $direccionfiscal;
     private $conectar;
 
     function __construct()
@@ -58,6 +60,25 @@ class EmbarcacionCliente{
     {
         $this->nombre = $nombre;
     }
+    public function getNrodocumento()
+    {
+        return $this->nrodocumento;
+    }
+
+    public function setNrodocumento($nrodocumento)
+    {
+        $this->nrodocumento = $nrodocumento;
+    }
+
+    public function getDireccionfiscal()
+    {
+        return $this->direccionfiscal;
+    }
+
+    public function setDireccionfiscal($direccionfiscal)
+    {
+        $this->direccionfiscal = $direccionfiscal;
+    }
 
     function obtenerId()
     {
@@ -70,7 +91,9 @@ class EmbarcacionCliente{
         $sql = "INSERT INTO clientes VALUE(
             '$this->id',
             '$this->razonsocial',
-            '$this->nombre'
+            '$this->nombre',
+            '$this->nrodocumento,
+            '$this->direccionfiscal'
         )";
         return $this->conectar->ejecutar_idu($sql);
     }
@@ -79,7 +102,9 @@ class EmbarcacionCliente{
     {
         $sql = "UPDATE clientes SET
         datos = '$this->razonsocial',
-        cargoid = '$this->nombre'
+        cargoid = '$this->nombre',
+        cargoid = '$this->nrodocumento',
+        cargoid = '$this->direccionfiscal'
         WHERE id = '$this->id'";
         return $this->conectar->ejecutar_idu($sql);
     }
@@ -91,6 +116,8 @@ class EmbarcacionCliente{
             $this->id = $fila['id'];
             $this->razonsocial = $fila['razon_social'];
             $this->nombre = $fila['nombre_corto'];
+            $this->nrodocumento = $fila['nro_documento'];
+            $this->direccionfiscal = $fila['direccion_fiscal'];
         }
     }
 
@@ -98,4 +125,6 @@ class EmbarcacionCliente{
         $sql = "SELECT * FROM clientes";
         return $this->conectar->get_Cursor($sql);
     }
+
+
 }

@@ -310,4 +310,14 @@ inner join parametros_opciones as pd on pd.id = td.tiposervicioid
 where td.estado = 0";
         return $this->conectar->get_Cursor($sql);
     }
+    function verTareas()
+    {
+        $sql = "select td.id, td.fecha_registro, td.nombre_corto, td.fec_inicio, td.estado, td.embarcacionid, e.nombre as nep, c.nombre_corto as ncliente, pd.descripcion as tiposervicio, td.guia_nro, co.datos
+from tareas_diarias as td 
+inner join embarcacion as e on e.id = td.embarcacionid
+inner join colaboradores as co on co.id = td.maestroid
+inner join clientes as c on c.id = e.clienteid
+inner join parametros_opciones as pd on pd.id = td.tiposervicioid";
+        return $this->conectar->get_Cursor($sql);
+    }
 }

@@ -96,21 +96,24 @@ $Tarea = new TareaDiaria();
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php foreach ($Tarea->verFilas() as $clave => $fila) { ?>
-                                                <tr>
-                                                    <th scope="row"><?php echo $clave + 1?></th>
-                                                    <td class="text-center"><?php echo $fila['fecha_registro'] ?></td>
-                                                    <td><?php echo $fila['nombre_corto'] ?></td>
-                                                    <td><?php echo $fila['datos'] ?></td>
-                                                    <td><?php echo $fila['ncliente'] ?></td>
-                                                    <td><?php echo $fila['nep'] ?></td>
-                                                    <td><?php echo $fila['tiposervicio'] ?></td>
-                                                    <td><span class="badge badge-warning">Pendiente</span></td>
-                                                    <td class="text-center">
-                                                        <a href="detalle-contrato.php?id=<?php echo $fila['id'] ?>" class="btn btn-info btn-sm"><i class="fa fa-money-check"></i></a>
-                                                    </td>
-                                                </tr>
-                                            <?php } ?>
+                                            <?php foreach ($Tarea->verTareas() as $clave => $fila) {
+                                                if ($fila['estado'] == 1) { 
+                                                    $fecha = str_split($fila['fecha_registro'],10); ?>
+                                                    <tr>
+                                                        <th scope="row"><?php echo $clave + 1 ?></th>
+                                                        <td class="text-center"><?php echo $fecha[0] ?></td>
+                                                        <td><?php echo $fila['nombre_corto'] ?></td>
+                                                        <td><?php echo $fila['datos'] ?></td>
+                                                        <td><?php echo $fila['ncliente'] ?></td>
+                                                        <td><?php echo $fila['nep'] ?></td>
+                                                        <td><?php echo $fila['tiposervicio'] ?></td>
+                                                        <td><span class="badge badge-warning">Pendiente</span></td>
+                                                        <td class="text-center">
+                                                            <a href="detalle-contrato.php?id=<?php echo $fila['id'] ?>" class="btn btn-info btn-sm"><i class="fa fa-money-check"></i></a>
+                                                        </td>
+                                                    </tr>
+                                            <?php }
+                                            } ?>
                                         </tbody>
                                     </table><!--end /table-->
                                 </div><!--end /tableresponsive-->
