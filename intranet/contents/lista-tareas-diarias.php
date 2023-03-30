@@ -112,7 +112,7 @@ $Tarea = new TareaDiaria();
                                                         break;
                                                     case 1:
                                                         $estado = '<span class="badge badge-blue">Pendiente</span>';
-                                                        $opcion = '<a href="detalle-contrato.php?id=' . $fila['id'] . '" class="btn btn-info btn-sm"><i class="fa fa-money-check"></i></a>';
+                                                        $opcion = '<a onclick="idcotizacion('. $fila['id'] .')" class="btn btn-info btn-sm" data-toggle="modal" data-target="#cotizacion"><i class="fa fa-money-check"></i></a>';
                                                         break;
                                                     case 2:
                                                         $estado = '<span class="badge badge-success">Cotizado</span>';
@@ -174,6 +174,29 @@ $Tarea = new TareaDiaria();
                 </div><!--end modal-body-->
             </div><!--end modal-content-->
         </div><!--end modal-dialog-->
+        <div class="modal fade" id="cotizacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalDefaultSignup" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title m-0" id="exampleModalDefaultLogin">Tipo de Cotización</h6>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                    </div><!--end modal-header-->
+                    <div class="modal-body">
+                        <div class="row my-3 text-center">
+                            <div class="col-6">
+                                <a href="form-cotizacion.php" class="btn btn-dark" id="btn-simple">Simple</a>
+                            </div>
+                            <div class="col-6">
+                                <a href="cotizacion-compeleta" class="btn btn-dark" id="btn-completa">Completa</a>
+                            </div>
+                        </div><!--end form-group-->
+                    </div><!--end auth-page-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-soft-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+                    </div><!--end modal-footer-->
+                </div><!--end modal-body-->
+            </div><!--end modal-content-->
+        </div><!--end modal-dialog-->
     </div>
     <!-- end page-wrapper -->
     <?php
@@ -193,6 +216,15 @@ $Tarea = new TareaDiaria();
 
     <!-- App js -->
     <script src="../assets/js/app.js"></script>
+
+    <script>
+        function idcotizacion(id){
+            let url = ($("#btn-simple").attr('href'));
+            $("#btn-simple").attr('href',url+'?id='+id)
+            // let url = ($("#btn-completa").attr('href'));
+            // $("#btn-completa").attr('href',url+'?id='+id)
+        }
+    </script>
 
 </body>
 

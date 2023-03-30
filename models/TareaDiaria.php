@@ -278,6 +278,15 @@ class TareaDiaria
         return $this->conectar->ejecutar_idu($sql);
     }
 
+    function modificarEstado()
+    {
+        $sql = "UPDATE tareas_diarias SET
+        estado = '$this->estado',
+        cotizacionid = '$this->idcotizacion'
+        WHERE id = '$this->id'";
+        return $this->conectar->ejecutar_idu($sql);
+    }
+
     function obtenerDatos()
     {
         $sql = "SELECT * FROM tareas_diarias WHERE id = '$this->id'";

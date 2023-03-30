@@ -97,8 +97,8 @@ $Tarea = new TareaDiaria();
                                         </thead>
                                         <tbody>
                                             <?php foreach ($Tarea->verTareas() as $clave => $fila) {
-                                                if ($fila['estado'] == 1) { 
-                                                    $fecha = str_split($fila['fecha_registro'],10); ?>
+                                                if ($fila['estado'] == 1) {
+                                                    $fecha = str_split($fila['fecha_registro'], 10); ?>
                                                     <tr>
                                                         <th scope="row"><?php echo $clave + 1 ?></th>
                                                         <td class="text-center"><?php echo $fecha[0] ?></td>
@@ -109,7 +109,7 @@ $Tarea = new TareaDiaria();
                                                         <td><?php echo $fila['tiposervicio'] ?></td>
                                                         <td><span class="badge badge-warning">Pendiente</span></td>
                                                         <td class="text-center">
-                                                            <a href="detalle-contrato.php?id=<?php echo $fila['id'] ?>" class="btn btn-info btn-sm"><i class="fa fa-money-check"></i></a>
+                                                            <a onclick="idcotizacion(<?php echo $fila['id'] ?>)" class="btn btn-info btn-sm" data-toggle="modal" data-target="#cotizacion"><i class="fa fa-money-check"></i></a>
                                                         </td>
                                                     </tr>
                                             <?php }
@@ -124,6 +124,29 @@ $Tarea = new TareaDiaria();
             </div><!-- container -->
         </div>
         <!-- end page content -->
+        <div class="modal fade" id="cotizacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalDefaultSignup" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title m-0" id="exampleModalDefaultLogin">Tipo de Cotización</h6>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                    </div><!--end modal-header-->
+                    <div class="modal-body">
+                        <div class="row my-3 text-center">
+                            <div class="col-6">
+                                <a href="form-cotizacion.php" class="btn btn-dark" id="btn-simple">Simple</a>
+                            </div>
+                            <div class="col-6">
+                                <a href="cotizacion-compeleta" class="btn btn-dark" id="btn-completa">Completa</a>
+                            </div>
+                        </div><!--end form-group-->
+                    </div><!--end auth-page-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-soft-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+                    </div><!--end modal-footer-->
+                </div><!--end modal-body-->
+            </div><!--end modal-content-->
+        </div><!--end modal-dialog-->
     </div>
     <!-- end page-wrapper -->
     <?php
@@ -148,6 +171,15 @@ $Tarea = new TareaDiaria();
 
     <!-- App js -->
     <script src="../assets/js/app.js"></script>
+
+    <script>
+        function idcotizacion(id){
+            let url = ($("#btn-simple").attr('href'));
+            $("#btn-simple").attr('href',url+'?id='+id)
+            // let url = ($("#btn-completa").attr('href'));
+            // $("#btn-completa").attr('href',url+'?id='+id)
+        }
+    </script>
 
 </body>
 

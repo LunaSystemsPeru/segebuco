@@ -12,9 +12,11 @@ class Cotizacion
     private $idmoneda;
     private $moncotizacion;
     private $monaprobado;
-    private $idcotizacion;
-    private $idtiposervicio;
-    private $nombre;
+    private $nrosolped;
+    private $idcliente;
+    private $descripcion;
+    private $idembarcacion;
+    private $idorden;
     private $conectar;
 
     function __construct()
@@ -164,6 +166,51 @@ class Cotizacion
         $this->monaprobado = $monaprobado;
     }
 
+    public function getNrosolped()
+    {
+        return $this->nrosolped;
+    }
+
+    public function setNrosolped($nrosolped)
+    {
+        $this->nrosolped = $nrosolped;
+    }
+    public function getIdcliente()
+    {
+        return $this->idcliente;
+    }
+    public function setIdcliente($idcliente)
+    {
+        $this->idcliente = $idcliente;
+    }
+
+    public function getDescripcion()
+    {
+        return $this->descripcion;
+    }
+    public function setDescripcion($descripcion)
+    {
+        $this->descripcion = $descripcion;
+    }
+
+    public function getIdembarcacion()
+    {
+        return $this->idembarcacion;
+    }
+
+    public function setIdembarcacion($idembarcacion)
+    {
+        $this->idembarcacion = $idembarcacion;
+    }
+
+    public function getIdorden()
+    {
+        return $this->idorden;
+    }
+    public function setIdorden($idorden)
+    {
+        $this->idorden = $idorden;
+    }
     function obtenerId()
     {
         $sql = "SELECT IFNULL(MAX(id) + 1, 1) AS codigo FROM cotizaciones";
@@ -181,7 +228,12 @@ class Cotizacion
             '$this->fecregistro',
             '$this->idmoneda',
             '$this->moncotizacion',
-            '$this->monaprobado'
+            '$this->monaprobado',
+            '$this->nrosolped',
+            '$this->idcliente',
+            '$this->descripcion',
+            '$this->idembarcacion',
+            '$this->idorden'
         )";
         return $this->conectar->ejecutar_idu($sql);
     }
@@ -196,7 +248,12 @@ class Cotizacion
             fecha_registro = '$this->fecregistro',
             monedaid = '$this->idmoneda',
             monto_cotizacion = '$this->moncotizacion',
-            monto_aprobado = '$this->monaprobado'
+            monto_aprobado = '$this->monaprobado',
+            nro_solped = '$this->nrosolped',
+            cliente_id = '$this->idcliente',
+            descripcion_corta = '$this->descripcion',
+            embarcacion_id = '$this->idembarcacion',
+            orden_id = '$this->idorden',
             WHERE id = '$this->id'";
         return $this->conectar->ejecutar_idu($sql);
     }
@@ -215,12 +272,21 @@ class Cotizacion
             $this->idmoneda = $fila['monedaid'];
             $this->moncotizacion = $fila['monto_cotizacion'];
             $this->monaprobado = $fila['monto_aprobado'];
+            $this->nrosolped = $fila['nro_solped'];
+            $this->idcliente = $fila['cliente_id'];
+            $this->descripcion = $fila['descripcion_corta'];
+            $this->idembarcacion = $fila['embarcacion_id'];
+            $this->idorden = $fila['orden_id'];
         }
     }
 
     function verFilas()
     {
-        $sql = "SELECT * FROM cotizaciones";
+        $sql = "SELECT c.id, c.nro, c.fecha_cotizacion AS fecha, cl.razon_social AS cliente, c.descripcion_corta AS descripcion, m.valor2 AS moneda, c.monto_cotizacion AS monto, c.estado
+        FROM cotizaciones c
+        INNER JOIN clientes cl ON cl.id = c.cliente_id
+        INNER JOIN parametros_opciones m ON m.id = c.moneda_id
+        WHERE c.id != 0";
         return $this->conectar->get_Cursor($sql);
     }
 }
