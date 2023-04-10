@@ -144,6 +144,7 @@ $contaritems = 0;
                         </a>
                         <ul class="submenu">
                             <li><a href="lista-tareas-diarias.php"><i class="ti ti-minus"></i>Tareas Diarias</a></li>
+                            <li><a href="lista-colaboradores.php"><i class="ti ti-minus"></i>Colaboradores</a></li>
                         </ul><!--end submenu-->
                     </li><!--end has-submenu-->
 
