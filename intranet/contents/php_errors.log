@@ -1,0 +1,8 @@
+[11-Apr-2023 17:45:37 America/Lima] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown database 'goempres_segebuco_app' in C:\xampp\htdocs\clientes\segebuco\models\Conectar.php:32
+Stack trace:
+#0 C:\xampp\htdocs\clientes\segebuco\models\Conectar.php(32): mysqli->__construct('localhost', 'goempres_root', Object(SensitiveParameterValue), 'goempres_segebu...')
+#1 C:\xampp\htdocs\clientes\segebuco\models\Conectar.php(87): conectar->__construct()
+#2 C:\xampp\htdocs\clientes\segebuco\intranet\fixed\cargarSession.php(4): conectar::getInstancia()
+#3 C:\xampp\htdocs\clientes\segebuco\intranet\contents\index.php(7): require('C:\\xampp\\htdocs...')
+#4 {main}
+  thrown in C:\xampp\htdocs\clientes\segebuco\models\Conectar.php on line 32

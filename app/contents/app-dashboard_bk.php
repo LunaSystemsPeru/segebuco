@@ -61,7 +61,60 @@ $namepage = basename(__FILE__);
     <div id="appCapsule">
 
         <!-- Wallet Card -->
+        <div class="section wallet-card-section pt-1">
+            <div class="wallet-card">
+                <!-- Balance -->
+                <div class="balance">
+                    <div class="left">
+                        <span class="title">Total Balance</span>
+                        <h1 class="total">$ 2,562.50</h1>
+                    </div>
+                    <div class="right">
+                        <a href="#" class="button" data-bs-toggle="modal" data-bs-target="#depositActionSheet">
+                            <ion-icon name="add-outline"></ion-icon>
+                        </a>
+                    </div>
+                </div>
+                <!-- * Balance -->
+                <!-- Wallet Footer -->
+                <div class="wallet-footer">
+                    <div class="item">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#withdrawActionSheet">
+                            <div class="icon-wrapper bg-danger">
+                                <ion-icon name="arrow-down-outline"></ion-icon>
+                            </div>
+                            <strong>Withdraw</strong>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#sendActionSheet">
+                            <div class="icon-wrapper">
+                                <ion-icon name="arrow-forward-outline"></ion-icon>
+                            </div>
+                            <strong>Send</strong>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="app-cards.html">
+                            <div class="icon-wrapper bg-success">
+                                <ion-icon name="card-outline"></ion-icon>
+                            </div>
+                            <strong>Cards</strong>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#exchangeActionSheet">
+                            <div class="icon-wrapper bg-warning">
+                                <ion-icon name="swap-vertical"></ion-icon>
+                            </div>
+                            <strong>Exchange</strong>
+                        </a>
+                    </div>
 
+                </div>
+                <!-- * Wallet Footer -->
+            </div>
+        </div>
         <!-- Wallet Card -->
 
         <!-- Deposit Action Sheet -->
@@ -374,6 +427,317 @@ $namepage = basename(__FILE__);
         </div>
         <!-- * Transactions -->
 
+        <!-- my cards -->
+        <div class="section full mt-4">
+            <div class="section-heading padding">
+                <h2 class="title">My Cards</h2>
+                <a href="app-cards.html" class="link">View All</a>
+            </div>
+
+            <!-- carousel single -->
+            <div class="carousel-single splide">
+                <div class="splide__track">
+                    <ul class="splide__list">
+
+                        <li class="splide__slide">
+                            <!-- card block -->
+                            <div class="card-block bg-primary">
+                                <div class="card-main">
+                                    <div class="card-button dropdown">
+                                        <button type="button" class="btn btn-link btn-icon" data-bs-toggle="dropdown">
+                                            <ion-icon name="ellipsis-horizontal"></ion-icon>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <a class="dropdown-item" href="#">
+                                                <ion-icon name="pencil-outline"></ion-icon>Edit
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                <ion-icon name="close-outline"></ion-icon>Remove
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                <ion-icon name="arrow-up-circle-outline"></ion-icon>Upgrade
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="balance">
+                                        <span class="label">BALANCE</span>
+                                        <h1 class="title">$ 1,256,90</h1>
+                                    </div>
+                                    <div class="in">
+                                        <div class="card-number">
+                                            <span class="label">Card Number</span>
+                                            •••• 9905
+                                        </div>
+                                        <div class="bottom">
+                                            <div class="card-expiry">
+                                                <span class="label">Expiry</span>
+                                                12 / 25
+                                            </div>
+                                            <div class="card-ccv">
+                                                <span class="label">CCV</span>
+                                                553
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- * card block -->
+                        </li>
+
+                        <li class="splide__slide">
+                            <!-- card block -->
+                            <div class="card-block bg-dark">
+                                <div class="card-main">
+                                    <div class="card-button dropdown">
+                                        <button type="button" class="btn btn-link btn-icon" data-bs-toggle="dropdown">
+                                            <ion-icon name="ellipsis-horizontal"></ion-icon>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <a class="dropdown-item" href="#">
+                                                <ion-icon name="pencil-outline"></ion-icon>Edit
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                <ion-icon name="close-outline"></ion-icon>Remove
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                <ion-icon name="arrow-up-circle-outline"></ion-icon>Upgrade
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="balance">
+                                        <span class="label">BALANCE</span>
+                                        <h1 class="title">$ 1,256,90</h1>
+                                    </div>
+                                    <div class="in">
+                                        <div class="card-number">
+                                            <span class="label">Card Number</span>
+                                            •••• 9905
+                                        </div>
+                                        <div class="bottom">
+                                            <div class="card-expiry">
+                                                <span class="label">Expiry</span>
+                                                12 / 25
+                                            </div>
+                                            <div class="card-ccv">
+                                                <span class="label">CCV</span>
+                                                553
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- * card block -->
+                        </li>
+
+                        <li class="splide__slide">
+                            <!-- card block -->
+                            <div class="card-block bg-secondary">
+                                <div class="card-main">
+                                    <div class="card-button dropdown">
+                                        <button type="button" class="btn btn-link btn-icon" data-bs-toggle="dropdown">
+                                            <ion-icon name="ellipsis-horizontal"></ion-icon>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <a class="dropdown-item" href="#">
+                                                <ion-icon name="pencil-outline"></ion-icon>Edit
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                <ion-icon name="close-outline"></ion-icon>Remove
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                <ion-icon name="arrow-up-circle-outline"></ion-icon>Upgrade
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="balance">
+                                        <span class="label">BALANCE</span>
+                                        <h1 class="title">$ 1,256,90</h1>
+                                    </div>
+                                    <div class="in">
+                                        <div class="card-number">
+                                            <span class="label">Card Number</span>
+                                            •••• 9905
+                                        </div>
+                                        <div class="bottom">
+                                            <div class="card-expiry">
+                                                <span class="label">Expiry</span>
+                                                12 / 25
+                                            </div>
+                                            <div class="card-ccv">
+                                                <span class="label">CCV</span>
+                                                553
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- * card block -->
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <!-- * carousel single -->
+
+        </div>
+        <!-- * my cards -->
+
+        <!-- Send Money -->
+        <div class="section full mt-4">
+            <div class="section-heading padding">
+                <h2 class="title">Send Money</h2>
+                <a href="#" class="link">Add New</a>
+            </div>
+            <!-- carousel small -->
+            <div class="carousel-small splide">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide">
+                            <a href="#">
+                                <div class="user-card">
+                                    <img src="../assets/img/sample/avatar/avatar2.jpg" alt="img" class="imaged w-100">
+                                    <strong>Jurrien</strong>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="splide__slide">
+                            <a href="#">
+                                <div class="user-card">
+                                    <img src="../assets/img/sample/avatar/avatar3.jpg" alt="img" class="imaged w-100">
+                                    <strong>Elwin</strong>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="splide__slide">
+                            <a href="#">
+                                <div class="user-card">
+                                    <img src="../assets/img/sample/avatar/avatar4.jpg" alt="img" class="imaged w-100">
+                                    <strong>Alma</strong>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="splide__slide">
+                            <a href="#">
+                                <div class="user-card">
+                                    <img src="../assets/img/sample/avatar/avatar5.jpg" alt="img" class="imaged w-100">
+                                    <strong>Justine</strong>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="splide__slide">
+                            <a href="#">
+                                <div class="user-card">
+                                    <img src="../assets/img/sample/avatar/avatar6.jpg" alt="img" class="imaged w-100">
+                                    <strong>Maria</strong>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="splide__slide">
+                            <a href="#">
+                                <div class="user-card">
+                                    <img src="../assets/img/sample/avatar/avatar7.jpg" alt="img" class="imaged w-100">
+                                    <strong>Pamela</strong>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="splide__slide">
+                            <a href="#">
+                                <div class="user-card">
+                                    <img src="../assets/img/sample/avatar/avatar8.jpg" alt="img" class="imaged w-100">
+                                    <strong>Neville</strong>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="splide__slide">
+                            <a href="#">
+                                <div class="user-card">
+                                    <img src="../assets/img/sample/avatar/avatar9.jpg" alt="img" class="imaged w-100">
+                                    <strong>Alex</strong>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="splide__slide">
+                            <a href="#">
+                                <div class="user-card">
+                                    <img src="../assets/img/sample/avatar/avatar10.jpg" alt="img" class="imaged w-100">
+                                    <strong>Stina</strong>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- * carousel small -->
+        </div>
+        <!-- * Send Money -->
+
+        <!-- Monthly Bills -->
+        <div class="section full mt-4">
+            <div class="section-heading padding">
+                <h2 class="title">Monthly Bills</h2>
+                <a href="app-bills.html" class="link">View All</a>
+            </div>
+            <!-- carousel multiple -->
+            <div class="carousel-multiple splide">
+                <div class="splide__track">
+                    <ul class="splide__list">
+
+                        <li class="splide__slide">
+                            <div class="bill-box">
+                                <div class="img-wrapper">
+                                    <img src="../assets/img/sample/brand/1.jpg" alt="img" class="image-block imaged w48">
+                                </div>
+                                <div class="price">$ 14</div>
+                                <p>Prime Monthly Subscription</p>
+                                <a href="#" class="btn btn-primary btn-block btn-sm">PAY NOW</a>
+                            </div>
+                        </li>
+
+                        <li class="splide__slide">
+                            <div class="bill-box">
+                                <div class="img-wrapper">
+                                    <img src="../assets/img/sample/brand/2.jpg" alt="img" class="image-block imaged w48">
+                                </div>
+                                <div class="price">$ 9</div>
+                                <p>Music Monthly Subscription</p>
+                                <a href="#" class="btn btn-primary btn-block btn-sm">PAY NOW</a>
+                            </div>
+                        </li>
+
+                        <li class="splide__slide">
+                            <div class="bill-box">
+                                <div class="img-wrapper">
+                                    <div class="iconbox bg-danger">
+                                        <ion-icon name="medkit-outline"></ion-icon>
+                                    </div>
+                                </div>
+                                <div class="price">$ 299</div>
+                                <p>Monthly Health Insurance</p>
+                                <a href="#" class="btn btn-primary btn-block btn-sm">PAY NOW</a>
+                            </div>
+                        </li>
+
+                        <li class="splide__slide">
+                            <div class="bill-box">
+                                <div class="img-wrapper">
+                                    <div class="iconbox">
+                                        <ion-icon name="card-outline"></ion-icon>
+                                    </div>
+                                </div>
+                                <div class="price">$ 962</div>
+                                <p>Credit Card Statement
+                                </p>
+                                <a href="#" class="btn btn-primary btn-block btn-sm">PAY NOW</a>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <!-- * carousel multiple -->
+        </div>
+        <!-- * Monthly Bills -->
+
 
         <!-- Saving Goals -->
         <div class="section mt-4">
@@ -431,10 +795,76 @@ $namepage = basename(__FILE__);
         </div>
         <!-- * Saving Goals -->
 
+
+        <!-- News -->
+        <div class="section full mt-4 mb-3">
+            <div class="section-heading padding">
+                <h2 class="title">Lastest News</h2>
+                <a href="app-blog.html" class="link">View All</a>
+            </div>
+
+            <!-- carousel multiple -->
+            <div class="carousel-multiple splide">
+                <div class="splide__track">
+                    <ul class="splide__list">
+
+                        <li class="splide__slide">
+                            <a href="app-blog-post.html">
+                                <div class="blog-card">
+                                    <img src="../assets/img/sample/photo/1.jpg" alt="image" class="imaged w-100">
+                                    <div class="text">
+                                        <h4 class="title">What will be the value of bitcoin in the next...</h4>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="splide__slide">
+                            <a href="app-blog-post.html">
+                                <div class="blog-card">
+                                    <img src="../assets/img/sample/photo/2.jpg" alt="image" class="imaged w-100">
+                                    <div class="text">
+                                        <h4 class="title">Rules you need to know in business</h4>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="splide__slide">
+                            <a href="app-blog-post.html">
+                                <div class="blog-card">
+                                    <img src="../assets/img/sample/photo/3.jpg" alt="image" class="imaged w-100">
+                                    <div class="text">
+                                        <h4 class="title">10 easy ways to save your money</h4>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="splide__slide">
+                            <a href="app-blog-post.html">
+                                <div class="blog-card">
+                                    <img src="../assets/img/sample/photo/4.jpg" alt="image" class="imaged w-100">
+                                    <div class="text">
+                                        <h4 class="title">Follow the financial agenda with...</h4>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <!-- * carousel multiple -->
+
+        </div>
+        <!-- * News -->
+
+
         <!-- app footer -->
         <div class="appFooter">
             <div class="footer-title">
-                Segebuco - APP Servicioss
+                PrestamaZ APP - Financiera Corazon
             </div>
 
         </div>
@@ -461,15 +891,59 @@ $namepage = basename(__FILE__);
                             <img src="../assets/img/sample/avatar/avatar1.jpg" alt="image" class="imaged  w36">
                         </div>
                         <div class="in">
-                            <strong>Luis Oyanguren</strong>
-                            <div class="text-muted">46993209</div>
+                            <strong>Sebastian Doe</strong>
+                            <div class="text-muted">4029209</div>
                         </div>
                         <a href="#" class="btn btn-link btn-icon sidebar-close" data-bs-dismiss="modal">
                             <ion-icon name="close-outline"></ion-icon>
                         </a>
                     </div>
+                    <!-- * profile box -->
+                    <!-- balance -->
+                    <div class="sidebar-balance">
+                        <div class="listview-title">Balance</div>
+                        <div class="in">
+                            <h1 class="amount">$ 2,562.50</h1>
+                        </div>
+                    </div>
+                    <!-- * balance -->
 
-
+                    <!-- action group -->
+                    <div class="action-group">
+                        <a href="app-dashboard.php" class="action-button">
+                            <div class="in">
+                                <div class="iconbox">
+                                    <ion-icon name="add-outline"></ion-icon>
+                                </div>
+                                Deposit
+                            </div>
+                        </a>
+                        <a href="app-dashboard.php" class="action-button">
+                            <div class="in">
+                                <div class="iconbox">
+                                    <ion-icon name="arrow-down-outline"></ion-icon>
+                                </div>
+                                Withdraw
+                            </div>
+                        </a>
+                        <a href="app-dashboard.php" class="action-button">
+                            <div class="in">
+                                <div class="iconbox">
+                                    <ion-icon name="arrow-forward-outline"></ion-icon>
+                                </div>
+                                Send
+                            </div>
+                        </a>
+                        <a href="app-cards.html" class="action-button">
+                            <div class="in">
+                                <div class="iconbox">
+                                    <ion-icon name="card-outline"></ion-icon>
+                                </div>
+                                My Cards
+                            </div>
+                        </a>
+                    </div>
+                    <!-- * action group -->
 
                     <!-- menu -->
                     <div class="listview-title mt-1">Menu</div>
@@ -480,7 +954,7 @@ $namepage = basename(__FILE__);
                                     <ion-icon name="pie-chart-outline"></ion-icon>
                                 </div>
                                 <div class="in">
-                                    Tareas
+                                    Overview
                                     <span class="badge badge-primary">10</span>
                                 </div>
                             </a>
@@ -491,7 +965,7 @@ $namepage = basename(__FILE__);
                                     <ion-icon name="document-text-outline"></ion-icon>
                                 </div>
                                 <div class="in">
-                                    Cotizaciones
+                                    Pages
                                 </div>
                             </a>
                         </li>
@@ -501,7 +975,7 @@ $namepage = basename(__FILE__);
                                     <ion-icon name="apps-outline"></ion-icon>
                                 </div>
                                 <div class="in">
-                                    Pedido de Servicio
+                                    Components
                                 </div>
                             </a>
                         </li>
@@ -511,7 +985,7 @@ $namepage = basename(__FILE__);
                                     <ion-icon name="card-outline"></ion-icon>
                                 </div>
                                 <div class="in">
-                                    Ordenes de Compra
+                                    My Cards
                                 </div>
                             </a>
                         </li>
@@ -519,8 +993,28 @@ $namepage = basename(__FILE__);
                     <!-- * menu -->
 
                     <!-- others -->
-                    <div class="listview-title mt-1">Cerrar</div>
+                    <div class="listview-title mt-1">Others</div>
                     <ul class="listview flush transparent no-line image-listview">
+                        <li>
+                            <a href="app-settings.html" class="item">
+                                <div class="icon-box bg-primary">
+                                    <ion-icon name="settings-outline"></ion-icon>
+                                </div>
+                                <div class="in">
+                                    Settings
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="component-messages.html" class="item">
+                                <div class="icon-box bg-primary">
+                                    <ion-icon name="chatbubble-outline"></ion-icon>
+                                </div>
+                                <div class="in">
+                                    Support
+                                </div>
+                            </a>
+                        </li>
                         <li>
                             <a href="../controller/logout.php" class="item">
                                 <div class="icon-box bg-primary">
@@ -535,6 +1029,36 @@ $namepage = basename(__FILE__);
 
                     </ul>
                     <!-- * others -->
+
+                    <!-- send money -->
+                    <div class="listview-title mt-1">Send Money</div>
+                    <ul class="listview image-listview flush transparent no-line">
+                        <li>
+                            <a href="#" class="item">
+                                <img src="../assets/img/sample/avatar/avatar2.jpg" alt="image" class="image">
+                                <div class="in">
+                                    <div>Artem Sazonov</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="item">
+                                <img src="../assets/img/sample/avatar/avatar4.jpg" alt="image" class="image">
+                                <div class="in">
+                                    <div>Sophie Asveld</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="item">
+                                <img src="../assets/img/sample/avatar/avatar3.jpg" alt="image" class="image">
+                                <div class="in">
+                                    <div>Kobus van de Vegte</div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- * send money -->
 
                 </div>
             </div>

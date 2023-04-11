@@ -1,2 +1,2 @@
 <?php
-header("Location: contents/app-tarea-registro.php");
+header("Location: contents/app-login.php");

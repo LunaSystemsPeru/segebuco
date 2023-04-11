@@ -11,7 +11,7 @@
             <strong>Tareas</strong>
         </div>
     </a>
-    <a href="app-cobranza.php" class="item <?php echo ($namepage == 'app-cobranza.php' ? "active" : "")?>">
+    <a href="app-cotizaciones.php" class="item <?php echo ($namepage == 'app-cotizaciones.php' ? "active" : "")?>">
         <div class="col">
             <ion-icon name="apps-outline"></ion-icon>
             <strong>Cotizaciones</strong>
