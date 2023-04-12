@@ -152,12 +152,13 @@ class OrdenServicioCliente
             $this->porcentaje = $fila['porcentaje'];
         }
     }
-    public function verFilas()
+    public function verFilas($datos = "", $f_inicio = "0000-00-00", $f_fin = "9999-12-30")
     {
         $sql = "SELECT osc.id, osc.nro_orden as nro, osc.fecha_orden as fecha, po.valor1, po.valor2, osc.monto_orden as monto, osc.estado,  c.razon_social as cliente, osc.nombre_corte as nombre
         FROM orden_servicio_cliente osc
         INNER JOIN parametros_opciones as po ON po.id = osc.moneda_id
-        INNER JOIN clientes AS c ON c.id = osc.cliente_id";
+        INNER JOIN clientes AS c ON c.id = osc.cliente_id
+        WHERE (c.razon_social LIKE '%$datos%' OR c.nombre_corto LIKE '%$datos%') AND osc.fecha_orden BETWEEN '$f_inicio' AND '$f_fin'";
         return $this->conectar->get_Cursor($sql);
     }
 }

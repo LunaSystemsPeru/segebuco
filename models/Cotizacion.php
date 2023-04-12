@@ -280,13 +280,13 @@ class Cotizacion
         }
     }
 
-    function verFilas()
+    function verFilas($datos = "",$f_inicio = "0000-00-00", $f_fin = "9999-12-30")
     {
         $sql = "SELECT c.id, c.nro, c.fecha_cotizacion AS fecha, cl.razon_social AS cliente, c.descripcion_corta AS descripcion, m.valor2 AS moneda, c.monto_cotizacion AS monto, c.estado
         FROM cotizaciones c
         INNER JOIN clientes cl ON cl.id = c.cliente_id
         INNER JOIN parametros_opciones m ON m.id = c.moneda_id
-        WHERE c.id != 0";
+        WHERE c.id != 0 AND ( cl.nombre_corto LIKE '%$datos%' OR cl.razon_social LIKE '%$datos%' OR c.descripcion_corta LIKE '%$datos%' ) AND c.fecha_registro BETWEEN '$f_inicio' and '$f_fin'";
         return $this->conectar->get_Cursor($sql);
     }
 }
