@@ -98,7 +98,7 @@ class Embarcacion
 
     function verFilas()
     {
-        $sql = "SELECT * FROM embarcacion";
+        $sql = "SELECT * FROM embarcacion order by nombre asc";
         return $this->conectar->get_Cursor($sql);
     }
 

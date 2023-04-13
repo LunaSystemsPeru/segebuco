@@ -179,12 +179,20 @@ class Colaboradores {
     }
 
     function verFilas(){
-        $sql = "SELECT * FROM colaboradores WHERE cargoid = '$this->idcargo' AND estado = '$this->estado' order by datos asc ";
+        $sql = "SELECT c.* 
+                FROM colaboradores as c 
+                inner join parametros_opciones po on c.cargoid = po.id
+                WHERE po.valor1 = 'M' AND c.estado = '$this->estado' 
+                order by c.datos asc ";
         return $this->conectar->get_Cursor($sql);
     }
 
     function verObreros(){
-        $sql = "SELECT * FROM colaboradores WHERE cargoid != '$this->idcargo' AND estado = '$this->estado'  order by datos asc";
+        $sql = "SELECT c.* 
+                FROM colaboradores as c 
+                inner join parametros_opciones po on c.cargoid = po.id
+                WHERE po.valor1 != 'M' AND c.estado = '$this->estado' 
+                order by c.datos asc ";
         return $this->conectar->get_Cursor($sql);
     }
 }
