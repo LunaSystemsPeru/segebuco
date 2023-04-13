@@ -149,7 +149,7 @@ $l_obreros = $Obreros->verFilas();
                     <div class="form-group basic">
                         <div class="input-wrapper">
                             <label for="" class="fw-bold text-dark">Descripción de Actividad:</label>
-                            <textarea rows="7" class="form-control ps-1" disabled id="input-descripcion" name="input-descripcion" required><?php echo $Tarea->getDescripcion(); ?> </textarea>
+                            <textarea rows="10" class="form-control ps-1" disabled id="input-descripcion" name="input-descripcion" required><?php echo $Tarea->getDescripcion(); ?> </textarea>
                         </div>
                     </div>
                     <div class="pb-1 mb-2 border-bottom border-2">
