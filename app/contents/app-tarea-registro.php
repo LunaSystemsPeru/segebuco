@@ -29,10 +29,8 @@ if ($Tarea->getId()) {
     }
 }
 
-$Maestro->setIdcargo(1); //Cargo de maestro de acuerdo a la tabla parametroopciones
 $Maestro->setEstado(1); //Estado 1 activo , 0 inactivo
 $l_maestro = $Maestro->verFilas();
-$Trabajador->setIdcargo(2); //Cargo de Trabajadores de acuerdo a la tabla parametroopciones
 $Trabajador->setEstado(1); //Estado 1 activo , 0 inactivo
 $l_trabajador = $Trabajador->verObreros();
 $l_cliente = $Cliente->verFilas();
