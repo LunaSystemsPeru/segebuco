@@ -78,11 +78,11 @@ $l_obreros = $Obreros->verFilas();
             <div class="goals">
                 <div class="item">
                     <div class="pb-1 mb-2 border-bottom border-2 row">
-                        <div class="col-8 col-xxl-11 col-md-10">
+                        <div class="col-12 col-xxl-12 col-md-12">
                             <label for="" class="fw-bold text-dark">Nombre de la Tarea:</label>
                             <p class="text-body fs-6 ps-1"><?php echo $Tarea->getNombre(); ?></p>
                         </div>
-                        <div class="col-xxl-1 col-3 col-md-2">
+                        <div class="col-xxl-12 col-12 col-md-12">
                             <label for="" class="fw-bold text-dark">Estado:</label>
                             <p class="text-dark fs-6">
                                 <?php switch ($Tarea->getEstado()) {
@@ -103,10 +103,10 @@ $l_obreros = $Obreros->verFilas();
                     <div class="row pb-1 mb-2 border-bottom border-2">
                         <div class="col-md-4 row justify-content-between border-end border-2 me-1">
                             <div class="col-5 col-md-7">
-                                <label for="" class="fw-bold text-dark">Fecha de Registro:</label>
+                                <label for="" class="text-dark">Fecha de Registro:</label>
                             </div>
                             <div class="col-auto">
-                                <p class="text-body fs-6"><?php echo $Tarea->getFecharegistro(); ?></p>
+                                <p class="text-body"><?php echo $Tarea->getFecharegistro(); ?></p>
                             </div>
                         </div>
                         <div class="col-md-4 row justify-content-between border-end border-2 me-1">
