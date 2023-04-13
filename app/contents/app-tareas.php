@@ -132,8 +132,8 @@ $l_tareas = $Tarea->verFilas();
                                 <div>
                                     <h4><?php echo $item['nombre_corto'] . " | " . $item['nep']  . " | " . $item['ncliente'] ?></h4>
                                     <p>Fecha Inicio: <?php echo $item['fec_inicio'] ?></p>
-                                    <p><?php echo $item['tiposervicio'] ?></p>
-                                    <p><?php echo $item['guia_nro'] ?></p>
+                                    <p>Guia Nro: <?php echo $item['guia_nro'] ?></p>
+                                    <p>Cotizacion Nro: -</p>
                                 </div>
                                 <!--
                             <div class="price">S/SOLPED</div>

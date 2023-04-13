@@ -311,7 +311,7 @@ class TareaDiaria
     function verFilas()
     {
         $sql = "select td.id, td.fecha_registro, td.nombre_corto, td.fec_inicio, td.estado, td.embarcacionid, e.nombre as nep, c.nombre_corto as ncliente, pd.descripcion as tiposervicio, td.guia_nro, co.datos
-from tareas_diarias as td 
+from tareas_diarias as td
 inner join embarcacion as e on e.id = td.embarcacionid
 inner join colaboradores as co on co.id = td.maestroid
 inner join clientes as c on c.id = e.clienteid
@@ -319,14 +319,15 @@ inner join parametros_opciones as pd on pd.id = td.tiposervicioid
 where td.estado = 0";
         return $this->conectar->get_Cursor($sql);
     }
-    function verTareas()
+    function verTareas($maestro = "", $embarcacion = "", $f_inicio = "0000-00-00", $f_fin = "9999-12-30",$operador = "OR")
     {
-        $sql = "select td.id, td.fecha_registro, td.nombre_corto, td.fec_inicio, td.estado, td.embarcacionid, e.nombre as nep, c.nombre_corto as ncliente, pd.descripcion as tiposervicio, td.guia_nro, co.datos
-from tareas_diarias as td 
-inner join embarcacion as e on e.id = td.embarcacionid
-inner join colaboradores as co on co.id = td.maestroid
-inner join clientes as c on c.id = e.clienteid
-inner join parametros_opciones as pd on pd.id = td.tiposervicioid";
+        $sql = "SELECT td.id, td.fecha_registro, td.nombre_corto, td.fec_inicio, td.estado, td.embarcacionid, e.nombre as nep, c.nombre_corto as ncliente, pd.descripcion as tiposervicio, td.guia_nro, co.datos 
+        from tareas_diarias as td
+        inner join embarcacion as e on e.id = td.embarcacionid
+        inner join colaboradores as co on co.id = td.maestroid
+        inner join clientes as c on c.id = e.clienteid
+        inner join parametros_opciones as pd on pd.id = td.tiposervicioid
+        WHERE e.nombre LIKE '%$embarcacion%' $operador co.datos LIKE '%$maestro%'AND td.fecha_registro BETWEEN '$f_inicio' and '$f_fin'";
         return $this->conectar->get_Cursor($sql);
     }
 }
