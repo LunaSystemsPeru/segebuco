@@ -7,8 +7,15 @@ ini_set('error_reporting', E_ALL);
 */
 include '../fixed/cargarSession.php';
 require '../../models/TareaDiaria.php';
+include '../../models/Colaboradores.php';
+include '../../models/Embarcacion.php';
 
 $Tarea = new TareaDiaria();
+$Maestro = new Colaboradores();
+$Embarcacion = new Embarcacion();
+
+$Maestro->setIdcargo(2); //ID del cargo del colaborador 'Maestro'
+$Maestro->setEstado(1); //Estado Activo - Incativo
 ?>
 
 <!DOCTYPE html>
@@ -58,31 +65,18 @@ $Tarea = new TareaDiaria();
                                         <li class="breadcrumb-item active">Tareas Diarias</li>
                                     </ol>
                                 </div><!--end col-->
+                                <div class="col-3">
+                                    <input type="text" id="datos" class="form-control" placeholder="Busqueda por Maestro o Embarcación ..." oninput="mostrar_lista()">
+                                </div>
                                 <div class="col-auto align-self-center">
-                                    <button class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#exampleModalSignup">
-                                        <i data-feather="search" class="align-self-center icon-xs"></i> buscar x Fechas
+                                    <button class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#filtro-busqueda">
+                                        <i data-feather="filter" class="align-self-center fa-bars-filter"></i> Filtrar Datos
                                     </button>
-                                    <!--<a href="form-contrato.php" class="btn btn-sm btn-outline-primary">
-                                    <i data-feather="plus" class="align-self-center icon-xs"></i> Agregar Nuevo Contrato
-                                </a>-->
                                 </div><!--end col-->
                             </div><!--end row-->
                         </div><!--end page-title-box-->
                     </div><!--end col-->
                 </div><!--end row-->
-
-                <!-- <div class="row justify-content-center">
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <a href="form-cotizacion.php" class="btn btn-sm btn-outline-primary">
-                                    <i data-feather="plus" class="align-self-center icon-xs"></i> Agregar Cotizacion
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-
                 <!-- end page title end breadcrumb -->
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
@@ -103,7 +97,7 @@ $Tarea = new TareaDiaria();
                                                 <th>Cotizar</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="list-tarea-diaria">
                                             <?php foreach ($Tarea->verTareas() as $clave => $fila) {
                                                 switch ($fila['estado']) {
                                                     case 0:
@@ -112,7 +106,7 @@ $Tarea = new TareaDiaria();
                                                         break;
                                                     case 1:
                                                         $estado = '<span class="badge badge-blue">Pendiente</span>';
-                                                        $opcion = '<a onclick="idcotizacion('. $fila['id'] .')" class="btn btn-info btn-sm" data-toggle="modal" data-target="#cotizacion"><i class="fa fa-money-check"></i></a>';
+                                                        $opcion = '<a onclick="idcotizacion(' . $fila['id'] . ')" class="btn btn-info btn-sm" data-toggle="modal" data-target="#cotizacion"><i class="fa fa-money-check"></i></a>';
                                                         break;
                                                     case 2:
                                                         $estado = '<span class="badge badge-success">Cotizado</span>';
@@ -144,36 +138,67 @@ $Tarea = new TareaDiaria();
         </div>
         <!-- end page content -->
 
-        <div class="modal fade" id="exampleModalSignup" tabindex="-1" role="dialog" aria-labelledby="exampleModalDefaultSignup" aria-hidden="true">
+        <div class="modal fade" id="filtro-busqueda" tabindex="-1" role="dialog" aria-labelledby="exampleModalDefaultSignup" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h6 class="modal-title m-0" id="exampleModalDefaultLogin">Buscar Servicios entre Fechas</h6>
+                        <h6 class="modal-title m-0" id="exampleModalDefaultLogin">Filtrar Tareas Diarias</h6>
                         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                     </div><!--end modal-header-->
-                    <form class="form-horizontal auth-form" action="lista-contratos.php" method="get">
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label class="form-label" for="input-documento">Fecha Inicio</label>
-                                <div class="input-group">
-                                    <input type="date" class="form-control" id="fecha-inicio" name="fecha_inicio">
+                    <div class="modal-body">
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <button class="nav-link" id="nav-datos-tab" data-bs-toggle="tab" data-bs-target="#nav-datos" type="button" role="tab" aria-controls="nav-datos" aria-selected="true">Datos</button>
+                            <button class="nav-link active" id="nav-fecha-tab" data-bs-toggle="tab" data-bs-target="#nav-fecha" type="button" role="tab" aria-controls="nav-fecha" aria-selected="true">Fecha</button>
+                        </div>
+                        <form class="tab-content mt-2" id="nav-tabContent">
+                            <div class="tab-pane fade" id="nav-datos" role="tabpanel" aria-labelledby="nav-datos-tab" tabindex="0">
+                                <div class="form-group">
+                                    <label for="maestro" class="form-label">Maestro</label>
+                                    <div class="input-group">
+                                        <select id="maestro" class="form-control">
+                                            <option value="" hidden>Seleccione Maestro</option>
+                                            <?php foreach ($Maestro->verFilas() as $fila) {
+                                                echo '<option value="' . $fila['datos'] . '">' . $fila['datos'] . '</option>';
+                                            } ?>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div><!--end form-group-->
-                            <div class="form-group">
-                                <label class="form-label" for="input-documento">Fecha Final</label>
-                                <div class="input-group">
-                                    <input type="date" class="form-control" id="fecha-final" name="fecha_final" value="<?php echo date("Y-m-d") ?>">
+                                <div class="form-group">
+                                    <label for="embarcacion" class="form-label">Embarcación</label>
+                                    <div class="input-group">
+                                        <select id="embarcacion" class="form-control">
+                                            <option value="" hidden>Seleccionar Embarcación</option>
+                                            <?php foreach ($Embarcacion->verFilas() as $fila) {
+                                                echo '<option value="' . $fila['nombre'] . '">' . $fila['nombre'] . '</option>';
+                                            } ?>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div><!--end form-group-->
-                        </div><!--end auth-page-->
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-soft-primary btn-sm">Buscar</button>
-                            <button type="button" class="btn btn-soft-secondary btn-sm" data-dismiss="modal">Cancelar</button>
-                        </div><!--end modal-footer-->
-                    </form><!--end form-->
+                            </div>
+                            <div class="tab-pane fade show active" id="nav-fecha" role="tabpanel" aria-labelledby="nav-fecha-tab" tabindex="0">
+                                <div class="form-group">
+                                    <label class="form-label" for="input-documento">Fecha Inicio</label>
+                                    <div class="input-group">
+                                        <input type="date" class="form-control" id="fecha-inicio" name="fecha_inicio">
+                                    </div>
+                                </div><!--end form-group-->
+                                <div class="form-group">
+                                    <label class="form-label" for="input-documento">Fecha Final</label>
+                                    <div class="input-group">
+                                        <input type="date" class="form-control" id="fecha-final" name="fecha_final" value="<?php echo date("Y-m-d") ?>">
+                                    </div>
+                                </div><!--end form-group-->
+                            </div>
+                        </form>
+                    </div><!--end auth-page-->
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-soft-primary btn-sm" onclick="mostrar_lista()" data-dismiss="modal">Buscar</button>
+                        <button type="button" class="btn btn-soft-secondary btn-sm" onclick="limpiar_seleccion()" data-dismiss="modal">Cancelar</button>
+                    </div><!--end modal-footer-->
                 </div><!--end modal-body-->
             </div><!--end modal-content-->
         </div><!--end modal-dialog-->
+
         <div class="modal fade" id="cotizacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalDefaultSignup" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -217,12 +242,48 @@ $Tarea = new TareaDiaria();
     <!-- App js -->
     <script src="../assets/js/app.js"></script>
 
+    <script src="../assets/js/tabs.js"></script>
+
     <script>
-        function idcotizacion(id){
+        function idcotizacion(id) {
             let url = ($("#btn-simple").attr('href'));
-            $("#btn-simple").attr('href',url+'?id='+id)
+            $("#btn-simple").attr('href', url + '?id=' + id)
             // let url = ($("#btn-completa").attr('href'));
             // $("#btn-completa").attr('href',url+'?id='+id)
+        }
+
+        function limpiar_seleccion() {
+            $('#maestro option[value=""]').attr("selected", false);
+            $('#maestro option[value=""]').attr("selected", true);
+            $('#embarcacion option[value=""]').attr("selected", false);
+            $('#embarcacion option[value=""]').attr("selected", true);
+        }
+
+        function mostrar_lista() {
+            let maestro = $("#maestro").val();
+            let embarcacion = $("#embarcacion").val();
+            if (maestro == "" && embarcacion == "") {
+                maestro = $("#datos").val();
+                embarcacion = $("#datos").val();
+            } else {
+                limpiar_seleccion();
+            }
+
+            let datos = {
+                'maestro': maestro,
+                'embarcacion': embarcacion,
+                'f-inicio': $("#fecha-inicio").val(),
+                'f-fin': $("#fecha-final").val(),
+            }
+            console.log(datos);
+            $.ajax({
+                data: datos,
+                type: "POST",
+                url: "../json/ver-lista-tareas-diarias.php",
+                success: function(date) {
+                    $("#list-tarea-diaria").html(date);
+                }
+            });
         }
     </script>
 
