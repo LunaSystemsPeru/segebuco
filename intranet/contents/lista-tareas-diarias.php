@@ -92,9 +92,8 @@ $Maestro->setEstado(1); //Estado Activo - Incativo
                                                 <th>Maestro</th>
                                                 <th>Cliente</th>
                                                 <th>Embarcacion</th>
-                                                <th width="10%">Tipo de servicio</th>
                                                 <th>Estado</th>
-                                                <th>Cotizar</th>
+                                                <th>Acciones</th>
                                             </tr>
                                         </thead>
                                         <tbody id="list-tarea-diaria">
@@ -105,8 +104,8 @@ $Maestro->setEstado(1); //Estado Activo - Incativo
                                                         $opcion = '';
                                                         break;
                                                     case 1:
-                                                        $estado = '<span class="badge badge-blue">Pendiente</span>';
-                                                        $opcion = '<a onclick="idcotizacion(' . $fila['id'] . ')" class="btn btn-info btn-sm" data-toggle="modal" data-target="#cotizacion"><i class="fa fa-money-check"></i></a>';
+                                                        $estado = '<span class="badge badge-blue">Finalizado</span>';
+                                                        $opcion = '<a href="detalle-tarea-diaria.php" class="btn btn-info btn-sm"><i class="fa fa-money-check"></i></a>';
                                                         break;
                                                     case 2:
                                                         $estado = '<span class="badge badge-success">Cotizado</span>';
@@ -122,7 +121,6 @@ $Maestro->setEstado(1); //Estado Activo - Incativo
                                                     <td><?php echo $fila['datos'] ?></td>
                                                     <td><?php echo $fila['ncliente'] ?></td>
                                                     <td><?php echo $fila['nep'] ?></td>
-                                                    <td><?php echo $fila['tiposervicio'] ?></td>
                                                     <td><?php echo $estado ?></td>
                                                     <td class="text-center"><?php echo $opcion ?></td>
                                                 </tr>

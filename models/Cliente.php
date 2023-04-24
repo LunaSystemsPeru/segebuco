@@ -7,11 +7,7 @@ class Cliente
     private $documento;
     private $nombre;
     private $direccion;
-    private $telefono;
-    private $celular;
-    private $venta;
-    private $pago;
-    private $ultimaventa;
+    private $nombrecorto;
     private $conectar;
 
     /**
@@ -33,7 +29,7 @@ class Cliente
     /**
      * @param mixed $idcliente
      */
-    public function setIdcliente($idcliente)
+    public function setIdcliente($idcliente): void
     {
         $this->idcliente = $idcliente;
     }
@@ -49,7 +45,7 @@ class Cliente
     /**
      * @param mixed $documento
      */
-    public function setDocumento($documento)
+    public function setDocumento($documento): void
     {
         $this->documento = $documento;
     }
@@ -65,7 +61,7 @@ class Cliente
     /**
      * @param mixed $nombre
      */
-    public function setNombre($nombre)
+    public function setNombre($nombre): void
     {
         $this->nombre = $nombre;
     }
@@ -81,7 +77,7 @@ class Cliente
     /**
      * @param mixed $direccion
      */
-    public function setDireccion($direccion)
+    public function setDireccion($direccion): void
     {
         $this->direccion = $direccion;
     }
@@ -89,86 +85,22 @@ class Cliente
     /**
      * @return mixed
      */
-    public function getTelefono()
+    public function getNombrecorto()
     {
-        return $this->telefono;
+        return $this->nombrecorto;
     }
 
     /**
-     * @param mixed $telefono
+     * @param mixed $nombrecorto
      */
-    public function setTelefono($telefono)
+    public function setNombrecorto($nombrecorto): void
     {
-        $this->telefono = $telefono;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCelular()
-    {
-        return $this->celular;
-    }
-
-    /**
-     * @param mixed $celular
-     */
-    public function setCelular($celular)
-    {
-        $this->celular = $celular;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getVenta()
-    {
-        return $this->venta;
-    }
-
-    /**
-     * @param mixed $venta
-     */
-    public function setVenta($venta)
-    {
-        $this->venta = $venta;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPago()
-    {
-        return $this->pago;
-    }
-
-    /**
-     * @param mixed $pago
-     */
-    public function setPago($pago)
-    {
-        $this->pago = $pago;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUltimaventa()
-    {
-        return $this->ultimaventa;
-    }
-
-    /**
-     * @param mixed $ultimaventa
-     */
-    public function setUltimaventa($ultimaventa)
-    {
-        $this->ultimaventa = $ultimaventa;
+        $this->nombrecorto = $nombrecorto;
     }
 
     public function obtenerId()
     {
-        $sql = "select ifnull(max(id_cliente) + 1, 1) as codigo 
+        $sql = "select ifnull(max(id) + 1, 1) as codigo 
             from clientes";
         $this->idcliente = $this->conectar->get_valor_query($sql, 'codigo');
     }
@@ -177,62 +109,50 @@ class Cliente
     {
         $sql = "insert into clientes 
         values ('$this->idcliente', 
-                '$this->documento',
                 '$this->nombre',
-                '$this->direccion',   
-                '$this->telefono',
-                '$this->celular',
-                '0',     
-                '0',  
-                '1000-01-01')";
+                '$this->nombrecorto',
+                '$this->documento',   
+                '$this->direccion')";
         return $this->conectar->ejecutar_idu($sql);
     }
 
     public function modificar()
     {
         $sql = "update clientes 
-        set documento = '$this->documento',
-            nombre = '$this->nombre', 
-            direccion = '$this->direccion'
-            telefono = '$this->telefono'
-            celular = '$this->celular'
-            venta = '$this->venta'
-            pago = '$this->pago'
-            ultima_venta = '$this->ultimaventa'
-        where id_cliente = '$this->idcliente'";
+        set razon_social = '$this->nombre', 
+            nombre_corto = '$this->nombrecorto', 
+            nro_documento = '$this->documento', 
+            direccion_fiscal = '$this->direccion'
+        where id = '$this->idcliente'";
         return $this->conectar->ejecutar_idu($sql);
     }
 
     public function obtenerDatos()
     {
         $sql = "select * from clientes 
-        where id_cliente = '$this->idcliente'";
+        where id = '$this->idcliente'";
         $fila = $this->conectar->get_Row($sql);
         if ($fila) {
             $this->idcliente = $fila['id_cliente'];
-            $this->documento = $fila['documento'];
-            $this->nombre = $fila['nombre'];
-            $this->direccion = $fila['direccion'];
-            $this->telefono = $fila['telefono'];
-            $this->celular = $fila['celular'];
-            $this->venta = $fila['venta'];
-            $this->pago = $fila['pago'];
-            $this->ultimaventa = $fila['ultima_venta'];
+            $this->documento = $fila['nro_documento'];
+            $this->nombre = $fila['razon_social'];
+            $this->nombrecorto = $fila['nombre_corto'];
+            $this->direccion = $fila['direccion_fiscal'];
         }
     }
 
     public function verFilas()
     {
         $sql = "select * from clientes 
-                where id_cliente = '$this->idcliente' ";
+                order by razon_social asc";
         return $this->conectar->get_Cursor($sql);
     }
 
     public function buscarClientes($term) {
         $sql = "select * 
         from clientes 
-        where documento like '%$term%' or nombre like '%$term%'  
-        order by nombre asc
+        where nro_documento like '%$term%' or razon_social like '%$term%'  
+        order by razon_social asc
         limit 30";
         return $this->conectar->get_Cursor($sql);
     }
