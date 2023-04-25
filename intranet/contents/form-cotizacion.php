@@ -64,6 +64,37 @@ $Moneda->setIdparametro(4); //ID de tipo moneda
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
+                                <p class="card-title">Seleccionar Tarea</p>
+                            </div>
+                            <div class="card-body">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="tarea-diaria">Nombre de la Tarea</label>
+                                                <select name="tarea-diaria" id="tarea-diaria" class="form-control" onchange="infoTarea()">
+                                                    <option hidden>Seleccionar Embarcacion Primero </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="maestro">Maestro</label>
+                                                <input type="text" class="form-control" id="maestro" placeholder="Maestro ..." disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="descripcion-tarea">Descripcion</label>
+                                                <textarea id="descripcion-tarea" name="descripcion-tarea" class="form-control" rows="1" disabled></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div><!--end card-body-->
+                            <div class="card-header">
                                 <p class="card-title">Datos Generales de la cotizacion</p>
                             </div>
                             <div class="card-body">
@@ -152,37 +183,7 @@ $Moneda->setIdparametro(4); //ID de tipo moneda
                                     </div>
                                 </form>
                             </div><!--end card-body-->
-                            <div class="card-header">
-                                <p class="card-title">Datos de la tarea</p>
-                            </div>
-                            <div class="card-body">
-                                <form>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="tarea-diaria">Nombre de la Tarea</label>
-                                                <select name="tarea-diaria" id="tarea-diaria" class="form-control" onchange="infoTarea()">
-                                                    <option hidden>Seleccionar Embarcacion Primero </option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="maestro">Maestro</label>
-                                                <input type="text" class="form-control" id="maestro" placeholder="Maestro ..." disabled>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="descripcion-tarea">Descripcion</label>
-                                                <textarea id="descripcion-tarea" name="descripcion-tarea" class="form-control" rows="1" disabled></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div><!--end card-body-->
+
                             <div class="card-footer">
                                 <div class="col-auto align-self-center">
                                     <button id="btn-registrar" class="btn btn-sm btn-soft-primary">
