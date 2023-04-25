@@ -104,8 +104,8 @@ $l_servicio = $Servicio->verFilas();
         <div class="card">
             <div class="card-body">
                 <form id="formulario" novalidate>
-                    <input type="hidden" id="hidden-id-tarea" value="<?php echo $Tarea->getId(); ?>"  >
-                    <input type="hidden" id="hidden-estado" value="<?php echo ($Tarea->getId()) ? $Tarea->getEstado() : '0'; ?>" >
+                    <input type="hidden" id="hidden-id-tarea" value="<?php echo $Tarea->getId(); ?>">
+                    <input type="hidden" id="hidden-estado" value="<?php echo ($Tarea->getId()) ? $Tarea->getEstado() : '0'; ?>">
                     <!--
                     <div class="form-group basic">
                         <div class="input-wrapper">
@@ -149,7 +149,7 @@ $l_servicio = $Servicio->verFilas();
                     <div class="form-group basic">
                         <div class="input-wrapper">
                             <label class="label fw-bold" for="input-motorista">Motorista</label>
-                            <input type="text" class="form-control" id="input-motorista" name="input-motorista" value="<?php echo $Tarea->getMotorista(); ?>" required>
+                            <input type="text" class="form-control" id="input-motorista" name="input-motorista" value="<?php echo $Tarea->getMotorista(); ?>" placeholder="Nombre y Apellidos Motorista" required>
                             <i class="clear-input">
                                 <ion-icon name="close-circle"></ion-icon>
                             </i>
@@ -159,7 +159,7 @@ $l_servicio = $Servicio->verFilas();
                     <div class="form-group basic">
                         <div class="input-wrapper">
                             <label class="label fw-bold" for="input-tarea">Nombre de la tarea</label>
-                            <input type="text" class="form-control" id="input-tarea" name="input-tarea" value="<?php echo $Tarea->getNombre(); ?>" required>
+                            <input type="text" class="form-control" id="input-tarea" name="input-tarea" value="<?php echo $Tarea->getNombre(); ?>" placeholder="Nombre corto de la actividad" required>
                             <i class="clear-input">
                                 <ion-icon name="close-circle"></ion-icon>
                             </i>
@@ -169,7 +169,7 @@ $l_servicio = $Servicio->verFilas();
                     <div class="form-group basic">
                         <div class="input-wrapper">
                             <label class="label fw-bold" for="input-descripcion">Actividad/Trabajo/Sistema:</label>
-                            <textarea class="form-control" id="input-descripcion" rows="5" name="input-descripcion" required><?php echo $Tarea->getDescripcion(); ?></textarea>
+                            <textarea class="form-control" id="input-descripcion" rows="5" name="input-descripcion" required placeholder="Descripcion detallada de la actividad, pasos"><?php echo $Tarea->getDescripcion(); ?></textarea>
                             <i class="clear-input">
                                 <ion-icon name="close-circle"></ion-icon>
                             </i>
@@ -207,6 +207,38 @@ $l_servicio = $Servicio->verFilas();
                                     </div>
                                 <?php } ?>
                             </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group basic mb-2">
+                        <div class="input-wrapper">
+                            <label class="label fw-bold" for="input-fin">Estado</label>
+                            <select class="form-select" name="select-estado" id="select-estado" onchange="verificaEstado()">
+                                <option value="1">FINALIZADO</option>
+                                <option value="0">EN PROCESO</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group basic mb-2">
+                        <div class="input-wrapper">
+                            <label class="label fw-bold" for="customRange1">% Avance</label>
+                            <input type="range" class="form-range" id="customRange1" value="100" oninput="this.nextElementSibling.value = this.value">
+                            <output>100</output>
+                        </div>
+                    </div>
+
+                    <!--
+                    escribir nro de guia
+                    -->
+                    <div class="form-group basic">
+                        <div class="input-wrapper">
+                            <label class="label fw-bold" for="input-inicio">Nro de Guia</label>
+                            <input type="text" class="form-control" id="input-guia" name="input-guia" value="<?php echo $Tarea->getGuia(); ?>" autocomplete="off">
+                            <i class="clear-input">
+                                <ion-icon name="close-circle"></ion-icon>
+                            </i>
                         </div>
                     </div>
 
@@ -390,6 +422,16 @@ include '../fixed/bottom-menu.php';
         $("#input-nombre").val("");
         $("#modalEmbarcacion").modal("toggle")
         console.log(datos);
+    }
+
+    function verificaEstado () {
+        var selectEstado = document.getElementById('select-estado').value
+        if (selectEstado === '1') {
+            document.getElementById('customRange1').value = 100
+        } else {
+            document.getElementById('customRange1').value = 30
+            sweetAlert("debe escoger el porcentaje de avance")
+        }
     }
 </script>
 </body>
