@@ -4,10 +4,10 @@ require_once 'Conectar.php';
 class Cliente
 {
     private $idcliente;
-    private $nrodocumento;
-    private $nombrecomercial;
-    private $razonsocial;
+    private $documento;
+    private $nombre;
     private $direccion;
+    private $nombrecorto;
     private $conectar;
 
     /**
@@ -37,49 +37,33 @@ class Cliente
     /**
      * @return mixed
      */
-    public function getNrodocumento()
+    public function getDocumento()
     {
-        return $this->nrodocumento;
+        return $this->documento;
     }
 
     /**
-     * @param mixed $nrodocumento
+     * @param mixed $documento
      */
-    public function setNrodocumento($nrodocumento): void
+    public function setDocumento($documento): void
     {
-        $this->nrodocumento = $nrodocumento;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getNombrecomercial()
-    {
-        return $this->nombrecomercial;
-    }
-
-    /**
-     * @param mixed $nombrecomercial
-     */
-    public function setNombrecomercial($nombrecomercial): void
-    {
-        $this->nombrecomercial = $nombrecomercial;
+        $this->documento = $documento;
     }
 
     /**
      * @return mixed
      */
-    public function getRazonsocial()
+    public function getNombre()
     {
-        return $this->razonsocial;
+        return $this->nombre;
     }
 
     /**
-     * @param mixed $razonsocial
+     * @param mixed $nombre
      */
-    public function setRazonsocial($razonsocial): void
+    public function setNombre($nombre): void
     {
-        $this->razonsocial = $razonsocial;
+        $this->nombre = $nombre;
     }
 
     /**
@@ -98,6 +82,22 @@ class Cliente
         $this->direccion = $direccion;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getNombrecorto()
+    {
+        return $this->nombrecorto;
+    }
+
+    /**
+     * @param mixed $nombrecorto
+     */
+    public function setNombrecorto($nombrecorto): void
+    {
+        $this->nombrecorto = $nombrecorto;
+    }
+
     public function obtenerId()
     {
         $sql = "select ifnull(max(id) + 1, 1) as codigo 
@@ -109,19 +109,19 @@ class Cliente
     {
         $sql = "insert into clientes 
         values ('$this->idcliente', 
-                '$this->razonsocial',
-                '$this->nombrecomercial',
-                '$this->nrodocumento',   
-                '$this->irreccion')";
+                '$this->nombre',
+                '$this->nombrecorto',
+                '$this->documento',   
+                '$this->direccion')";
         return $this->conectar->ejecutar_idu($sql);
     }
 
     public function modificar()
     {
         $sql = "update clientes 
-        set razon_social = '$this->razonsocial', 
-            nombre_corto = '$this->nombrecomercial',
-            nro_documento = '$this->nrodocumento',
+        set razon_social = '$this->nombre', 
+            nombre_corto = '$this->nombrecorto', 
+            nro_documento = '$this->documento', 
             direccion_fiscal = '$this->direccion'
         where id = '$this->idcliente'";
         return $this->conectar->ejecutar_idu($sql);
@@ -134,21 +134,17 @@ class Cliente
         $fila = $this->conectar->get_Row($sql);
         if ($fila) {
             $this->idcliente = $fila['id_cliente'];
-            $this->documento = $fila['documento'];
-            $this->nombre = $fila['nombre'];
-            $this->direccion = $fila['direccion'];
-            $this->telefono = $fila['telefono'];
-            $this->celular = $fila['celular'];
-            $this->venta = $fila['venta'];
-            $this->pago = $fila['pago'];
-            $this->ultimaventa = $fila['ultima_venta'];
+            $this->documento = $fila['nro_documento'];
+            $this->nombre = $fila['razon_social'];
+            $this->nombrecorto = $fila['nombre_corto'];
+            $this->direccion = $fila['direccion_fiscal'];
         }
     }
 
     public function verFilas()
     {
         $sql = "select * from clientes 
-                where id_cliente = '$this->idcliente' ";
+                order by razon_social asc";
         return $this->conectar->get_Cursor($sql);
     }
 
