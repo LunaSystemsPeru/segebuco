@@ -1,0 +1,16 @@
+[26-Apr-2023 10:40:51 America/Los_Angeles] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'td.porcentaje' in 'field list' in C:\xampp\htdocs\clientes\segebuco\models\Conectar.php:111
+Stack trace:
+#0 C:\xampp\htdocs\clientes\segebuco\models\Conectar.php(111): mysqli->query('select td.id, t...')
+#1 C:\xampp\htdocs\clientes\segebuco\models\TareaDiaria.php(336): conectar->get_Cursor('select td.id, t...')
+#2 C:\xampp\htdocs\clientes\segebuco\app\contents\app-tareas.php(11): TareaDiaria->verFilas()
+#3 {main}
+  thrown in C:\xampp\htdocs\clientes\segebuco\models\Conectar.php on line 111
+[26-Apr-2023 10:41:36 America/Los_Angeles] PHP Deprecated:  number_format(): Passing null to parameter #1 ($num) of type float is deprecated in C:\xampp\htdocs\clientes\segebuco\app\contents\app-tareas.php on line 145
+[26-Apr-2023 10:41:36 America/Los_Angeles] PHP Deprecated:  number_format(): Passing null to parameter #1 ($num) of type float is deprecated in C:\xampp\htdocs\clientes\segebuco\app\contents\app-tareas.php on line 145
+[26-Apr-2023 10:41:36 America/Los_Angeles] PHP Deprecated:  number_format(): Passing null to parameter #1 ($num) of type float is deprecated in C:\xampp\htdocs\clientes\segebuco\app\contents\app-tareas.php on line 146
+[26-Apr-2023 10:41:36 America/Los_Angeles] PHP Deprecated:  number_format(): Passing null to parameter #1 ($num) of type float is deprecated in C:\xampp\htdocs\clientes\segebuco\app\contents\app-tareas.php on line 145
+[26-Apr-2023 10:41:36 America/Los_Angeles] PHP Deprecated:  number_format(): Passing null to parameter #1 ($num) of type float is deprecated in C:\xampp\htdocs\clientes\segebuco\app\contents\app-tareas.php on line 145
+[26-Apr-2023 10:41:36 America/Los_Angeles] PHP Deprecated:  number_format(): Passing null to parameter #1 ($num) of type float is deprecated in C:\xampp\htdocs\clientes\segebuco\app\contents\app-tareas.php on line 146
+[26-Apr-2023 10:41:36 America/Los_Angeles] PHP Deprecated:  number_format(): Passing null to parameter #1 ($num) of type float is deprecated in C:\xampp\htdocs\clientes\segebuco\app\contents\app-tareas.php on line 145
+[26-Apr-2023 10:41:36 America/Los_Angeles] PHP Deprecated:  number_format(): Passing null to parameter #1 ($num) of type float is deprecated in C:\xampp\htdocs\clientes\segebuco\app\contents\app-tareas.php on line 145
+[26-Apr-2023 10:41:36 America/Los_Angeles] PHP Deprecated:  number_format(): Passing null to parameter #1 ($num) of type float is deprecated in C:\xampp\htdocs\clientes\segebuco\app\contents\app-tareas.php on line 146
