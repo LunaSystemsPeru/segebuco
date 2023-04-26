@@ -179,7 +179,7 @@ $l_servicio = $Servicio->verFilas();
                     <div class="form-group basic">
                         <div class="input-wrapper">
                             <label class="label fw-bold" for="input-inicio">fecha Inicio</label>
-                            <input type="datetime-local" class="form-control" id="input-inicio" name="input-inicio" value="<?php echo $Tarea->getFechainicio(); ?>" autocomplete="off" required>
+                            <input type="datetime-local" class="form-control" id="input-inicio" name="input-inicio" value="<?php echo ($Tarea->getFechainicio() ? $Tarea->getFechainicio() : "")  ?>" autocomplete="off" required>
                             <i class="clear-input">
                                 <ion-icon name="close-circle"></ion-icon>
                             </i>
@@ -225,7 +225,7 @@ $l_servicio = $Servicio->verFilas();
                         <div class="input-wrapper">
                             <label class="label fw-bold" for="customRange1">% Avance</label>
                             <input type="range" class="form-range" id="customRange1" value="100" oninput="this.nextElementSibling.value = this.value">
-                            <output>100</output>
+                            <output id="output-ranger">100</output>
                         </div>
                     </div>
 
@@ -235,7 +235,7 @@ $l_servicio = $Servicio->verFilas();
                     <div class="form-group basic">
                         <div class="input-wrapper">
                             <label class="label fw-bold" for="input-inicio">Nro de Guia</label>
-                            <input type="text" class="form-control" id="input-guia" name="input-guia" value="<?php echo $Tarea->getGuia(); ?>" autocomplete="off">
+                            <input type="text" class="form-control" id="input-guia" name="input-guia" value="<?php echo $Tarea->getGuia(); ?>" autocomplete="off" placeholder="Serie-Numero de Guia">
                             <i class="clear-input">
                                 <ion-icon name="close-circle"></ion-icon>
                             </i>
@@ -362,7 +362,10 @@ include '../fixed/bottom-menu.php';
             'input-inicio': $('#input-inicio').val(),
             'input-fin': $('#input-fin').val(),
             'input-nr-cotizacion': $('#input-nr-cotizacion').val(),
-            'input-trabajadores': JSON.stringify(trabajadores)
+            'input-trabajadores': JSON.stringify(trabajadores),
+            'select-estado' : $('#select-estado').val(),
+            'input-porcentaje' : $('#customRange1').val()
+            'input-guia' : $('#input-guia').val()
         };
 
         $.post('../controller/registrar-tareas.php', datos, function (data) {
@@ -428,34 +431,13 @@ include '../fixed/bottom-menu.php';
         var selectEstado = document.getElementById('select-estado').value
         if (selectEstado === '1') {
             document.getElementById('customRange1').value = 100
+            document.getElementById('output-ranger').value = 100
         } else {
             document.getElementById('customRange1').value = 30
-            sweetAlert("debe escoger el porcentaje de avance")
+            document.getElementById('output-ranger').value = 30
         }
     }
 </script>
 </body>
 
 </html>
-
-
-<!--
-cambiar a actividades (tareas)
-
-colocar numero de guia
-observaciones
-nro de pase
-
-
-al hacer clic mostrar resumen del trabajo
-que peda odificar, eliminar
-
-usuarios al ingresar a la app
-usuarios deben tener permisos
-
-
-en laptop al finalizar actividad , colocar cotizacion
-
-agregar cotizaciones para control
-
---->

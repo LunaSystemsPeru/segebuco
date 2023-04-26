@@ -16,6 +16,7 @@ class TareaDiaria
     private $idcotizacion;
     private $idtiposervicio;
     private $nombre;
+    private $porcentaje;
     private $conectar;
 
     function __construct()
@@ -231,6 +232,22 @@ class TareaDiaria
         $this->nombre = $nombre;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getPorcentaje()
+    {
+        return $this->porcentaje;
+    }
+
+    /**
+     * @param mixed $porcentaje
+     */
+    public function setPorcentaje($porcentaje): void
+    {
+        $this->porcentaje = $porcentaje;
+    }
+
     function obtenerId()
     {
         $sql = "SELECT IFNULL(MAX(id) + 1, 1) AS codigo FROM tareas_diarias";
@@ -249,10 +266,10 @@ class TareaDiaria
             '$this->idembarcacion',
             '$this->motorista',
             '$this->descripcion',
-            '-',
-            '0',
+            '$this->guia',
             '$this->idtiposervicio',
-            '$this->nombre'
+            '$this->nombre', 
+            '$this->porcentaje'
         )";
         //echo $sql;
 
@@ -271,7 +288,6 @@ class TareaDiaria
         motorista_datos = '$this->motorista',
         descripcion = '$this->descripcion',
         guia_nro = '$this->guia',
-        cotizacionid = '$this->idcotizacion',
         tiposervicioid = '$this->idtiposervicio',
         nombre_corto = '$this->nombre'
         WHERE id = '$this->id'";
@@ -281,8 +297,7 @@ class TareaDiaria
     function modificarEstado()
     {
         $sql = "UPDATE tareas_diarias SET
-        estado = '$this->estado',
-        cotizacionid = '$this->idcotizacion'
+        estado = '$this->estado'
         WHERE id = '$this->id'";
         return $this->conectar->ejecutar_idu($sql);
     }
@@ -302,24 +317,26 @@ class TareaDiaria
             $this->motorista = $fila['motorista_datos'];
             $this->descripcion = $fila['descripcion'];
             $this->guia = $fila['guia_nro'];
-            $this->idcotizacion = $fila['cotizacionid'];
             $this->idtiposervicio = $fila['tiposervicioid'];
             $this->nombre = $fila['nombre_corto'];
+            $this->porcentaje = $fila['porcentaje'];
         }
     }
 
     function verFilas()
     {
-        $sql = "select td.id, td.fecha_registro, td.nombre_corto, td.fec_inicio, td.estado, td.embarcacionid, e.nombre as nep, c.nombre_corto as ncliente, pd.descripcion as tiposervicio, td.guia_nro, co.datos
+        $sql = "select td.id, td.fecha_registro, td.nombre_corto, td.fec_inicio, td.fec_termino, td.estado, td.embarcacionid, e.nombre as nep, c.nombre_corto as ncliente, pd.descripcion as tiposervicio, td.guia_nro, co.datos, td.porcentaje
 from tareas_diarias as td
 inner join embarcacion as e on e.id = td.embarcacionid
 inner join colaboradores as co on co.id = td.maestroid
 inner join clientes as c on c.id = e.clienteid
 inner join parametros_opciones as pd on pd.id = td.tiposervicioid
-where td.estado = 0";
+where td.fecha_registro like concat(current_date(),'%') or td.estado = 0
+order by td.fec_inicio desc";
         return $this->conectar->get_Cursor($sql);
     }
-    function verTareas($maestro = "", $embarcacion = "", $f_inicio = "0000-00-00", $f_fin = "9999-12-30",$operador = "OR")
+
+    function verTareas($maestro = "", $embarcacion = "", $f_inicio = "0000-00-00", $f_fin = "9999-12-30", $operador = "OR")
     {
         $sql = "SELECT td.id, td.fecha_registro, td.nombre_corto, td.fec_inicio, td.estado, td.embarcacionid, e.nombre as nep, c.nombre_corto as ncliente, pd.descripcion as tiposervicio, td.guia_nro, co.datos 
         from tareas_diarias as td

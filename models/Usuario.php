@@ -157,7 +157,7 @@ class Usuario
 
     function actualizarLogeo(){
         $sql = "UPDATE usuarios SET
-        fec_login = 'current_timestamp()'
+        fec_login = current_timestamp()
         WHERE id = '$this->id'";
         return $this->conectar->ejecutar_idu($sql);
     }

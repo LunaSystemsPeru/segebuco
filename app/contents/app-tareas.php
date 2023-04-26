@@ -124,28 +124,28 @@ $l_tareas = $Tarea->verFilas();
             <div class="goals">
                 <?php
                 foreach ($l_tareas as $item) {
+                    $bg = 'bg-success';
+                    $porcentaje = $item['porcentaje'];
+                    if ($porcentaje < 100) {
+                        $bg = 'bg-warning';
+                    }
                 ?>
                     <!-- item -->
                     <div class="item">
                         <a href="apo-detalle-tarea.php?id=<?php echo $item['id'] ?>">
-                            <div class="in">
+                            <div class="text-black">
                                 <div>
-                                    <h4><?php echo $item['nombre_corto'] . " | " . $item['nep']  . " | " . $item['ncliente'] ?></h4>
-                                    <p>Fecha Inicio: <?php echo $item['fec_inicio'] ?></p>
-                                    <p>Guia Nro: <?php echo $item['guia_nro'] ?></p>
-                                    <p>Cotizacion Nro: -</p>
+                                    <h4 class="t-"><?php echo $item['nombre_corto'] . " | " . $item['nep']  . " | " . $item['ncliente'] ?></h4>
+                                    <p class="p-0">Desde: <?php echo date('d/m/Y H:i', strtotime($item['fec_inicio'])) ?> - Hasta: <?php echo date('d/m/Y H:i', strtotime($item['fec_termino'])) ?></p>
+                                    <p class="p-0">Guia Nro: <?php echo $item['guia_nro'] ?></p>
                                 </div>
-                                <!--
-                            <div class="price">S/SOLPED</div>
-                            -->
                             </div>
-                            <!--
+
                         <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: <?php echo number_format(80, 0) ?>%;" aria-valuenow="<?php echo number_format(80, 0) ?>"
-                                aria-valuemin="0" aria-valuemax="100"><?php echo number_format(80, 0) ?>%
+                            <div class="progress-bar <?php echo $bg ?>" role="progressbar" style="width: <?php echo number_format($porcentaje, 0) ?>%;" aria-valuenow="<?php echo number_format($porcentaje, 0) ?>"
+                                aria-valuemin="0" aria-valuemax="100"><?php echo number_format($porcentaje, 0) ?>%
                             </div>
                         </div>
-                        -->
                         </a>
                     </div>
                     <!-- * item -->

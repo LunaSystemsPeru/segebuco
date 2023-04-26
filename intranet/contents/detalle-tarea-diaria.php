@@ -64,7 +64,7 @@
                             <p>E/P Bamar 2  | SERVCIO XXX</p>
                         </div>
                         <div class="card-body">
-                            <p><span class="font-weight-bold">ESTADO:</span> <span class="badge badge-success">Terminado</span></p>
+                            <p><span class="font-weight-bold p-0">ESTADO:</span> <span class="badge badge-success">Terminado</span></p>
                             <p><span class="font-weight-bold">FECHA INICIO:</span> 12/04/2023 11.43 AM</p>
                             <p><span class="font-weight-bold">FECHA TERMINO:</span> 12/04/2023 11.43 AM</p>
                             <p><span class="font-weight-bold">COTIZADO?:</span> <span class="badge badge-warning">NO</span></p>
@@ -106,6 +106,18 @@
                     </div><!--end card-->
                 </div> <!-- end col -->
             </div><!-- row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <p>Imagenes</p>
+                        </div>
+                        <div class="card-body">
+
+                        </div><!--end card-body-->
+                    </div><!--end card-->
+                </div> <!-- end col -->
+            </div>
         </div><!-- container -->
     </div>
     <!-- end page content -->

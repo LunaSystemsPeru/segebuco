@@ -14,18 +14,19 @@ $Tarea->setId(filter_input(INPUT_POST, 'hidden-id-tarea'));
 $Tarea->setFechainicio(filter_input(INPUT_POST, 'input-inicio'));
 $Tarea->setFechatermino(filter_input(INPUT_POST, 'input-fin'));
 $Tarea->setIdmaestro(filter_input(INPUT_POST, 'select-maestro'));
-$Tarea->setEstado(filter_input(INPUT_POST, 'hidden-estado'));
+$Tarea->setEstado(filter_input(INPUT_POST, 'select-estado'));
 $Tarea->setIdembarcacion(filter_input(INPUT_POST, 'select-embarcacion'));
 $Tarea->setMotorista(filter_input(INPUT_POST, 'input-motorista'));
 $Tarea->setDescripcion(filter_input(INPUT_POST, 'input-descripcion'));
 // $Tarea->setGuia();
-$Tarea->setGuia("-");
+$Tarea->setGuia(filter_input(INPUT_POST, 'input-guia'));
 $Tarea->setIdcotizacion(filter_input(INPUT_POST, 'input-cotizacion'));
 $Tarea->setIdcotizacion(0);
 // $Tarea->setIdcotizacion(1);
 //$Tarea->setIdtiposervicio(filter_input(INPUT_POST, 'select-servicio'));
 $Tarea->setIdtiposervicio(4);
 $Tarea->setNombre(filter_input(INPUT_POST, 'input-nombre'));
+$Tarea->setPorcentaje(filter_input(INPUT_POST, 'input-porcentaje'));
 
 
 // Encaso que un maestro sola puede estar en una tarea
