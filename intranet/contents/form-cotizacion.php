@@ -1,4 +1,5 @@
 <?php
+require_once '../fixed/cargarSession.php';
 include '../../models/EmbarcacionCliente.php';
 include '../../models/ParametrosOpciones.php';
 
@@ -62,55 +63,22 @@ $Moneda->setIdparametro(4); //ID de tipo moneda
                 <!-- end page title end breadcrumb -->
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <p class="card-title">Seleccionar Tarea</p>
-                            </div>
-                            <div class="card-body">
-                                <form>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="tarea-diaria">Nombre de la Tarea</label>
-                                                <select name="tarea-diaria" id="tarea-diaria" class="form-control" onchange="infoTarea()">
-                                                    <option hidden>Seleccionar Embarcacion Primero </option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="maestro">Maestro</label>
-                                                <input type="text" class="form-control" id="maestro" placeholder="Maestro ..." disabled>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="descripcion-tarea">Descripcion</label>
-                                                <textarea id="descripcion-tarea" name="descripcion-tarea" class="form-control" rows="1" disabled></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div><!--end card-body-->
                             <div class="card-header">
                                 <p class="card-title">Datos Generales de la cotizacion</p>
                             </div>
                             <div class="card-body">
                                 <form>
-                                    <input type="text" hidden value="<?php echo $idTarea ?>" id="id-tarea">
                                     <div class="row">
                                         <div class="col-md-3">
                                             <div class="mb-3">
                                                 <label class="form-label" for="id-usuario">Usuario Responsable</label>
-                                                <input type="text" class="form-control" id="id-usuario" placeholder="Responsable ..." disabled>
+                                                <input type="text" class="form-control" id="id-usuario" placeholder="Responsable ..." value="<?php echo $_SESSION['usuario_id'] ?>" disabled>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="mb-3">
                                                 <label class="form-label" for="nro">Nro. de Cotización</label>
-                                                <input type="number" class="form-control" id="nro" placeholder="5195591672" min="0">
+                                                <input type="number" class="form-control" id="nro" placeholder="Nro Cotizacion" min="0">
                                             </div>
                                         </div>
                                         <div class="col-md-2">
@@ -120,6 +88,29 @@ $Moneda->setIdparametro(4); //ID de tipo moneda
                                             </div>
                                         </div>
 
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="id-cliente">Cliente</label>
+                                                <select class="form-control" name="id-cliente" id="id-cliente" onchange="ClienteEmbarcacion();">
+                                                    <option hidden>Seleccionar Cliente ...</option>
+                                                    <?php
+                                                    foreach ($Cliente->verFilas() as $fila) {
+                                                        echo "<option value=" . $fila['id'] . ">" . $fila['nombre_corto'] . " | " . $fila['razon_social'] . "</option>";
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="id-embarcacion">Embarcación</label>
+                                                <select class="form-control" name="id-embarcacion" id="id-embarcacion" >
+                                                    <option hidden>Seleccionar Cliente Primero </option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-3">
@@ -149,29 +140,6 @@ $Moneda->setIdparametro(4); //ID de tipo moneda
                                             </div>
                                         </div>
 
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="id-cliente">Cliente</label>
-                                                <select class="form-control" name="id-cliente" id="id-cliente" onchange="ClienteEmbarcacion();">
-                                                    <option hidden>Seleccionar Cliente ...</option>
-                                                    <?php
-                                                    foreach ($Cliente->verFilas() as $fila) {
-                                                        echo "<option value=" . $fila['id'] . ">" . $fila['nombre_corto'] . " | " . $fila['razon_social'] . "</option>";
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="id-embarcacion">Embarcación</label>
-                                                <select class="form-control" name="id-embarcacion" id="id-embarcacion" onchange="EmbarcacionTarea();">
-                                                    <option hidden>Seleccionar Cliente Primero </option>
-                                                </select>
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
@@ -220,24 +188,27 @@ $Moneda->setIdparametro(4); //ID de tipo moneda
     <!-- App js -->
     <script src="../assets/js/app.js"></script>
     <script>
-        let texth = $("#descripcion-tarea").height();
-        $(document).ready(function() {
-            let id = $("#id-tarea").val();
-            if (id != "") {
-                $.post("../json/info-tarea-diaria.php", {
-                    'id-tarea': id
-                }, function(data) {
-                    // alert(data);
-                    let resuldata = JSON.parse(data);
-                    $("#id-cliente option[value=" + resuldata.id_cliente + "]").attr("selected", true);
-                    ClienteEmbarcacion(resuldata.id_embarcacion);
-                    EmbarcacionTarea(resuldata.id_tarea, resuldata.id_embarcacion);
-                    $("#maestro").val(resuldata.maestro);
-                    $("#descripcion-tarea").val(resuldata.descripcion);
-                    $("#descripcion-tarea").height((resuldata.descripcion.split('\n').length * texth) + 'px');
-                });
-            }
-        });
+        function obtenerDatosTarea() {
+            let texth = $("#descripcion-tarea").height();
+            $(document).ready(function() {
+                let id = $("#id-tarea").val();
+                if (id != "") {
+                    $.post("../json/info-tarea-diaria.php", {
+                        'id-tarea': id
+                    }, function(data) {
+                        // alert(data);
+                        let resuldata = JSON.parse(data);
+                        $("#id-cliente option[value=" + resuldata.id_cliente + "]").attr("selected", true);
+                        ClienteEmbarcacion(resuldata.id_embarcacion);
+                        EmbarcacionTarea(resuldata.id_tarea, resuldata.id_embarcacion);
+                        $("#maestro").val(resuldata.maestro);
+                        $("#descripcion-tarea").val(resuldata.descripcion);
+                        $("#descripcion-tarea").height((resuldata.descripcion.split('\n').length * texth) + 'px');
+                    });
+                }
+            });
+        }
+
 
         function ClienteEmbarcacion(id = null) {
             let datos = {
@@ -253,8 +224,8 @@ $Moneda->setIdparametro(4); //ID de tipo moneda
                     $("#id-embarcacion").html(date);
                 }
             });
-            limpiarInfoTarea();
-            EmbarcacionTarea();
+            //limpiarInfoTarea();
+            //EmbarcacionTarea();
         }
 
         function EmbarcacionTarea(id = null, idem = null) {
@@ -290,6 +261,7 @@ $Moneda->setIdparametro(4); //ID de tipo moneda
             $("#descripcion-tarea").val("");
             $("#descripcion-tarea").height(texth + 'px');
         }
+
         $("#btn-registrar").click(function() {
             let datos = {
                 "nro": $("#nro").val(),
@@ -301,24 +273,24 @@ $Moneda->setIdparametro(4); //ID de tipo moneda
                 "id-cliente": $("#id-cliente").val(),
                 "descripcion": $("#descripcion-cotizacion").val(),
                 "id-embarcacion": $("#id-embarcacion").val(),
-                "tarea-diaria": $("#tarea-diaria").val(),
+                "tarea-diaria": 0,
             }
             //validación de campos vacios
             for (let item in datos) {
-                console.log(item);
+                //console.log(item);
                 if (item == "") {
                     alert("Datos incompletos");
                     return;
                 }
             }
-            console.log(datos);
+            //console.log(datos);
             $.post("../controller/registrar-cotizacion.php", datos, function(data) {
-                // alert(data);
+                console.log(data);
                 let resultdata = JSON.parse(data);
                 if (resultdata) {
                     if (resultdata.success) {
                         Swal.fire({
-                            title: "Guia de Remision Registrado",
+                            title: "Cotizacion Registrada",
                             icon: 'success',
                             type: 'success',
                             confirmButtonText: 'Ok'

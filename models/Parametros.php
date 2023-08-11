@@ -76,6 +76,6 @@ class Parametros {
 
     function verFilas(){
         $sql = "SELECT * FROM parametros";
-        $this->conectar->get_Cursor($sql);
+        return $this->conectar->get_Cursor($sql);
     }
 }

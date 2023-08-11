@@ -16,13 +16,13 @@ class Cotizacion
     private $idcliente;
     private $descripcion;
     private $idembarcacion;
-    private $idorden;
     private $conectar;
 
     function __construct()
     {
         $this->conectar = conectar::getInstancia();
     }
+
     /**
      * @return mixed
      */
@@ -32,43 +32,11 @@ class Cotizacion
     }
 
     /**
-     * @param mixed  $id
+     * @param mixed $id
      */
-    public function setId($id)
+    public function setId($id): void
     {
         $this->id = $id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getFecregistro()
-    {
-        return $this->fecregistro;
-    }
-
-    /**
-     * @param mixed $fecregistro
-     */
-    public function setFecregistro($fecregistro)
-    {
-        $this->fecregistro = $fecregistro;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getFeccotizacion()
-    {
-        return $this->feccotizacion;
-    }
-
-    /**
-     * @param mixed $feccotizacion
-     */
-    public function setFeccotizacion($feccotizacion)
-    {
-        $this->feccotizacion = $feccotizacion;
     }
 
     /**
@@ -82,7 +50,7 @@ class Cotizacion
     /**
      * @param mixed $nro
      */
-    public function setNro($nro)
+    public function setNro($nro): void
     {
         $this->nro = $nro;
     }
@@ -90,15 +58,31 @@ class Cotizacion
     /**
      * @return mixed
      */
+    public function getFeccotizacion()
+    {
+        return $this->feccotizacion;
+    }
+
+    /**
+     * @param mixed $feccotizacion
+     */
+    public function setFeccotizacion($feccotizacion): void
+    {
+        $this->feccotizacion = $feccotizacion;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getIdusuario()
     {
-        return $this->idusuario;;
+        return $this->idusuario;
     }
 
     /**
      * @param mixed $idusuario
      */
-    public function setIdcotizacion($idusuario)
+    public function setIdusuario($idusuario): void
     {
         $this->idusuario = $idusuario;
     }
@@ -114,9 +98,25 @@ class Cotizacion
     /**
      * @param mixed $estado
      */
-    public function setEstado($estado)
+    public function setEstado($estado): void
     {
         $this->estado = $estado;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFecregistro()
+    {
+        return $this->fecregistro;
+    }
+
+    /**
+     * @param mixed $fecregistro
+     */
+    public function setFecregistro($fecregistro): void
+    {
+        $this->fecregistro = $fecregistro;
     }
 
     /**
@@ -130,7 +130,7 @@ class Cotizacion
     /**
      * @param mixed $idmoneda
      */
-    public function setIdmoneda($idmoneda)
+    public function setIdmoneda($idmoneda): void
     {
         $this->idmoneda = $idmoneda;
     }
@@ -146,10 +146,11 @@ class Cotizacion
     /**
      * @param mixed $moncotizacion
      */
-    public function setMoncotizacion($moncotizacion)
+    public function setMoncotizacion($moncotizacion): void
     {
         $this->moncotizacion = $moncotizacion;
     }
+
     /**
      * @return mixed
      */
@@ -161,56 +162,75 @@ class Cotizacion
     /**
      * @param mixed $monaprobado
      */
-    public function setMonaprobado($monaprobado)
+    public function setMonaprobado($monaprobado): void
     {
         $this->monaprobado = $monaprobado;
     }
 
+    /**
+     * @return mixed
+     */
     public function getNrosolped()
     {
         return $this->nrosolped;
     }
 
-    public function setNrosolped($nrosolped)
+    /**
+     * @param mixed $nrosolped
+     */
+    public function setNrosolped($nrosolped): void
     {
         $this->nrosolped = $nrosolped;
     }
+
+    /**
+     * @return mixed
+     */
     public function getIdcliente()
     {
         return $this->idcliente;
     }
-    public function setIdcliente($idcliente)
+
+    /**
+     * @param mixed $idcliente
+     */
+    public function setIdcliente($idcliente): void
     {
         $this->idcliente = $idcliente;
     }
 
+    /**
+     * @return mixed
+     */
     public function getDescripcion()
     {
         return $this->descripcion;
     }
-    public function setDescripcion($descripcion)
+
+    /**
+     * @param mixed $descripcion
+     */
+    public function setDescripcion($descripcion): void
     {
         $this->descripcion = $descripcion;
     }
 
+    /**
+     * @return mixed
+     */
     public function getIdembarcacion()
     {
         return $this->idembarcacion;
     }
 
-    public function setIdembarcacion($idembarcacion)
+    /**
+     * @param mixed $idembarcacion
+     */
+    public function setIdembarcacion($idembarcacion): void
     {
         $this->idembarcacion = $idembarcacion;
     }
 
-    public function getIdorden()
-    {
-        return $this->idorden;
-    }
-    public function setIdorden($idorden)
-    {
-        $this->idorden = $idorden;
-    }
     function obtenerId()
     {
         $sql = "SELECT IFNULL(MAX(id) + 1, 1) AS codigo FROM cotizaciones";
@@ -225,15 +245,14 @@ class Cotizacion
             '$this->feccotizacion',
             '$this->idusuario',
             '$this->estado',
-            '$this->fecregistro',
+            now(),
             '$this->idmoneda',
             '$this->moncotizacion',
             '$this->monaprobado',
             '$this->nrosolped',
             '$this->idcliente',
             '$this->descripcion',
-            '$this->idembarcacion',
-            '$this->idorden'
+            '$this->idembarcacion'
         )";
         return $this->conectar->ejecutar_idu($sql);
     }
@@ -280,13 +299,15 @@ class Cotizacion
         }
     }
 
-    function verFilas($datos = "",$f_inicio = "0000-00-00", $f_fin = "9999-12-30")
+    function verFilas($datos = "", $f_inicio = "0000-00-00", $f_fin = "9999-12-30")
     {
-        $sql = "SELECT c.id, c.nro, c.fecha_cotizacion AS fecha, cl.razon_social AS cliente, c.descripcion_corta AS descripcion, m.valor2 AS moneda, c.monto_cotizacion AS monto, c.estado
-        FROM cotizaciones c
-        INNER JOIN clientes cl ON cl.id = c.cliente_id
-        INNER JOIN parametros_opciones m ON m.id = c.moneda_id
-        WHERE c.id != 0 AND ( cl.nombre_corto LIKE '%$datos%' OR cl.razon_social LIKE '%$datos%' OR c.descripcion_corta LIKE '%$datos%' ) AND c.fecha_registro BETWEEN '$f_inicio' and '$f_fin'";
+        $sql = "SELECT c.id, c.nro, c.fecha_cotizacion AS fecha, cl.razon_social AS cliente, c.descripcion_corta AS descripcion, m.valor2 AS moneda, 
+                c.monto_cotizacion AS monto, c.estado, e.nombre as nembarcacion, c.nro_solped
+                FROM cotizaciones c
+                INNER JOIN clientes cl ON cl.id = c.cliente_id
+                INNER JOIN embarcacion e on c.embarcacion_id = e.id
+                INNER JOIN parametros_opciones m ON m.id = c.moneda_id
+                WHERE c.id != 0 AND ( cl.nombre_corto LIKE '%$datos%' OR cl.razon_social LIKE '%$datos%' OR c.descripcion_corta LIKE '%$datos%' ) AND c.fecha_registro BETWEEN '$f_inicio' and '$f_fin'";
         return $this->conectar->get_Cursor($sql);
     }
 }

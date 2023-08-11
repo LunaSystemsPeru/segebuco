@@ -5,10 +5,10 @@ error_reporting(E_ALL);
 
 require '../../tools/Zebra_Session.php';
 require '../../models/Usuario.php';
-require '../../models/ParametroValor.php';
+require '../../models/ParametrosOpciones.php';
 
 $Usuario = new Usuario();
-$Valor = new ParametroValor();
+$Valor = new ParametrosOpciones();
 $Conectar = Conectar::getInstancia();
 
 $password = filter_input(INPUT_POST, 'input-password');

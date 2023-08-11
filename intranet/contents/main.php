@@ -1,6 +1,7 @@
 <?php
 include '../fixed/cargarSession.php';
 require '../../models/TareaDiaria.php';
+$_SESSION['usuario_id'] = 1;
 
 $Tarea = new TareaDiaria();
 ?>

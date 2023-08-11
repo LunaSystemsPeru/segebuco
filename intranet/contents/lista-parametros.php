@@ -1,15 +1,15 @@
 <?php
 require_once '../fixed/cargarSession.php';
-require '../../models/Parametro.php';
-require '../../models/ParametroValor.php';
-$Parametro = new Parametro();
-$Valor = new ParametroValor();
-$Valor->setParametroId(1);
+require '../../models/Parametros.php';
+require '../../models/ParametrosOpciones.php';
+$Parametro = new Parametros();
+$Valor = new ParametrosOpciones();
+$Valor->setIdparametro(1);
 if (filter_input(INPUT_GET, 'tipo', FILTER_SANITIZE_NUMBER_INT)) {
-    $Valor->setParametroId(filter_input(INPUT_GET, 'tipo', FILTER_SANITIZE_NUMBER_INT));
+    $Valor->setIdparametro(filter_input(INPUT_GET, 'tipo', FILTER_SANITIZE_NUMBER_INT));
 }
 
-$Parametro->setId($Valor->getParametroId());
+$Parametro->setId($Valor->getIdparametro());
 $Parametro->obtenerDatos();
 ?>
 <!DOCTYPE html>
